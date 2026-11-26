@@ -9,17 +9,17 @@ A quick way to check how good a webpage is. It checks whether the page is useful
 ## How it works
 
 1. Enter the address of the page you want to check.
-2. Answer one question at a time.
+2. Answer 1 question at a time.
 3. Get your score and a list of what to fix.
 
 It takes about 10 minutes.
 
-## The two parts
+## The 2 parts
 
 **Part 1: Is the page good for readers?**
-You answer six questions. For each one, choose Yes, Somewhat or No. Yes scores 2, Somewhat scores 1 and No scores 0, so the highest score is 12.
+You answer 6 questions. For each one, choose Yes, Somewhat or No. Yes scores 2, Somewhat scores 1 and No scores 0, so the highest score is 12.
 
-The six questions are about:
+The 6 questions are about:
 
 1. Relevance: is this the right page for what people came to find?
 2. Informative: does it give people what they need?
@@ -29,9 +29,9 @@ The six questions are about:
 6. Call to action: is it clear what to do next?
 
 **Part 2: Can search engines and AI tools use the page?**
-You answer six more questions. For each one, choose Yes, Not sure or No. This part has no score. It gives you a list of things to look at. You can answer the questions in any order.
+You answer 6 more questions. For each one, choose Yes, Not sure or No. This part has no score. It gives you a list of things to look at. You can answer the questions in any order.
 
-The six questions are about:
+The 6 questions are about:
 
 1. Reach: can search engines and AI tools get to the page?
 2. Store: will they keep a copy of it?
@@ -45,12 +45,12 @@ The six questions are about:
 - Your Part 1 score
 - A list of the Part 2 questions that need attention
 - A suggested fix for each answer that wasn't a Yes
-- A final page to add who is responsible for the fixes and when to look at the page again
+- A final page to add who's responsible for the fixes and when to look at the page again
 - A PDF or spreadsheet you can save and share
 
 ## The automatic check
 
-For two of the questions, Reach and Store, the scorecard can do the checking for you. It looks at the page and suggests an answer, and it writes what it found in your notes. You can change the answer if you disagree.
+For 2 of the questions, Reach and Store, the scorecard can do the checking for you. It looks at the page and suggests an answer, and it writes what it found in your notes. You can change the answer if you disagree.
 
 It checks:
 

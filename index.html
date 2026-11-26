@@ -309,48 +309,48 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
 
   var Q = [
     { key: 'Relevance', q: 'Is it clear who this page is for?',
-      look: ['The page title and main heading say what the page is about', 'The first lines tell the reader who it is for', 'Someone arriving from a search result knows within seconds that they are in the right place'],
+      look: ['The page title and main heading say what the page is about', 'The first lines tell the reader who it\'s for', 'Someone arriving from a search result knows within seconds that they\'re in the right place'],
       fix: 'Rewrite the title and main heading so they name the topic and the audience. Then open with 1 sentence saying what the reader can do here.',
       fixSome: 'The title or opening is close but not specific. Name the topic and the audience in the title and main heading, and say what the reader can do in the first sentence.' },
     { key: 'Informative', q: 'Is the page reliable, accurate, up-to-date, detailed enough, trustworthy?',
       look: ['Dates, prices, opening times and phone numbers are correct', 'Links go where they say they go', 'The page shows when it was last updated and who to contact about a mistake'],
-      fix: 'Treat the page as unreliable until it is checked. Verify every fact, date, price and link against its source, remove anything you cannot confirm, and add a review date and a named owner.',
+      fix: 'Treat the page as unreliable until it\'s checked. Verify every fact, date, price and link against its source, remove anything you can\'t confirm, and add a review date and a named owner.',
       fixSome: 'Most facts look right but something is stale or unowned. Check every date, price and contact detail against its source, then add a review date and a named owner.' },
     { key: 'Structure', q: 'Can you scan it? Are there clear headings, short paragraphs and lists?',
-      look: ['Headings run in a logical order and describe the section below them', 'Paragraphs are short, and steps or options are in lists', 'The most important information is not buried'],
+      look: ['Headings run in a logical order and describe the section below them', 'Paragraphs are short, and steps or options are in lists', 'The most important information isn\'t buried'],
       fix: 'Break long paragraphs up, turn steps and options into lists, and give each section a heading that says what it contains.',
       fixSome: 'Most of the page scans well. Find the longest paragraph and the vaguest heading and fix those first: break the paragraph up and make the heading say what follows.' },
     { key: 'Tone of voice', q: 'Is the language plain and consistent with your house style, with no jargon or filler?',
       look: ['Plain words, short sentences, no unexplained jargon', 'The tone matches the rest of the site and your style guide', 'No slogans or filler where a fact should be'],
-      fix: 'Replace jargon and slogans with the specific fact they stand in for. Read the page aloud and rewrite anything you would not say to a person.',
+      fix: 'Replace jargon and slogans with the specific fact they stand in for. Read the page aloud and rewrite anything you wouldn\'t say to a person.',
       fixSome: 'Find the 3 phrases that sound least like you and replace each with the plain fact. Then check the tone against your style guide.' },
     { key: 'Accessibility', q: 'Does it meet your accessibility standards?',
       look: ['Link text makes sense out of context, never "click here"', 'Text is real text, not part of an image, and images have useful alt text', 'Forms and buttons have clear labels, and colour contrast passes'],
       fix: 'Rewrite vague links, move any text out of images, add alt text and label every form field. Then check the page against your accessibility standards.',
       fixSome: 'Fix the gaps you spotted first, such as vague links, missing alt text or unlabelled fields. Then run an automated accessibility check and review the results against your standards.' },
     { key: 'Call to action', q: 'Is there 1 clear thing the reader can do next?',
-      look: ['There is 1 clearly labelled call-to-action', 'The button or link says what will happen when you use it', 'Contact details are written out as text'],
+      look: ['There\'s 1 clearly labelled call-to-action', 'The button or link says what will happen when you use it', 'Contact details are written out as text'],
       fix: 'Decide the 1 thing the reader should do next and make it the most prominent action. Label it with a verb, such as "Book a place" or "Call the helpline".',
-      fixSome: 'There is a call to action but it is not clear enough. Pick the 1 action that matters most, make it the most prominent, and label it with a verb.' }
+      fixSome: 'There\'s a call to action but it isn\'t clear enough. Pick the 1 action that matters most, make it the most prominent, and label it with a verb.' }
   ];
 
   var C = [
     { key: 'Reach', q: 'Can search engines and AI assistants get to this page?',
-      look: ['It is not behind a login', 'It is not blocked by robots.txt or a similar rule', 'It is in your sitemap and other pages link to it'],
-      fix: 'Ask your web team to check access rules and the sitemap. Public information should not need a login.',
-      confirm: 'Open the page in a private window without signing in. Then add /robots.txt to your domain and check it does not block this page or the AI crawlers, and check the page is in your sitemap.' },
+      look: ['It isn\'t behind a login', 'It isn\'t blocked by robots.txt or a similar rule', 'It\'s in your sitemap and other pages link to it'],
+      fix: 'Ask your web team to check access rules and the sitemap. Public information shouldn\'t need a login.',
+      confirm: 'Open the page in a private window without signing in. Then add /robots.txt to your domain and check it doesn\'t block this page or the AI crawlers, and check the page is in your sitemap.' },
     { key: 'Store', q: 'Is the page allowed to be stored, and does it load without special software?',
-      look: ['There is no noindex instruction on the page', 'The main text is in the page itself, not loaded only after a click or by a script', 'Key facts are not locked inside a PDF or an image'],
-      fix: 'Remove any noindex that is there by mistake, and put the key text in the page itself rather than behind tabs, scripts or downloads.',
-      confirm: 'View the page source (Ctrl+U or Cmd+U) and search for a sentence from the page. If it is missing, the text loads by script. Search the source for noindex too.' },
+      look: ['There\'s no noindex instruction on the page', 'The main text is in the page itself, not loaded only after a click or by a script', 'Key facts aren\'t locked inside a PDF or an image'],
+      fix: 'Remove any noindex that\'s there by mistake, and put the key text in the page itself rather than behind tabs, scripts or downloads.',
+      confirm: 'View the page source (Ctrl+U or Cmd+U) and search for a sentence from the page. If it\'s missing, the text loads by script. Search the source for noindex too.' },
     { key: 'Understand', q: 'Is the meaning in the words and headings, not just in images or layout?',
-      look: ['Headings describe what follows', 'Facts in tables and diagrams are also stated in the text', 'Meaning does not depend on colour or position alone'],
+      look: ['Headings describe what follows', 'Facts in tables and diagrams are also stated in the text', 'Meaning doesn\'t depend on colour or position alone'],
       fix: 'Say in words what an image, table or layout shows. Make each heading describe the content under it.',
       confirm: 'Read the page with images and styling switched off, or ask a colleague to. Check every fact in a table, chart or image is also written in the text.' },
     { key: 'Trust', q: 'Is it current, owned by a named team and backed by evidence?',
-      look: ['There is a review date or last-updated date', 'A team is responsible for the page', 'Claims point to a source, a policy or a named expert'],
+      look: ['There\'s a review date or last-updated date', 'A team is responsible for the page', 'Claims point to a source, a policy or a named expert'],
       fix: 'Add a review date, name an owner and link claims to their sources. Retire the page if no one will maintain it.',
-      confirm: 'Look for a review date, a named owner and a source for each claim. If you cannot find them in 30 seconds, neither can a search tool.' },
+      confirm: 'Look for a review date, a named owner and a source for each claim. If you can\'t find them in 30 seconds, neither can a search tool.' },
     { key: 'Answer', q: 'Does it directly answer a specific question someone would ask?',
       look: ['The answer appears near the top in plain words', 'A heading matches the way people phrase the question', 'The details someone needs to decide sit next to the answer'],
       fix: 'Pick the main question the page answers. Put the answer in the first 2 lines and add a heading that asks the question in the reader\'s words.',
@@ -481,7 +481,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     screen.innerHTML =
       '<div class="head"><h1 id="h" tabindex="-1">Does this page work?</h1>' +
       '<p class="lede">Paste a page URL from your website and answer 12 short questions, split into 2 parts.</p></div>' +
-      '<p class="muted">Part 1 has 6 quality checks you’ll need to ask yourself: relevance, informative, structure, tone of voice, accessibility, call to action. You’ll get a score at the end.<br><br>Part 2 has 6 checks to find out whether search tools and AI assistants can find, understand and use the page: reach, store, understand, trust, answer, act. It is not scored.<br><br>You can add notes to each question as you go. You\'ll get a copy of your notes at the end.<br><br>At the end of the audit, you\'ll get a fix list and a summary to share with your team. You can download it as a PDF or a spreadsheet.</p>' +
+      '<p class="muted">Part 1 has 6 quality checks you’ll need to ask yourself: relevance, informative, structure, tone of voice, accessibility, call to action. You’ll get a score at the end.<br><br>Part 2 has 6 checks to find out whether search tools and AI assistants can find, understand and use the page: reach, store, understand, trust, answer, act. It isn\'t scored.<br><br>You can add notes to each question as you go. You\'ll get a copy of your notes at the end.<br><br>At the end of the audit, you\'ll get a fix list and a summary to share with your team. You can download it as a PDF or a spreadsheet.</p>' +
       '<div class="field"><label class="label" for="pageName">Page URL (required)</label>' +
       '<input type="text" id="pageName" required aria-required="true" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
       '</div>' +
@@ -526,7 +526,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
       '<div class="head"><span class="label">' + esc(item.key) + '</span>' +
       '<h2 id="h" tabindex="-1">' + esc(item.q) + '</h2>' + extra + '</div>' +
       '<div class="look"><span class="label">What to look for</span><ul>' + looks + '</ul></div>' + autoBox +
-      '<fieldset class="choices"><legend>Your answer (choose one to continue)</legend>' + choices + '</fieldset>' +
+      '<fieldset class="choices"><legend>Your answer (choose 1 to continue)</legend>' + choices + '</fieldset>' +
       '<div class="field"><label class="label" for="note">Notes</label>' +
       '<textarea id="note" placeholder="Anything you spotted goes in here.">' + esc(note) + '</textarea></div>' +
       '<div class="nav"><button class="btn outline" id="back">Back</button>' +
@@ -550,6 +550,12 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
   function autoFor() {
     var u = state.name.trim();
     return state.auto && state.auto.url === u ? state.auto : null;
+  }
+  function contract(t) {
+    return String(t == null ? '' : t)
+      .replace(/\bcannot\b/g, "can't").replace(/\bdoes not\b/g, "doesn't").replace(/\bdo not\b/g, "don't")
+      .replace(/\bis not\b/g, "isn't").replace(/\bare not\b/g, "aren't").replace(/\bcould not\b/g, "couldn't")
+      .replace(/\bdid not\b/g, "didn't").replace(/\bThere is\b/g, "There's").replace(/\bthat is\b/g, "that's");
   }
   function autoNote(r) {
     var probs = r.findings.filter(function (f) { return f.status === 'fail' || f.status === 'warn'; }).map(function (f) { return f.text; });
@@ -581,7 +587,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     if (!wrap || idx < 0 || idx > 1) return;
     var a = autoFor(), html = '';
     if (!a || a.status === 'error') {
-      html = (a ? '<p>The automatic check did not work: ' + esc(a.error) + ' Answer by hand, or try again.</p>' : '<p>We can check this for you. This sends the page URL to a checker, which reads the page\'s public settings.</p>') +
+      html = (a ? '<p>The automatic check didn\'t work: ' + esc(a.error) + ' Answer by hand, or try again.</p>' : '<p>We can check this for you. This sends the page URL to a checker, which reads the page\'s public settings.</p>') +
         '<div><button class="btn soft" id="runAuto">' + (a ? 'Try again' : 'Check this page') + '</button></div>';
     } else if (a.status === 'running') {
       html = '<p>Checking the page&hellip;</p>';
@@ -605,7 +611,8 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     fetch(CHECKER_URL + (CHECKER_URL.indexOf('?') === -1 ? '?' : '&') + 'url=' + encodeURIComponent(u), { signal: ctrl.signal })
       .then(function (r) { return r.json(); })
       .then(function (j) {
-        if (!j || !j.ok) throw new Error((j && j.error) || 'No answer from the checker.');
+        if (!j || !j.ok) throw new Error(contract((j && j.error) || 'No answer from the checker.'));
+        [j.reach, j.store].forEach(function (r) { if (r && r.findings) r.findings.forEach(function (f) { f.text = contract(f.text); }); });
         return j;
       })
       .then(function (j) {
@@ -644,7 +651,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
       '</div>' +
       '<div class="meter" role="img" aria-label="Score ' + s + ' out of ' + MAX + '"><i style="width:' + Math.round(s / MAX * 100) + '%"></i></div>' +
       '<p class="muted">' + b.text + '</p>' +
-      '<p class="small muted">Yes = 2, Somewhat = 1, No = 0. Maximum ' + MAX + '. Part 2 is not scored, so this score will not change.</p></div>' +
+      '<p class="small muted">Yes = 2, Somewhat = 1, No = 0. Maximum ' + MAX + '. Part 2 isn\'t scored, so this score won\'t change.</p></div>' +
       '<div class="sec"><h3>Your answers</h3><div class="rows">' + rows + '</div></div>' +
       '<div class="nextpart"><span class="label">Up next</span>' +
       '<h3>Part 2: can search tools and AI assistants use this page?</h3>' +
@@ -659,7 +666,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     lines.push('WEBPAGE AUDIT SCORECARD, BY ASH CURTIS');
     lines.push('URL: ' + state.name.trim());
     lines.push('Score: ' + s + ' / ' + MAX + '. ' + b.text);
-    lines.push('Part 1 is scored out of ' + MAX + '. Part 2 is not scored.');
+    lines.push('Part 1 is scored out of ' + MAX + '. Part 2 isn\'t scored.');
     lines.push('');
     lines.push('PART 1 ANSWERS');
     for (var i = 0; i < Q.length; i++) {
@@ -764,7 +771,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     it.push({ t: m.url, size: 11, before: 6 });
     it.push({ t: 'Score: ' + m.score + ' / ' + m.max, size: 15, bold: true, before: 16 });
     it.push({ t: m.message, before: 4 });
-    it.push({ t: 'Part 1 is scored out of ' + m.max + '. Part 2 is not scored.', size: 9.5, before: 2 });
+    it.push({ t: 'Part 1 is scored out of ' + m.max + '. Part 2 isn\'t scored.', size: 9.5, before: 2 });
     it.push({ t: 'Part 1 answers', size: 14, bold: true, before: 20 });
     m.p1.forEach(function (r) {
       it.push({ t: r.key + ': ' + r.answer, before: 5 });
@@ -903,7 +910,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
       '<div class="sec"><div class="score"><span class="score-num">' + s + '</span><span class="score-of">/ ' + MAX + '</span></div>' +
       '<div class="meter" role="img" aria-label="Score ' + s + ' out of ' + MAX + '"><i style="width:' + Math.round(s / MAX * 100) + '%"></i></div>' +
       '<p class="muted">' + b.text + '</p>' +
-      '<p class="small muted">Part 1 is scored out of ' + MAX + '. Part 2 is not scored.</p></div>' +
+      '<p class="small muted">Part 1 is scored out of ' + MAX + '. Part 2 isn\'t scored.</p></div>' +
       '<div class="sec"><h3>Part 1 answers</h3><div class="rows">' + rows + '</div></div>' +
       '<div class="sec"><h3>Part 2 answers</h3><p class="small muted">' + p2line + '</p><div class="rows">' + rows2 + '</div></div>' +
       '<div class="sec"><h3>' + (total ? 'What to fix' : 'Fixes') + '</h3>' + fixes + '</div>' +
@@ -976,10 +983,10 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     function save(name, makeBytes) {
       if (!dl) return;
       var bytes;
-      try { bytes = makeBytes(); } catch (e) { status.textContent = 'Could not build the file.'; return; }
+      try { bytes = makeBytes(); } catch (e) { status.textContent = 'Couldn\'t build the file.'; return; }
       dl.save({ filename: name, data: bytes }).then(
         function () { status.textContent = 'Saved'; },
-        function (e) { status.textContent = e && e.code === 'declined' ? '' : 'Could not save here.'; }
+        function (e) { status.textContent = e && e.code === 'declined' ? '' : 'Couldn\'t save here.'; }
       );
     }
     document.getElementById('dlPdf').addEventListener('click', function () { save('audit-' + slug() + '.pdf', buildPdf); });
