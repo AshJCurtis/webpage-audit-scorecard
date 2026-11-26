@@ -2,7 +2,9 @@
 
 By [Ash Curtis](https://github.com/AshJCurtis)
 
-A quick way to check how good a webpage is. It checks whether the page is useful to the people reading it, and whether Google and AI tools like ChatGPT can find it and use it.
+**Does this page work?
+**
+I've developed a quick way to check how helpful a webpage is. It checks whether the page is useful to the people reading it, and whether Google and AI tools like ChatGPT can find it and use it.
 
 **Try it:** https://ashjcurtis.github.io/webpage-audit-scorecard/
 
@@ -29,7 +31,7 @@ The 6 questions are about:
 6. Call to action: is it clear what to do next?
 
 **Part 2: Can search engines and AI tools use the page?**
-You answer 6 more questions. For each one, choose Yes, Not sure or No. This part has no score. It gives you a list of things to look at. You can answer the questions in any order.
+You answer 6 more questions. For each one, choose Yes, Not sure or No. This part has no score, but does give you a list of things to look at.
 
 The 6 questions are about:
 
