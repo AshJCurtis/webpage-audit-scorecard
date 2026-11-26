@@ -101,9 +101,14 @@ body {
 .themebtn:hover { background: var(--accent-soft); }
 .themebtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .themebtn[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent); }
-.urlbar { display: flex; gap: 10px; align-items: baseline; background: var(--accent-soft); color: var(--accent-ink); border-radius: 12px; padding: 8px 14px; font-size: 14px; min-width: 0; }
+.urlbar { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; background: var(--accent-soft); color: var(--accent-ink); border-radius: 12px; padding: 8px 14px; font-size: 14px; min-width: 0; }
 .urlbar span { flex: none; font-weight: 500; }
-.urlbar b { font-weight: 400; overflow-wrap: anywhere; min-width: 0; }
+.urlbar b { font-weight: 400; overflow-wrap: anywhere; min-width: 0; flex: 1 1 12ch; }
+.urlbar input { font: inherit; font-size: 15px; flex: 1 1 220px; min-width: 0; min-height: 36px; padding: 4px 10px; border: 1px solid var(--control); border-radius: 8px; background: var(--surface); color: var(--fg); }
+.urlbar input:focus-visible, .urlbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.urlbtn { font: inherit; font-size: 14px; background: transparent; color: var(--accent-ink); border: 1px solid var(--accent); border-radius: 999px; min-height: 32px; padding: 2px 14px; cursor: pointer; }
+.urlbtn:hover { background: var(--surface); }
+.urlmsg { flex-basis: 100%; font-size: 13px; color: var(--bad-fg); }
 
 h1, h2, h3 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.2; margin: 0; text-wrap: balance; }
 h1 { font-size: clamp(32px, 6vw, 44px); }
@@ -259,7 +264,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
 <div class="wrap">
   <div class="topbar"><div class="toprow"><div class="top">Webpage audit scorecard, by <a href="https://github.com/AshJCurtis" target="_blank" rel="noopener" aria-label="Ash Curtis on GitHub (opens in a new tab)">Ash Curtis</a></div>
   <button type="button" class="themebtn" id="themeBtn" aria-pressed="false">Dark mode</button></div>
-  <div class="urlbar" id="urlbar" hidden><span>Auditing</span><b id="urlbarText"></b></div></div>
+  <div class="urlbar" id="urlbar" hidden></div></div>
   <div class="progress" id="progress" hidden>
     <div class="track"><i id="fill"></i></div>
     <div class="plabel" id="plabel"></div>
@@ -425,6 +430,53 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     fill.style.width = Math.round(n / of * 100) + '%';
   }
 
+  function fixUrl(v) {
+    v = String(v == null ? '' : v).trim();
+    if (!v || /^[a-z][a-z0-9+.\-]*:\/\//i.test(v) || /\s/.test(v)) return v;
+    return 'https://' + v.replace(/^\/+/, '');
+  }
+  function changeUrl(next) {
+    if (next === state.name.trim()) return;
+    var set = state.autoSet || {};
+    Object.keys(set).forEach(function (k) {
+      var rec = set[k];
+      if (state.a2[k] === rec.a) delete state.a2[k];
+      if (state.n2[k] === rec.n) state.n2[k] = '';
+    });
+    state.autoSet = {};
+    state.auto = null;
+    state.name = next;
+  }
+  function paintUrlBar(editing) {
+    var bar = document.getElementById('urlbar');
+    if (editing) {
+      bar.innerHTML = '<label for="urlInput"><span>Page URL</span></label>' +
+        '<input type="text" id="urlInput" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name.trim()) + '">' +
+        '<button type="button" class="urlbtn" id="urlSave">Save</button><button type="button" class="urlbtn" id="urlCancel">Cancel</button>' +
+        '<span class="urlmsg" id="urlMsg" role="alert"></span>';
+      var inp = document.getElementById('urlInput');
+      function save() {
+        var v = fixUrl(inp.value);
+        if (!v) { document.getElementById('urlMsg').textContent = 'Enter a page URL.'; inp.focus(); return; }
+        var changed = v !== state.name.trim();
+        changeUrl(v);
+        if (changed) render(); else paintUrlBar(false);
+        var eb = document.getElementById('urlEdit'); if (eb) eb.focus();
+      }
+      document.getElementById('urlSave').addEventListener('click', save);
+      document.getElementById('urlCancel').addEventListener('click', function () { paintUrlBar(false); document.getElementById('urlEdit').focus(); });
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); save(); }
+        else if (e.key === 'Escape') { paintUrlBar(false); document.getElementById('urlEdit').focus(); }
+      });
+      inp.focus(); inp.select();
+    } else {
+      bar.innerHTML = '<span>Auditing</span><b>' + esc(state.name.trim()) + '</b>' +
+        '<button type="button" class="urlbtn" id="urlEdit" aria-label="Edit page URL">Edit</button>';
+      document.getElementById('urlEdit').addEventListener('click', function () { paintUrlBar(true); });
+    }
+  }
+
   function renderIntro() {
     screen.innerHTML =
       '<div class="head"><h1 id="h" tabindex="-1">Does this page work?</h1>' +
@@ -443,9 +495,9 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
       startEl.disabled = !ok;
     });
     nameEl.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' && !startEl.disabled) go(1);
+      if (e.key === 'Enter' && !startEl.disabled) { state.name = fixUrl(state.name); go(1); }
     });
-    startEl.addEventListener('click', function () { if (state.name.trim()) go(1); });
+    startEl.addEventListener('click', function () { if (state.name.trim()) { state.name = fixUrl(state.name); go(1); } });
   }
 
   function renderQuestion() {
@@ -509,7 +561,10 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     [a.result.reach, a.result.store].forEach(function (r, i) {
       if (state.a2[i] == null) {
         state.a2[i] = r.answer;
-        if (!(state.n2[i] || '').trim()) state.n2[i] = autoNote(r);
+        var nt = (state.n2[i] || '').trim() ? null : autoNote(r);
+        if (nt) state.n2[i] = nt;
+        state.autoSet = state.autoSet || {};
+        state.autoSet[i] = { a: r.answer, n: nt };
       }
     });
   }
@@ -852,7 +907,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
       '<div class="sec"><h3>Part 1 answers</h3><div class="rows">' + rows + '</div></div>' +
       '<div class="sec"><h3>Part 2 answers</h3><p class="small muted">' + p2line + '</p><div class="rows">' + rows2 + '</div></div>' +
       '<div class="sec"><h3>' + (total ? 'What to fix' : 'Fixes') + '</h3>' + fixes + '</div>' +
-      '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn" id="tofinal">Next: owner and save</button></div>';
+      '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn" id="tofinal">Next: final summary</button></div>';
 
     document.getElementById('back').addEventListener('click', function () { go(LAST); });
     document.getElementById('tofinal').addEventListener('click', function () { go(FINAL); });
@@ -950,7 +1005,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     renderProgress();
     var s = state.step;
     document.getElementById('urlbar').hidden = (s === 0 || s > LAST);
-    document.getElementById('urlbarText').textContent = state.name.trim();
+    if (!document.getElementById('urlbar').hidden) paintUrlBar(false);
     if (s === 0) renderIntro();
     else if (s <= P1) renderQuestion();
     else if (s === SUM) renderPart1Summary();
