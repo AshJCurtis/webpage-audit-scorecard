@@ -7,73 +7,73 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700;800&display=swap">
 <style>
 /* Layout: one calm column, one question at a time. Low contrast, thin lines, rounded rows, slow smooth motion. */
 :root {
-  --bg: #F7F8F7;
-  --surface: #FFFFFF;
-  --fg: #26302D;
-  --muted: #5C6864;
-  --line: #E3E8E5;
-  --line-strong: #C9D2CE;
-  --control: #7A8682;
-  --accent: #3F7F76;
-  --accent-hover: #346B63;
+  --bg: #FFFFFF;
+  --surface: #F3F5FB;
+  --fg: #121A33;
+  --muted: #4B5570;
+  --line: #DCE1EE;
+  --line-strong: #B7C0D6;
+  --control: #6B769A;
+  --accent: #2336B8;
+  --accent-hover: #1A2A96;
   --accent-fg: #FFFFFF;
-  --accent-soft: #E4EFEC;
-  --accent-ink: #2F6A62;
-  --good-bg: #E4EFEC;
-  --good-fg: #2F6A62;
-  --warn-bg: #F6EED8;
-  --warn-fg: #76591A;
-  --bad-bg: #F7E5E3;
-  --bad-fg: #9A3A33;
-  --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --accent-soft: #E8ECFB;
+  --accent-ink: #1F2FA3;
+  --good-bg: #E3F3EA;
+  --good-fg: #14653A;
+  --warn-bg: #FFF1D6;
+  --warn-fg: #7A4A00;
+  --bad-bg: #FDE6E4;
+  --bad-fg: #A4161A;
+  --font: "Schibsted Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #141A19;
-    --surface: #1A2220;
-    --fg: #E3E9E7;
-    --muted: #97A39F;
-    --line: #273230;
-    --line-strong: #3A4845;
-    --control: #6F7F7B;
-    --accent: #7FBFB3;
-    --accent-hover: #94CDC2;
-    --accent-fg: #0D1715;
-    --accent-soft: #1F2F2C;
-    --accent-ink: #8FD0C4;
-    --good-bg: #1F2F2C;
-    --good-fg: #8FD0C4;
-    --warn-bg: #2E2813;
-    --warn-fg: #E3C46F;
-    --bad-bg: #33201E;
-    --bad-fg: #F0A39B;
+    --bg: #0D1120;
+    --surface: #151B30;
+    --fg: #EDF0FA;
+    --muted: #A3ADC9;
+    --line: #232B46;
+    --line-strong: #38425F;
+    --control: #7683A8;
+    --accent: #8EA2FF;
+    --accent-hover: #A9B8FF;
+    --accent-fg: #0B1030;
+    --accent-soft: #1B2447;
+    --accent-ink: #A9B8FF;
+    --good-bg: #12301F;
+    --good-fg: #7FD9A4;
+    --warn-bg: #33260B;
+    --warn-fg: #F0C46A;
+    --bad-bg: #3A1618;
+    --bad-fg: #FF9C9A;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #141A19;
-  --surface: #1A2220;
-  --fg: #E3E9E7;
-  --muted: #97A39F;
-  --line: #273230;
-  --line-strong: #3A4845;
-    --control: #6F7F7B;
-  --accent: #7FBFB3;
-  --accent-hover: #94CDC2;
-  --accent-fg: #0D1715;
-  --accent-soft: #1F2F2C;
-  --accent-ink: #8FD0C4;
-  --good-bg: #1F2F2C;
-  --good-fg: #8FD0C4;
-  --warn-bg: #2E2813;
-  --warn-fg: #E3C46F;
-  --bad-bg: #33201E;
-  --bad-fg: #F0A39B;
+  --bg: #0D1120;
+  --surface: #151B30;
+  --fg: #EDF0FA;
+  --muted: #A3ADC9;
+  --line: #232B46;
+  --line-strong: #38425F;
+  --control: #7683A8;
+  --accent: #8EA2FF;
+  --accent-hover: #A9B8FF;
+  --accent-fg: #0B1030;
+  --accent-soft: #1B2447;
+  --accent-ink: #A9B8FF;
+  --good-bg: #12301F;
+  --good-fg: #7FD9A4;
+  --warn-bg: #33260B;
+  --warn-fg: #F0C46A;
+  --bad-bg: #3A1618;
+  --bad-fg: #FF9C9A;
   color-scheme: dark;
 }
 
@@ -256,6 +256,36 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* Design preview overrides: ink blue, sharper corners, editorial headings */
+body { font-size: 17px; font-weight: 400; }
+h1, h2, h3 { font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+h1 { font-weight: 800; font-size: clamp(36px, 7vw, 52px); letter-spacing: -0.03em; }
+.lede { color: var(--fg); font-size: 19px; }
+.label { font-weight: 500; letter-spacing: 0.01em; }
+input[type="text"], input[type="date"], textarea { border-radius: 6px; }
+.face { border-radius: 6px; }
+.dot { border-radius: 50%; }
+.btn { border-radius: 6px; font-weight: 700; padding: 12px 24px; }
+.btn.outline { border-radius: 6px; padding: 11px 23px; }
+.tag { border-radius: 4px; font-weight: 700; }
+.callout, .auto, .nextpart, .urlbar, .chain li { border-radius: 8px; }
+.themebtn, .urlbtn { border-radius: 6px; }
+.track, .track i { border-radius: 0; }
+.track { height: 3px; }
+.score-num { font-weight: 800; letter-spacing: -0.04em; color: var(--fg); }
+.score-of { font-weight: 500; }
+.blocks { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+.blocks i { display: block; height: 16px; background: var(--line); border-radius: 2px; }
+.blocks i.on { background: var(--accent); }
+.fixes li::before { border-radius: 4px; background: var(--accent); color: var(--accent-fg); font-weight: 700; }
+.fixes .body p b { font-weight: 700; }
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+.card { display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--line-strong); border-radius: 8px; padding: 18px; background: var(--surface); min-width: 0; }
+.card h3 { font-size: 20px; }
+.card .kicker { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--accent-ink); }
+.card .names { font-size: 15px; }
 </style>
 
 
@@ -477,11 +507,22 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
     }
   }
 
+  function blocks(s) {
+    var x = '<div class="blocks" role="img" aria-label="Score ' + s + ' out of ' + MAX + '">';
+    for (var i = 0; i < MAX; i++) x += '<i' + (i < s ? ' class="on"' : '') + '></i>';
+    return x + '</div>';
+  }
+
   function renderIntro() {
     screen.innerHTML =
       '<div class="head"><h1 id="h" tabindex="-1">Does this page work?</h1>' +
       '<p class="lede">Paste a page URL from your website and answer 12 short questions, split into 2 parts.</p></div>' +
-      '<p class="muted">Part 1 has 6 quality checks you’ll need to ask yourself: relevance, informative, structure, tone of voice, accessibility, call to action. You’ll get a score at the end.<br><br>Part 2 has 6 checks to find out whether search tools and AI assistants can find, understand and use the page: reach, store, understand, trust, answer, act. It isn\'t scored.<br><br>You can add notes to each question as you go. You\'ll get a copy of your notes at the end.<br><br>At the end of the audit, you\'ll get a fix list and a summary to share with your team. You can download it as a PDF or a spreadsheet.</p>' +
+      '<div class="cards">' +
+      '<div class="card"><span class="kicker">Part 1 &middot; Scored out of ' + MAX + '</span><h3>6 quality checks</h3><p class="muted">Is the page useful for the people reading it?</p>' +
+      '</div>' +
+      '<div class="card"><span class="kicker">Part 2 &middot; Not scored</span><h3>6 search and AI checks</h3><p class="muted">Can search tools and AI assistants find, understand and use it?</p>' +
+      '</div></div>' +
+      '<p class="muted">Add notes to each question as you go. At the end, you\'ll get a fix list and a summary to share with your team, as a PDF or a spreadsheet.</p>' +
       '<div class="field"><label class="label" for="pageName">Page URL (required)</label>' +
       '<input type="text" id="pageName" required aria-required="true" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
       '</div>' +
@@ -649,7 +690,7 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
       '<div class="head"><span class="label">Part 1 complete</span><h2 id="h" tabindex="-1">Your Part 1 score</h2></div>' +
       '<div class="sec"><div class="score"><span class="score-num">' + s + '</span><span class="score-of">/ ' + MAX + '</span>' +
       '</div>' +
-      '<div class="meter" role="img" aria-label="Score ' + s + ' out of ' + MAX + '"><i style="width:' + Math.round(s / MAX * 100) + '%"></i></div>' +
+      blocks(s) +
       '<p class="muted">' + b.text + '</p>' +
       '<p class="small muted">Yes = 2, Somewhat = 1, No = 0. Maximum ' + MAX + '. Part 2 isn\'t scored, so this score won\'t change.</p></div>' +
       '<div class="sec"><h3>Your answers</h3><div class="rows">' + rows + '</div></div>' +
@@ -877,18 +918,19 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
 
   function renderResults() {
     var s = score(), b = band(s), iss = p2Issues(), fo = fixOrder();
+    function boldFirst(t) {
+      var i = t.indexOf('. ');
+      return i < 0 ? esc(t) : '<b>' + esc(t.slice(0, i + 1)) + '</b> ' + esc(t.slice(i + 2));
+    }
     function fixItem(title, tagCls, tagText, fixText, note) {
       return '<li><div class="body"><div class="top2"><h3>' + esc(title) + '</h3><span class="tag ' + tagCls + '">' + tagText + '</span></div>' +
-        '<p>' + esc(fixText) + '</p>' + (note ? '<p class="note">Your note: ' + esc(note) + '</p>' : '') + '</div></li>';
+        '<p>' + boldFirst(fixText) + '</p>' + (note ? '<p class="note">Your note: ' + esc(note) + '</p>' : '') + '</div></li>';
     }
     var items = '';
-    fo.forEach(function (q) {
-      items += fixItem(Q[q].key, 's' + state.a1[q], ansLabel(state.a1[q]), fix1(q), (state.n1[q] || '').trim());
-    });
     iss.forEach(function (c) {
       items += fixItem(C[c].key, state.a2[c], chainLabel(state.a2[c]), fix2(c), (state.n2[c] || '').trim());
     });
-    var total = fo.length + iss.length;
+    var total = iss.length;
     var fixes = total
       ? '<ol class="fixes" role="list">' + items + '</ol>'
       : '<div class="callout good">Every check is clear. Re-check the page whenever its facts, links or purpose change.</div>';
@@ -907,11 +949,6 @@ textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280p
 
     screen.innerHTML =
       '<div class="head"><span class="label">Result for</span><h2 id="h" class="url" tabindex="-1">' + esc(state.name.trim()) + '</h2></div>' +
-      '<div class="sec"><div class="score"><span class="score-num">' + s + '</span><span class="score-of">/ ' + MAX + '</span></div>' +
-      '<div class="meter" role="img" aria-label="Score ' + s + ' out of ' + MAX + '"><i style="width:' + Math.round(s / MAX * 100) + '%"></i></div>' +
-      '<p class="muted">' + b.text + '</p>' +
-      '<p class="small muted">Part 1 is scored out of ' + MAX + '. Part 2 isn\'t scored.</p></div>' +
-      '<div class="sec"><h3>Part 1 answers</h3><div class="rows">' + rows + '</div></div>' +
       '<div class="sec"><h3>Part 2 answers</h3><p class="small muted">' + p2line + '</p><div class="rows">' + rows2 + '</div></div>' +
       '<div class="sec"><h3>' + (total ? 'What to fix' : 'Fixes') + '</h3>' + fixes + '</div>' +
       '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn" id="tofinal">Next: final summary</button></div>';
