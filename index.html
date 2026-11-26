@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Webpage audit scorecard, by Ash Curtis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&display=swap">
+<style>
+/* Layout: one calm column, one question at a time. Low contrast, thin lines, rounded rows, slow smooth motion. */
+:root {
+  --bg: #F7F8F7;
+  --surface: #FFFFFF;
+  --fg: #26302D;
+  --muted: #5C6864;
+  --line: #E3E8E5;
+  --line-strong: #C9D2CE;
+  --control: #7A8682;
+  --accent: #3F7F76;
+  --accent-hover: #346B63;
+  --accent-fg: #FFFFFF;
+  --accent-soft: #E4EFEC;
+  --accent-ink: #2F6A62;
+  --good-bg: #E4EFEC;
+  --good-fg: #2F6A62;
+  --warn-bg: #F6EED8;
+  --warn-fg: #76591A;
+  --bad-bg: #F7E5E3;
+  --bad-fg: #9A3A33;
+  --font: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141A19;
+    --surface: #1A2220;
+    --fg: #E3E9E7;
+    --muted: #97A39F;
+    --line: #273230;
+    --line-strong: #3A4845;
+    --control: #6F7F7B;
+    --accent: #7FBFB3;
+    --accent-hover: #94CDC2;
+    --accent-fg: #0D1715;
+    --accent-soft: #1F2F2C;
+    --accent-ink: #8FD0C4;
+    --good-bg: #1F2F2C;
+    --good-fg: #8FD0C4;
+    --warn-bg: #2E2813;
+    --warn-fg: #E3C46F;
+    --bad-bg: #33201E;
+    --bad-fg: #F0A39B;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141A19;
+  --surface: #1A2220;
+  --fg: #E3E9E7;
+  --muted: #97A39F;
+  --line: #273230;
+  --line-strong: #3A4845;
+    --control: #6F7F7B;
+  --accent: #7FBFB3;
+  --accent-hover: #94CDC2;
+  --accent-fg: #0D1715;
+  --accent-soft: #1F2F2C;
+  --accent-ink: #8FD0C4;
+  --good-bg: #1F2F2C;
+  --good-fg: #8FD0C4;
+  --warn-bg: #2E2813;
+  --warn-fg: #E3C46F;
+  --bad-bg: #33201E;
+  --bad-fg: #F0A39B;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  font-weight: 400;
+  padding-block: 32px 72px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 620px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px; }
+.top { font-size: 14px; color: var(--muted); }
+.top a { color: var(--accent-ink); text-decoration: underline; text-underline-offset: 3px; }
+.top a:hover { color: var(--accent-hover); }
+.top a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.topbar { display: flex; flex-direction: column; gap: 12px; }
+.urlbar { display: flex; gap: 10px; align-items: baseline; background: var(--accent-soft); color: var(--accent-ink); border-radius: 12px; padding: 8px 14px; font-size: 14px; min-width: 0; }
+.urlbar span { flex: none; font-weight: 500; }
+.urlbar b { font-weight: 400; overflow-wrap: anywhere; min-width: 0; }
+
+h1, h2, h3 { font-weight: 500; letter-spacing: -0.015em; line-height: 1.2; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(32px, 6vw, 44px); }
+h2 { font-size: clamp(24px, 4.2vw, 30px); }
+h3 { font-size: 18px; letter-spacing: -0.005em; }
+h1:focus, h2:focus, .screen:focus { outline: none; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: 14px; }
+.label { font-size: 14px; color: var(--muted); }
+.lede { font-size: 18px; color: var(--muted); max-width: 52ch; }
+
+/* Progress */
+.progress { display: flex; flex-direction: column; gap: 10px; }
+.track { height: 4px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.track i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 999px; transition: width 0.4s ease; }
+.plabel { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.plabel span:first-child { color: var(--accent-ink); font-weight: 500; }
+
+/* Screen */
+.screen { display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.screen.enter { animation: rise 0.28s ease-out; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.head { display: flex; flex-direction: column; gap: 8px; }
+
+.look { display: flex; flex-direction: column; gap: 10px; }
+.look ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.look li { position: relative; padding-left: 20px; font-size: 16px; }
+.look li::before { content: ""; position: absolute; left: 3px; top: 0.7em; width: 5px; height: 5px; border-radius: 50%; background: var(--line-strong); }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+input[type="text"], input[type="date"], textarea {
+  width: 100%; font: inherit; color: var(--fg); background: var(--surface);
+  border: 1px solid var(--control); border-radius: 12px; padding: 12px 14px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+input[type="text"]:focus-visible, input[type="date"]:focus-visible, textarea:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+::placeholder { color: var(--muted); opacity: 1; }
+
+/* Choices */
+.choices { border: 0; padding: 0; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.choices legend { padding: 0; margin-bottom: 10px; font-size: 14px; color: var(--muted); }
+.choice { position: relative; display: block; }
+.choice input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; z-index: 1; }
+.face {
+  display: flex; align-items: center; gap: 14px; padding: 14px 16px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.dot { flex: none; width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--control); display: grid; place-items: center; transition: border-color 0.2s ease; }
+.dot::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); transform: scale(0); transition: transform 0.2s ease; }
+.lbl { font-weight: 500; }
+.choice input:hover + .face { border-color: var(--line-strong); }
+.choice input:checked + .face { background: var(--accent-soft); border-color: var(--accent); }
+.choice input:checked + .face .dot { border-color: var(--accent); }
+.choice input:checked + .face .dot::after { transform: scale(1); }
+.choice input:focus-visible + .face { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Buttons and nav */
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.btn {
+  font: inherit; font-weight: 500; border: 0; border-radius: 999px; padding: 12px 28px; cursor: pointer;
+  background: var(--accent); color: var(--accent-fg); transition: background 0.2s ease, opacity 0.2s ease;
+}
+.btn:hover:not(:disabled) { background: var(--accent-hover); }
+.btn.ghost { background: transparent; color: var(--muted); padding-inline: 12px; }
+.btn.ghost:hover:not(:disabled) { background: transparent; color: var(--fg); }
+.btn.outline { background: transparent; color: var(--fg); border: 1px solid var(--control); padding: 11px 26px; }
+.btn.outline:hover:not(:disabled) { background: var(--accent-soft); border-color: var(--accent); }
+.btn.soft { background: var(--accent-soft); color: var(--accent-ink); }
+.btn.soft:hover:not(:disabled) { background: var(--line); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Results and summary */
+.score { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.score-num { font-size: clamp(76px, 18vw, 112px); font-weight: 300; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.score-of { font-size: 28px; font-weight: 300; color: var(--muted); }
+.pill { display: inline-block; font-size: 14px; font-weight: 500; padding: 3px 12px; border-radius: 999px; }
+.pill.good { background: var(--good-bg); color: var(--good-fg); }
+.pill.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.pill.bad { background: var(--bad-bg); color: var(--bad-fg); }
+.meter { height: 6px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); border-radius: 999px; }
+.url { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; overflow-wrap: anywhere; line-height: 1.4; }
+
+.sec { display: flex; flex-direction: column; gap: 12px; }
+.rows { display: flex; flex-direction: column; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.row:first-child { border-top: 1px solid var(--line); }
+.srow { display: flex; flex-direction: column; gap: 4px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.srow:first-child { border-top: 1px solid var(--line); }
+.srow .line { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.srow .rnote { font-size: 15px; color: var(--muted); overflow-wrap: anywhere; }
+.tag { font-size: 13px; font-weight: 500; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+.tag.s2, .tag.yes { background: var(--good-bg); color: var(--good-fg); }
+.tag.s1, .tag.unsure { background: var(--warn-bg); color: var(--warn-fg); }
+.tag.s0, .tag.no { background: var(--bad-bg); color: var(--bad-fg); }
+
+.nextpart { background: var(--accent-soft); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
+.nextpart .label { color: var(--accent-ink); font-weight: 500; }
+
+.fixes { list-style: none; margin: 0; padding: 0; counter-reset: fix; display: flex; flex-direction: column; }
+.fixes li { counter-increment: fix; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.fixes li:first-child { border-top: 1px solid var(--line); }
+.fixes li::before { content: counter(fix); width: 26px; height: 26px; border-radius: 50%; background: var(--accent-soft); color: var(--accent-ink); font-size: 13px; font-weight: 500; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.fixes .body { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.fixes .top2 { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.fixes .note { font-size: 15px; color: var(--muted); border-left: 2px solid var(--line-strong); padding-left: 12px; }
+
+.chain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.chain li { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 12px 14px; border-radius: 12px; align-items: start; }
+.chain .tag { text-align: center; }
+.chain b { font-weight: 500; }
+
+.callout { border-radius: 12px; padding: 14px 16px; }
+.callout.good { background: var(--good-bg); color: var(--good-fg); }
+.callout.bad { background: var(--bad-bg); color: var(--bad-fg); }
+.callout.warn { background: var(--warn-bg); color: var(--warn-fg); }
+
+input[type="date"] { min-height: 46px; }
+.fields2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 520px) { .fields2 { grid-template-columns: 1fr; } }
+.auto { background: var(--accent-soft); border-radius: 12px; padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+.auto .label { color: var(--accent-ink); font-weight: 500; }
+.auto p { margin: 0; }
+.findings { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.findings li { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 12px; align-items: start; font-size: 15px; }
+.findings .tag { text-align: center; }
+.tag.info { background: var(--line); color: var(--fg); }
+.auto .tag.yes { background: var(--surface); }
+details.more { display: flex; flex-direction: column; gap: 24px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 14px 0; }
+details.more[open] { padding-bottom: 24px; }
+details.more summary { cursor: pointer; color: var(--accent-ink); font-weight: 500; }
+details.more summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.callout strong { font-weight: 500; }
+.copy-row { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.copy-status { font-size: 14px; color: var(--accent-ink); }
+textarea.summary { font-family: var(--mono); font-size: 13.5px; min-height: 280px; }
+
+@media (max-width: 520px) {
+  .chain li { grid-template-columns: 72px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+</style>
+
+
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar"><div class="top">Webpage audit scorecard, by <a href="https://github.com/AshJCurtis" target="_blank" rel="noopener" aria-label="Ash Curtis on GitHub (opens in a new tab)">Ash Curtis</a></div>
+  <div class="urlbar" id="urlbar" hidden><span>Auditing</span><b id="urlbarText"></b></div></div>
+  <div class="progress" id="progress" hidden>
+    <div class="track"><i id="fill"></i></div>
+    <div class="plabel" id="plabel"></div>
+  </div>
+  <main class="screen" id="screen" tabindex="-1"></main>
+</div>
+
+<script>
+(function () {
+  try { document.documentElement.lang = 'en-GB'; } catch (e) {}
+  var HOSTED = true;          // true only in the standalone copy
+  var CHECKER_URL = 'https://summer-sea-d98f.ashcurtis23.workers.dev/';        // address of the page checker; empty hides the automatic check
+  var ANSWERS1 = [
+    { v: 2, label: 'Yes' },
+    { v: 1, label: 'Somewhat' },
+    { v: 0, label: 'No' }
+  ];
+  var ANSWERS2 = [
+    { v: 'yes', label: 'Yes' },
+    { v: 'unsure', label: 'Not sure' },
+    { v: 'no', label: 'No' }
+  ];
+
+  var Q = [
+    { key: 'Relevance', q: 'Is it clear who this page is for and what they can do here?',
+      look: ['The page title and main heading say what the page is about', 'The first lines tell the reader who it is for', 'Someone arriving from a search result knows within seconds that they are in the right place'],
+      fix: 'Rewrite the title and main heading so they name the topic and the audience. Then open with 1 sentence saying what the reader can do here.',
+      fixSome: 'The title or opening is close but not specific. Name the topic and the audience in the title and main heading, and say what the reader can do in the first sentence.' },
+    { key: 'Informative', q: 'Is the page reliable, accurate, up-to-date, detailed enough, trustworthy?',
+      look: ['Dates, prices, opening times and phone numbers are right today', 'Links go where they say they go', 'A named team owns the page and checks it'],
+      fix: 'Treat the page as unreliable until it is checked. Verify every fact, date, price and link against its source, remove anything you cannot confirm, and add a review date and a named owner.',
+      fixSome: 'Most facts look right but something is stale or unowned. Check every date, price and contact detail against its source, then add a review date and a named owner.' },
+    { key: 'Structure', q: 'Can you scan it? Are there clear headings, short paragraphs and lists?',
+      look: ['Headings run in a logical order and describe the section below them', 'Paragraphs are short, and steps or options are in lists', 'The most important information is not buried'],
+      fix: 'Break long paragraphs up, turn steps and options into lists, and give each section a heading that says what it contains.',
+      fixSome: 'Most of the page scans well. Find the longest paragraph and the vaguest heading and fix those first: break the paragraph up and make the heading say what follows.' },
+    { key: 'Tone of voice', q: 'Is the language plain and consistent with your house style, with no jargon or filler?',
+      look: ['Plain words, short sentences, no unexplained jargon', 'The tone matches the rest of the site and your style guide', 'No slogans or filler where a fact should be'],
+      fix: 'Replace jargon and slogans with the specific fact they stand in for. Read the page aloud and rewrite anything you would not say to a person.',
+      fixSome: 'Find the 3 phrases that sound least like you and replace each with the plain fact. Then check the tone against your style guide.' },
+    { key: 'Accessibility', q: 'Does it meet your accessibility standards?',
+      look: ['Link text makes sense out of context, never "click here"', 'Text is real text, not part of an image, and images have useful alt text', 'Forms and buttons have clear labels, and colour contrast passes'],
+      fix: 'Rewrite vague links, move any text out of images, add alt text and label every form field. Then check the page against your accessibility standards.',
+      fixSome: 'Fix the gaps you spotted first, such as vague links, missing alt text or unlabelled fields. Then run an automated accessibility check and review the results against your standards.' },
+    { key: 'Next step', q: 'Is there 1 clear thing the reader can do next?',
+      look: ['There is 1 clearly labelled call-to-action', 'The button or link says what will happen when you use it', 'Contact details are written out as text'],
+      fix: 'Decide the 1 thing the reader should do next and make it the most prominent action. Label it with a verb, such as "Book a place" or "Call the helpline".',
+      fixSome: 'There is a next step but it is not clear enough. Pick the 1 action that matters most, make it the most prominent, and label it with a verb.' }
+  ];
+
+  var C = [
+    { key: 'Reach', q: 'Can search engines and AI assistants get to this page?',
+      look: ['It is not behind a login', 'It is not blocked by robots.txt or a similar rule', 'It is in your sitemap and other pages link to it'],
+      fix: 'Ask your web team to check access rules and the sitemap. Public information should not need a login.',
+      confirm: 'Open the page in a private window without signing in. Then add /robots.txt to your domain and check it does not block this page or the AI crawlers, and check the page is in your sitemap.' },
+    { key: 'Store', q: 'Is the page allowed to be stored, and does it load without special software?',
+      look: ['There is no noindex instruction on the page', 'The main text is in the page itself, not loaded only after a click or by a script', 'Key facts are not locked inside a PDF or an image'],
+      fix: 'Remove any noindex that is there by mistake, and put the key text in the page itself rather than behind tabs, scripts or downloads.',
+      confirm: 'View the page source (Ctrl+U or Cmd+U) and search for a sentence from the page. If it is missing, the text loads by script. Search the source for noindex too.' },
+    { key: 'Understand', q: 'Is the meaning in the words and headings, not just in images or layout?',
+      look: ['Headings describe what follows', 'Facts in tables and diagrams are also stated in the text', 'Meaning does not depend on colour or position alone'],
+      fix: 'Say in words what an image, table or layout shows. Make each heading describe the content under it.',
+      confirm: 'Read the page with images and styling switched off, or ask a colleague to. Check every fact in a table, chart or image is also written in the text.' },
+    { key: 'Trust', q: 'Is it current, owned by a named team and backed by evidence?',
+      look: ['There is a review date or last-updated date', 'A team is responsible for the page', 'Claims point to a source, a policy or a named expert'],
+      fix: 'Add a review date, name an owner and link claims to their sources. Retire the page if no one will maintain it.',
+      confirm: 'Look for a review date, a named owner and a source for each claim. If you cannot find them in 30 seconds, neither can a search tool.' },
+    { key: 'Answer', q: 'Does it directly answer a specific question someone would ask?',
+      look: ['The answer appears near the top in plain words', 'A heading matches the way people phrase the question', 'The details someone needs to decide sit next to the answer'],
+      fix: 'Pick the main question the page answers. Put the answer in the first 2 lines and add a heading that asks the question in the reader\'s words.',
+      confirm: 'Write down the main question this page answers. Then check the answer is in the first 2 lines, in plain words.' },
+    { key: 'Act', q: 'Can a person, or an assistant helping them, complete the next step?',
+      look: ['Forms have labelled fields and a clear submit button', 'Contact routes are written as text', 'Costs, opening hours and eligibility are stated before the action'],
+      fix: 'Label every form field and button, write out the contact route, and state costs, hours and eligibility before the action.',
+      confirm: 'Try to complete the next step as a first-time visitor using only the keyboard. Check the contact route and the costs are written as text.' }
+  ];
+
+  // Steps: 0 intro, 1-6 Part 1 checks, 7 Part 1 summary, 8-13 Part 2 steps, 14 results
+  var P1 = Q.length;               // 6
+  var SUM = P1 + 1;                // 7
+  var LAST = P1 + 1 + C.length;    // 13
+  var RESULTS = LAST + 1;          // 14
+  var MAX = Q.length * 2;          // 12
+  var state = { step: 0, name: '', a1: [], a2: [], n1: [], n2: [], owner: '', review: '', auto: null };
+
+  var screen = document.getElementById('screen');
+  var progress = document.getElementById('progress');
+  var fill = document.getElementById('fill');
+  var plabel = document.getElementById('plabel');
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  function band(score) {
+    if (score === MAX) return { cls: 'good', label: 'In good shape', text: '*Street Fighter voice* Perfect! Make sure you re-check when the page changes.' };
+    if (score >= 9) return { cls: 'good', label: 'In good shape', text: 'niccccce. That\'s pretty good. Fix the small gaps and re-score.' };
+    if (score >= 4) return { cls: 'warn', label: 'Worth a rewrite', text: '*Sabrina Brier voice* Oh. Okay. Start with the lowest-scoring checks.' };
+    return { cls: 'bad', label: 'Rethink the page', text: 'Oh heck. Ask whether the page needs to exist in this form.' };
+  }
+  function ansLabel(v) { return v === 2 ? 'Yes' : v === 1 ? 'Somewhat' : 'No'; }
+  function fix1(i) { return state.a1[i] === 1 ? Q[i].fixSome : Q[i].fix; }
+  function fix2(i) { return state.a2[i] === 'unsure' ? C[i].confirm : C[i].fix; }
+  function fmtDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!m) return '';
+    var mo = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return parseInt(m[3], 10) + ' ' + mo[parseInt(m[2], 10) - 1] + ' ' + m[1];
+  }
+  function chainLabel(v) { return v === 'yes' ? 'Yes' : v === 'unsure' ? 'Not sure' : 'No'; }
+
+  function score() {
+    var t = 0;
+    for (var i = 0; i < Q.length; i++) t += state.a1[i] == null ? 0 : state.a1[i];
+    return t;
+  }
+  function p2Issues() {
+    var no = [], unsure = [];
+    for (var i = 0; i < C.length; i++) {
+      if (state.a2[i] === 'no') no.push(i);
+      else if (state.a2[i] !== 'yes') unsure.push(i);
+    }
+    return no.concat(unsure);
+  }
+  function fixOrder() {
+    var list = [];
+    for (var i = 0; i < Q.length; i++) if (state.a1[i] < 2) list.push(i);
+    list.sort(function (a, b) { return state.a1[a] - state.a1[b] || a - b; });
+    return list;
+  }
+
+  function renderProgress() {
+    var s = state.step;
+    if (s < 1 || s === SUM || s > LAST) { progress.hidden = true; fill.style.width = '0'; return; }
+    progress.hidden = false;
+    var p1 = s <= P1;
+    var n = p1 ? s : s - SUM;
+    var of = p1 ? P1 : C.length;
+    plabel.innerHTML = '<span>' + (p1 ? 'Part 1 &middot; Scorecard' : 'Part 2 &middot; Search tools and AI assistants') + '</span>' +
+      '<span>' + 'Check ' + n + ' of ' + of + '</span>';
+    fill.style.width = Math.round(n / of * 100) + '%';
+  }
+
+  function renderIntro() {
+    screen.innerHTML =
+      '<div class="head"><h1 id="h" tabindex="-1">Does this page work?</h1>' +
+      '<p class="lede">Paste a page URL from your website and answer 12 short questions, split into 2 parts.</p></div>' +
+      '<p class="muted">Part 1 has 6 quality checks you’ll need to ask yourself. You’ll get a score at the end.<br><br>Part 2 has 6 checks to find out whether search tools and AI assistants can find, understand and use the page.<br><br>At the end of the audit, you\'ll get a fix list and a summary to share with your team.</p>' +
+      '<div class="field"><label class="label" for="pageName">Page URL (required)</label>' +
+      '<input type="text" id="pageName" required aria-required="true" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
+      '</div>' +
+      '<div class="nav"><span></span>' +
+      '<button class="btn" id="start"' + (state.name.trim() ? '' : ' disabled') + '>Start audit</button></div>';
+    var nameEl = document.getElementById('pageName');
+    var startEl = document.getElementById('start');
+    nameEl.addEventListener('input', function () {
+      var ok = nameEl.value.trim() !== '';
+      state.name = nameEl.value;
+      startEl.disabled = !ok;
+    });
+    nameEl.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !startEl.disabled) go(1);
+    });
+    startEl.addEventListener('click', function () { if (state.name.trim()) go(1); });
+  }
+
+  function renderQuestion() {
+    var s = state.step;
+    var isPart1 = s <= P1;
+    var idx = isPart1 ? s - 1 : s - SUM - 1;
+    var item = isPart1 ? Q[idx] : C[idx];
+    var answers = isPart1 ? ANSWERS1 : ANSWERS2;
+    var current = isPart1 ? state.a1[idx] : state.a2[idx];
+    var note = (isPart1 ? state.n1[idx] : state.n2[idx]) || '';
+
+    var choices = '';
+    for (var k = 0; k < answers.length; k++) {
+      var a = answers[k];
+      choices += '<label class="choice"><input type="radio" name="ans" value="' + a.v + '"' + (current === a.v ? ' checked' : '') + '>' +
+        '<span class="face"><span class="dot" aria-hidden="true"></span><span class="lbl">' + a.label + '</span></span></label>';
+    }
+    var looks = '';
+    for (var j = 0; j < item.look.length; j++) looks += '<li>' + esc(item.look[j]) + '</li>';
+
+    var extra = '';
+    var autoBox = (!isPart1 && idx < 2 && CHECKER_URL) ? '<div class="auto"><span class="label">Automatic check</span><div id="autoWrap" role="status" aria-live="polite"></div></div>' : '';
+    var nextLabel = s === LAST ? 'See results' : s === P1 ? 'See Part 1 summary' : 'Next';
+
+    screen.innerHTML =
+      '<div class="head"><span class="label">' + esc(item.key) + '</span>' +
+      '<h2 id="h" tabindex="-1">' + esc(item.q) + '</h2>' + extra + '</div>' +
+      '<div class="look"><span class="label">What to look for</span><ul>' + looks + '</ul></div>' + autoBox +
+      '<fieldset class="choices"><legend>Your answer (choose one to continue)</legend>' + choices + '</fieldset>' +
+      '<div class="field"><label class="label" for="note">Notes</label>' +
+      '<textarea id="note" placeholder="Anything you spotted goes in here.">' + esc(note) + '</textarea></div>' +
+      '<div class="nav"><button class="btn outline" id="back">Back</button>' +
+      '<button class="btn" id="next"' + (current == null ? ' disabled' : '') + '>' + nextLabel + '</button></div>';
+
+    var radios = screen.querySelectorAll('input[name="ans"]');
+    for (var r = 0; r < radios.length; r++) {
+      radios[r].addEventListener('change', function (e) { setAnswer(e.target.value); });
+    }
+    document.getElementById('note').addEventListener('input', function (e) {
+      if (isPart1) state.n1[idx] = e.target.value; else state.n2[idx] = e.target.value;
+    });
+    document.getElementById('back').addEventListener('click', function () { go(state.step - 1); });
+    document.getElementById('next').addEventListener('click', function () { go(state.step + 1); });
+    if (autoBox) { applyAuto(); syncQuestion(idx); paintAuto(); }
+  }
+
+  /* Automatic check: only available when CHECKER_URL is set (the standalone copy) */
+  var STATUS_LABEL = { pass: 'Pass', warn: 'Check', fail: 'Problem', info: 'Note' };
+  var STATUS_TAG = { pass: 'yes', warn: 'unsure', fail: 'no', info: 'info' };
+  function autoFor() {
+    var u = state.name.trim();
+    return state.auto && state.auto.url === u ? state.auto : null;
+  }
+  function autoNote(r) {
+    var probs = r.findings.filter(function (f) { return f.status === 'fail' || f.status === 'warn'; }).map(function (f) { return f.text; });
+    return 'Automatic check: ' + (probs.length ? probs.join(' ') : 'no problems found.');
+  }
+  function applyAuto() {
+    var a = autoFor();
+    if (!a || a.status !== 'done') return;
+    [a.result.reach, a.result.store].forEach(function (r, i) {
+      if (state.a2[i] == null) {
+        state.a2[i] = r.answer;
+        if (!(state.n2[i] || '').trim()) state.n2[i] = autoNote(r);
+      }
+    });
+  }
+  function syncQuestion(idx) {
+    var cur = state.a2[idx], radios = document.querySelectorAll('input[name="ans"]');
+    for (var i = 0; i < radios.length; i++) radios[i].checked = (radios[i].value === cur);
+    var next = document.getElementById('next'), note = document.getElementById('note');
+    if (next) next.disabled = cur == null;
+    if (note && document.activeElement !== note) note.value = state.n2[idx] || '';
+  }
+  function paintAuto() {
+    var wrap = document.getElementById('autoWrap');
+    var idx = state.step - SUM - 1;
+    if (!wrap || idx < 0 || idx > 1) return;
+    var a = autoFor(), html = '';
+    if (!a || a.status === 'error') {
+      html = (a ? '<p>The automatic check did not work: ' + esc(a.error) + ' Answer by hand, or try again.</p>' : '<p>We can check this for you. This sends the page URL to a checker, which reads the page\'s public settings.</p>') +
+        '<div><button class="btn soft" id="runAuto">' + (a ? 'Try again' : 'Check this page') + '</button></div>';
+    } else if (a.status === 'running') {
+      html = '<p>Checking the page&hellip;</p>';
+    } else {
+      var r = idx === 0 ? a.result.reach : a.result.store;
+      var items = r.findings.map(function (f) {
+        return '<li><span class="tag ' + STATUS_TAG[f.status] + '">' + STATUS_LABEL[f.status] + '</span><span>' + esc(f.text) + '</span></li>';
+      }).join('');
+      html = '<ul class="findings" role="list">' + items + '</ul>' +
+        '<p class="small">We suggested &ldquo;' + chainLabel(r.answer) + '&rdquo; for this question. Change it if you know better.</p>';
+    }
+    wrap.innerHTML = html;
+    var btn = document.getElementById('runAuto');
+    if (btn) btn.addEventListener('click', runAuto);
+  }
+  function runAuto() {
+    var u = state.name.trim();
+    var mine = state.auto = { url: u, status: 'running' };
+    paintAuto();
+    var ctrl = new AbortController(), timer = setTimeout(function () { ctrl.abort(); }, 25000);
+    fetch(CHECKER_URL + (CHECKER_URL.indexOf('?') === -1 ? '?' : '&') + 'url=' + encodeURIComponent(u), { signal: ctrl.signal })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error((j && j.error) || 'No answer from the checker.');
+        return j;
+      })
+      .then(function (j) {
+        if (state.auto !== mine) return;
+        state.auto = { url: u, status: 'done', result: j };
+        applyAuto();
+        var idx = state.step - SUM - 1;
+        if (idx === 0 || idx === 1) { syncQuestion(idx); paintAuto(); }
+      })
+      .catch(function (e) {
+        if (state.auto !== mine) return;
+        state.auto = { url: u, status: 'error', error: e && e.name === 'AbortError' ? 'it took too long.' : ((e && e.message) || 'no answer.') };
+        paintAuto();
+      })
+      .then(function () { clearTimeout(timer); });
+  }
+
+  function setAnswer(raw) {
+    var s = state.step;
+    if (s <= P1) state.a1[s - 1] = parseInt(raw, 10);
+    else state.a2[s - SUM - 1] = raw;
+    var next = document.getElementById('next');
+    if (next) next.disabled = false;
+  }
+
+  function renderPart1Summary() {
+    var s = score(), b = band(s), rows = '';
+    for (var i = 0; i < Q.length; i++) {
+      var v = state.a1[i], n = (state.n1[i] || '').trim();
+      rows += '<div class="srow"><div class="line"><span>' + esc(Q[i].key) + '</span><span class="tag s' + v + '">' + ansLabel(v) + '</span></div>' +
+        (n ? '<p class="rnote">' + esc(n) + '</p>' : '') + '</div>';
+    }
+    screen.innerHTML =
+      '<div class="head"><span class="label">Part 1 complete</span><h2 id="h" tabindex="-1">Your Part 1 score</h2></div>' +
+      '<div class="sec"><div class="score"><span class="score-num">' + s + '</span><span class="score-of">/ ' + MAX + '</span>' +
+      '<span class="pill ' + b.cls + '">' + b.label + '</span></div>' +
+      '<div class="meter" role="img" aria-label="Score ' + s + ' out of ' + MAX + '"><i style="width:' + Math.round(s / MAX * 100) + '%"></i></div>' +
+      '<p class="muted">' + b.text + '</p>' +
+      '<p class="small muted">Yes = 2, Somewhat = 1, No = 0. Maximum ' + MAX + '. Part 2 is not scored, so this score will not change.</p></div>' +
+      '<div class="sec"><h3>Your answers</h3><div class="rows">' + rows + '</div></div>' +
+      '<div class="nextpart"><span class="label">Up next</span>' +
+      '<h3>Part 2: can search tools and AI assistants use this page?</h3>' +
+      '</div>' +
+      '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn" id="startp2">Start Part 2</button></div>';
+    document.getElementById('back').addEventListener('click', function () { go(P1); });
+    document.getElementById('startp2').addEventListener('click', function () { go(SUM + 1); });
+  }
+
+  function buildSummary() {
+    var s = score(), b = band(s), iss = p2Issues(), lines = [];
+    lines.push('WEBPAGE AUDIT SCORECARD, BY ASH CURTIS');
+    lines.push('URL: ' + state.name.trim());
+    lines.push('Score: ' + s + ' / ' + MAX + ' (' + b.label + ')');
+    if (state.owner.trim()) lines.push('Owner: ' + state.owner.trim());
+    if (state.review) lines.push('Review by: ' + fmtDate(state.review));
+    lines.push('');
+    lines.push('PART 1: SCORECARD');
+    for (var i = 0; i < Q.length; i++) {
+      var l = '- ' + Q[i].key + ': ' + ansLabel(state.a1[i]) + ' (' + state.a1[i] + ')';
+      if ((state.n1[i] || '').trim()) l += '. Note: ' + state.n1[i].trim().replace(/\s+/g, ' ');
+      lines.push(l);
+    }
+    lines.push('');
+    var fo = fixOrder();
+    lines.push('FIX IN THIS ORDER');
+    if (!fo.length) lines.push('- Nothing to fix. Every check scored Yes.');
+    for (var f = 0; f < fo.length; f++) lines.push((f + 1) + '. ' + Q[fo[f]].key + ' (' + ansLabel(state.a1[fo[f]]) + '): ' + fix1(fo[f]));
+    lines.push('');
+    lines.push('PART 2: CAN SEARCH TOOLS AND AI ASSISTANTS USE IT?');
+    for (var c = 0; c < C.length; c++) {
+      var cl = '- ' + C[c].key + ': ' + chainLabel(state.a2[c]);
+      if ((state.n2[c] || '').trim()) cl += '. Note: ' + state.n2[c].trim().replace(/\s+/g, ' ');
+      lines.push(cl);
+    }
+    lines.push('');
+    lines.push(iss.length ? 'PART 2 FIXES' : 'Part 2: all 6 are clear.');
+    iss.forEach(function (c, k) { lines.push((k + 1) + '. ' + C[c].key + ' (' + chainLabel(state.a2[c]) + '): ' + fix2(c)); });
+    return lines.join('\n');
+  }
+
+  /* EXPORT START */
+  function clean(t) {
+    return String(t == null ? '' : t)
+      .replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
+      .replace(/[–—]/g, '-').replace(/…/g, '...').replace(/·/g, '-')
+      .replace(/\s+/g, ' ').replace(/[^\x20-\x7E\xA0-\xFF]/g, '?').trim();
+  }
+
+  function exportModel() {
+    var s = score(), b = band(s), iss = p2Issues(), fo = fixOrder();
+    var verdict = iss.length === 0 ? 'All 6 are clear.'
+      : iss.length + ' of ' + C.length + ' need attention: ' + iss.map(function (c) { return C[c].key; }).join(', ') + '.';
+    return {
+      owner: state.owner.trim(), review: fmtDate(state.review),
+      url: state.name.trim(), score: s, max: MAX, label: b.label, verdict: verdict,
+      p2Fixes: iss.map(function (c) {
+        return { key: C[c].key, answer: chainLabel(state.a2[c]), fix: fix2(c), note: (state.n2[c] || '').trim() };
+      }),
+      fixes: fo.map(function (q) {
+        return { key: Q[q].key, answer: ansLabel(state.a1[q]), fix: fix1(q), note: (state.n1[q] || '').trim() };
+      }),
+      p1: Q.map(function (q, i) {
+        return { key: q.key, answer: ansLabel(state.a1[i]), points: state.a1[i], note: (state.n1[i] || '').trim(), fix: state.a1[i] < 2 ? fix1(i) : '' };
+      }),
+      p2: C.map(function (c, i) {
+        return { key: c.key, answer: chainLabel(state.a2[i]), note: (state.n2[i] || '').trim(), fix: state.a2[i] !== 'yes' ? fix2(i) : '' };
+      })
+    };
+  }
+
+  /* PDF: plain Helvetica text, built by hand so no library is needed */
+  function pdfBytes(items) {
+    var W = 595, H = 842, M = 56, pages = [[]], y = H - M;
+    function wrap(t, size, bold) {
+      var max = Math.floor((W - 2 * M) / (size * (bold ? 0.58 : 0.54)));
+      var words = clean(t).split(' '), lines = [], cur = '';
+      words.forEach(function (w) {
+        while (w.length > max) { if (cur) { lines.push(cur); cur = ''; } lines.push(w.slice(0, max)); w = w.slice(max); }
+        if ((cur + ' ' + w).trim().length > max) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim();
+      });
+      if (cur || !lines.length) lines.push(cur);
+      return lines;
+    }
+    items.forEach(function (it) {
+      var size = it.size || 10.5, lead = size * 1.45;
+      y -= (it.before || 0);
+      wrap(it.t, size, it.bold).forEach(function (l) {
+        if (y - lead < M) { pages.push([]); y = H - M; }
+        y -= lead;
+        pages[pages.length - 1].push('BT /' + (it.bold ? 'F2' : 'F1') + ' ' + size + ' Tf ' + (M + (it.indent || 0)) + ' ' + y.toFixed(1) + ' Td (' + l.replace(/([\\()])/g, '\\$1') + ') Tj ET');
+      });
+    });
+    var out = '%PDF-1.4\n', offs = [];
+    function add(n, body) { offs[n] = out.length; out += n + ' 0 obj\n' + body + '\nendobj\n'; }
+    var kids = pages.map(function (p, i) { return (6 + 2 * i) + ' 0 R'; }).join(' ');
+    add(1, '<< /Type /Catalog /Pages 2 0 R >>');
+    add(2, '<< /Type /Pages /Kids [' + kids + '] /Count ' + pages.length + ' >>');
+    add(3, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
+    add(4, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+    pages.forEach(function (p, i) {
+      var stream = p.join('\n');
+      add(5 + 2 * i, '<< /Length ' + stream.length + ' >>\nstream\n' + stream + '\nendstream');
+      add(6 + 2 * i, '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + W + ' ' + H + '] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ' + (5 + 2 * i) + ' 0 R >>');
+    });
+    var n = 5 + 2 * pages.length, xref = out.length;
+    out += 'xref\n0 ' + n + '\n0000000000 65535 f \n';
+    for (var k = 1; k < n; k++) out += String(offs[k]).padStart(10, '0') + ' 00000 n \n';
+    out += 'trailer\n<< /Size ' + n + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF';
+    var bytes = new Uint8Array(out.length);
+    for (var j = 0; j < out.length; j++) bytes[j] = out.charCodeAt(j) & 255;
+    return bytes;
+  }
+
+  function buildPdf() {
+    var m = exportModel(), it = [];
+    it.push({ t: 'Webpage audit scorecard, by Ash Curtis', size: 20, bold: true });
+    it.push({ t: m.url, size: 11, before: 6 });
+    it.push({ t: 'Score: ' + m.score + ' / ' + m.max + ' - ' + m.label, size: 15, bold: true, before: 16 });
+    if (m.owner) it.push({ t: 'Owner: ' + m.owner, before: 8 });
+    if (m.review) it.push({ t: 'Review by: ' + m.review, before: 2 });
+    it.push({ t: 'Part 2: ' + m.verdict, size: 12, bold: true, before: 14 });
+    it.push({ t: 'Fix these first', size: 14, bold: true, before: 20 });
+    if (!m.fixes.length) it.push({ t: 'Nothing to fix. Every check scored Yes.', before: 4 });
+    m.fixes.forEach(function (f, i) {
+      it.push({ t: (i + 1) + '. ' + f.key + ' (' + f.answer + ')', bold: true, before: 8 });
+      it.push({ t: f.fix, indent: 14, before: 1 });
+      if (f.note) it.push({ t: 'Your note: ' + f.note, indent: 14, before: 1 });
+    });
+    if (m.p2Fixes.length) {
+      it.push({ t: 'Part 2 fixes', size: 14, bold: true, before: 22 });
+      m.p2Fixes.forEach(function (f, i) {
+        it.push({ t: (i + 1) + '. ' + f.key + ' (' + f.answer + ')', bold: true, before: 8 });
+        it.push({ t: f.fix, indent: 14, before: 1 });
+        if (f.note) it.push({ t: 'Your note: ' + f.note, indent: 14, before: 1 });
+      });
+    }
+    it.push({ t: 'Part 1 answers', size: 14, bold: true, before: 22 });
+    m.p1.forEach(function (r) {
+      it.push({ t: r.key + ': ' + r.answer + ' (' + r.points + ')', before: 5 });
+      if (r.note) it.push({ t: 'Note: ' + r.note, indent: 14 });
+    });
+    it.push({ t: 'Part 2 answers', size: 14, bold: true, before: 22 });
+    m.p2.forEach(function (r) {
+      it.push({ t: r.key + ': ' + r.answer, before: 5 });
+      if (r.note) it.push({ t: 'Note: ' + r.note, indent: 14 });
+    });
+    return pdfBytes(it);
+  }
+
+  /* XLSX: a zip of XML parts, written by hand (no compression) */
+  var CRC = null;
+  function crc32(b) {
+    if (!CRC) {
+      CRC = new Uint32Array(256);
+      for (var n = 0; n < 256; n++) { var c0 = n; for (var k = 0; k < 8; k++) c0 = c0 & 1 ? 0xEDB88320 ^ (c0 >>> 1) : c0 >>> 1; CRC[n] = c0 >>> 0; }
+    }
+    var c = 0xFFFFFFFF;
+    for (var i = 0; i < b.length; i++) c = CRC[(c ^ b[i]) & 255] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function zipFiles(files) {
+    var enc = new TextEncoder(), parts = [], central = [], offset = 0;
+    function u16(v) { return [v & 255, (v >>> 8) & 255]; }
+    function u32(v) { return [v & 255, (v >>> 8) & 255, (v >>> 16) & 255, (v >>> 24) & 255]; }
+    files.forEach(function (f) {
+      var name = enc.encode(f.name), data = enc.encode(f.data), crc = crc32(data), size = data.length;
+      var lh = [].concat(u32(0x04034b50), u16(20), u16(0), u16(0), u16(0), u16(33), u32(crc), u32(size), u32(size), u16(name.length), u16(0));
+      parts.push(new Uint8Array(lh), name, data);
+      var ch = [].concat(u32(0x02014b50), u16(20), u16(20), u16(0), u16(0), u16(0), u16(33), u32(crc), u32(size), u32(size), u16(name.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(offset));
+      central.push(new Uint8Array(ch), name);
+      offset += lh.length + name.length + size;
+    });
+    var csize = 0;
+    central.forEach(function (p) { csize += p.length; });
+    var end = [].concat(u32(0x06054b50), u16(0), u16(0), u16(files.length), u16(files.length), u32(csize), u32(offset), u16(0));
+    var all = parts.concat(central, [new Uint8Array(end)]), total = 0;
+    all.forEach(function (p) { total += p.length; });
+    var res = new Uint8Array(total), pos = 0;
+    all.forEach(function (p) { res.set(p, pos); pos += p.length; });
+    return res;
+  }
+  function xesc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, ''); }
+  function sheetXml(rows, widths) {
+    var x = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><cols>' +
+      widths.map(function (w, i) { return '<col min="' + (i + 1) + '" max="' + (i + 1) + '" width="' + w + '" customWidth="1"/>'; }).join('') + '</cols><sheetData>';
+    rows.forEach(function (r, ri) {
+      x += '<row r="' + (ri + 1) + '">';
+      r.forEach(function (c, ci) {
+        if (c === null || c === undefined || c === '') return;
+        var cell = typeof c === 'object' ? c : { v: c }, ref = String.fromCharCode(65 + ci) + (ri + 1);
+        if (typeof cell.v === 'number') x += '<c r="' + ref + '"><v>' + cell.v + '</v></c>';
+        else x += '<c r="' + ref + '" t="inlineStr" s="' + (cell.b ? 1 : 2) + '"><is><t xml:space="preserve">' + xesc(cell.v) + '</t></is></c>';
+      });
+      x += '</row>';
+    });
+    return x + '</sheetData></worksheet>';
+  }
+  function buildXlsx() {
+    var m = exportModel(), B = function (v) { return { v: v, b: true }; };
+    var summary = [
+      [B('Webpage audit scorecard, by Ash Curtis')], [],
+      [B('Page URL'), m.url], [B('Score'), m.score], [B('Maximum'), m.max], [B('Result'), m.label],
+      [B('Owner'), m.owner], [B('Review by'), m.review], [B('Part 2'), m.verdict]
+    ];
+    var p1 = [[B('Check'), B('Answer'), B('Points'), B('Your note'), B('What to fix')]];
+    m.p1.forEach(function (r) { p1.push([r.key, r.answer, r.points, r.note, r.fix]); });
+    var p2 = [[B('Check'), B('Answer'), B('Your note'), B('What to fix')]];
+    m.p2.forEach(function (r) { p2.push([r.key, r.answer, r.note, r.fix]); });
+    var NS = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main';
+    var H = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+    var files = [
+      { name: '[Content_Types].xml', data: H + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet3.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>' },
+      { name: '_rels/.rels', data: H + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>' },
+      { name: 'xl/workbook.xml', data: H + '<workbook xmlns="' + NS + '" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Summary" sheetId="1" r:id="rId1"/><sheet name="Part 1" sheetId="2" r:id="rId2"/><sheet name="Part 2" sheetId="3" r:id="rId3"/></sheets></workbook>' },
+      { name: 'xl/_rels/workbook.xml.rels', data: H + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet3.xml"/><Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>' },
+      { name: 'xl/styles.xml', data: H + '<styleSheet xmlns="' + NS + '"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>' },
+      { name: 'xl/worksheets/sheet1.xml', data: sheetXml(summary, [16, 70]) },
+      { name: 'xl/worksheets/sheet2.xml', data: sheetXml(p1, [18, 12, 8, 40, 70]) },
+      { name: 'xl/worksheets/sheet3.xml', data: sheetXml(p2, [18, 12, 40, 70]) }
+    ];
+    return zipFiles(files);
+  }
+  /* EXPORT END */
+
+  function renderResults() {
+    var s = score(), b = band(s), iss = p2Issues(), fo = fixOrder();
+    var SHOW = 3;
+
+    function fixItem(q) {
+      var n = (state.n1[q] || '').trim();
+      return '<li><div class="body"><div class="top2"><h3>' + esc(Q[q].key) + '</h3><span class="tag s' + state.a1[q] + '">' + ansLabel(state.a1[q]) + '</span></div>' +
+        '<p>' + esc(fix1(q)) + '</p>' + (n ? '<p class="note">Your note: ' + esc(n) + '</p>' : '') + '</div></li>';
+    }
+    var fixes = '';
+    if (!fo.length) {
+      fixes = '<div class="callout good">Every check scored Yes. Re-check the page whenever its facts, links or purpose change.</div>';
+    } else {
+      var first = '', rest = '';
+      for (var f = 0; f < fo.length; f++) { if (f < SHOW) first += fixItem(fo[f]); else rest += fixItem(fo[f]); }
+      fixes = '<ol class="fixes" role="list">' + first + '</ol>';
+      if (rest) {
+        fixes += '<ol class="fixes" role="list" id="moreFixes" hidden style="counter-reset: fix ' + SHOW + '">' + rest + '</ol>' +
+          '<div><button class="btn outline" id="toggleFixes" aria-expanded="false" aria-controls="moreFixes">Show all ' + fo.length + ' fixes</button></div>';
+      }
+    }
+
+    var verdict, p2fixes = '';
+    if (iss.length === 0) {
+      verdict = '<div class="callout good"><strong>Part 2: all 6 are clear.</strong> Search tools and AI assistants should be able to find, understand and use this page.</div>';
+    } else {
+      var anyNo = false, names = [];
+      iss.forEach(function (c) { if (state.a2[c] === 'no') anyNo = true; names.push(C[c].key); });
+      verdict = '<div class="callout ' + (anyNo ? 'bad' : 'warn') + '"><strong>Part 2: ' + iss.length + ' of ' + C.length + ' need attention.</strong> ' + esc(names.join(', ')) + '</div>';
+      p2fixes = '<div class="sec"><h3>Part 2 fixes</h3><ol class="fixes" role="list">';
+      iss.forEach(function (c) {
+        var n = (state.n2[c] || '').trim();
+        p2fixes += '<li><div class="body"><div class="top2"><h3>' + esc(C[c].key) + '</h3><span class="tag ' + state.a2[c] + '">' + chainLabel(state.a2[c]) + '</span></div>' +
+          '<p>' + esc(fix2(c)) + '</p>' + (n ? '<p class="note">Your note: ' + esc(n) + '</p>' : '') + '</div></li>';
+      });
+      p2fixes += '</ol></div>';
+    }
+
+    var rows = '';
+    for (var i = 0; i < Q.length; i++) {
+      var v = state.a1[i], n1 = (state.n1[i] || '').trim();
+      rows += '<div class="srow"><div class="line"><span>' + esc(Q[i].key) + '</span><span class="tag s' + v + '">' + ansLabel(v) + '</span></div>' + (n1 ? '<p class="rnote">' + esc(n1) + '</p>' : '') + '</div>';
+    }
+    var chain = '<ul class="chain" role="list">';
+    for (var c = 0; c < C.length; c++) {
+      var cv = state.a2[c], n2 = (state.n2[c] || '').trim();
+      chain += '<li><span class="tag ' + cv + '">' + chainLabel(cv) + '</span><span><b>' + esc(C[c].key) + '</b>' + (n2 ? '<br><span class="small">' + esc(n2) + '</span>' : '') + '</span></li>';
+    }
+    chain += '</ul>';
+
+    screen.innerHTML =
+      '<div class="head"><span class="label">Result for</span><h2 id="h" class="url" tabindex="-1">' + esc(state.name.trim()) + '</h2></div>' +
+      '<div class="sec"><div class="score"><span class="score-num">' + s + '</span><span class="score-of">/ ' + MAX + '</span>' +
+      '<span class="pill ' + b.cls + '">' + b.label + '</span></div>' +
+      '<div class="meter" role="img" aria-label="Score ' + s + ' out of ' + MAX + '"><i style="width:' + Math.round(s / MAX * 100) + '%"></i></div>' +
+      '<p class="muted">' + b.text + '</p></div>' +
+      verdict +
+      '<div class="sec"><h3>' + (fo.length ? 'Fix these first' : 'Fixes') + '</h3>' + fixes + '</div>' +
+      p2fixes +
+      '<div class="sec"><h3>Make it happen</h3><div class="fields2">' +
+      '<div class="field"><label class="label" for="owner">Page owner</label><input type="text" id="owner" autocomplete="off" placeholder="Who will make these fixes?" value="' + esc(state.owner) + '"></div>' +
+      '<div class="field"><label class="label" for="review">Review by</label><input type="date" id="review" value="' + esc(state.review) + '"></div></div></div>' +
+      '<div class="sec"><h3>Share or save</h3>' +
+      '<div class="copy-row"><button class="btn" id="copy">Copy summary</button>' +
+      '<span id="dlrow" class="copy-row" hidden><button class="btn outline" id="dlPdf">Download PDF</button><button class="btn outline" id="dlXlsx">Download spreadsheet</button></span>' +
+      '<span class="copy-status" id="copyStatus" role="status"></span></div></div>' +
+      '<details class="more" id="moreAnswers"><summary>See all answers and the summary text</summary>' +
+      '<div class="sec"><h3>Part 1 answers</h3><div class="rows">' + rows + '</div></div>' +
+      '<div class="sec"><h3>Part 2 answers</h3>' + chain + '</div>' +
+      '<div class="sec"><h3>Summary text</h3><textarea class="summary" id="summary" readonly aria-label="Summary text">' + esc(buildSummary()) + '</textarea></div></details>' +
+      '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn outline" id="restart">Score another page</button></div>';
+
+    document.getElementById('back').addEventListener('click', function () { go(LAST); });
+    var tf = document.getElementById('toggleFixes');
+    if (tf) tf.addEventListener('click', function () {
+      var more = document.getElementById('moreFixes');
+      more.hidden = !more.hidden;
+      tf.setAttribute('aria-expanded', more.hidden ? 'false' : 'true');
+      tf.textContent = more.hidden ? 'Show all ' + fo.length + ' fixes' : 'Show fewer fixes';
+    });
+    document.getElementById('restart').addEventListener('click', function () {
+      var nav = document.getElementById('restart').parentNode;
+      nav.innerHTML = '<span class="muted">Start again? Your answers will be cleared.</span>' +
+        '<span><button class="btn ghost" id="cancelRestart">Cancel</button><button class="btn" id="confirmRestart">Yes, clear and start again</button></span>';
+      document.getElementById('cancelRestart').addEventListener('click', function () { render(); });
+      document.getElementById('confirmRestart').addEventListener('click', function () {
+        state = { step: 0, name: '', a1: [], a2: [], n1: [], n2: [], owner: '', review: '', auto: null };
+        render();
+        window.scrollTo(0, 0);
+      });
+    });
+
+    function refreshSummary() { var t = document.getElementById('summary'); if (t) t.value = buildSummary(); }
+    document.getElementById('owner').addEventListener('input', function (e) { state.owner = e.target.value; refreshSummary(); });
+    document.getElementById('review').addEventListener('input', function (e) { state.review = e.target.value; refreshSummary(); });
+    var status = document.getElementById('copyStatus');
+    document.getElementById('copy').addEventListener('click', function () {
+      var ta = document.getElementById('summary');
+      function fallback() {
+        document.getElementById('moreAnswers').open = true;
+        ta.focus(); ta.select();
+        status.textContent = 'Selected. Press Ctrl+C or Cmd+C.';
+      }
+      try {
+        navigator.clipboard.writeText(buildSummary()).then(function () { status.textContent = 'Copied to clipboard'; }, fallback);
+      } catch (e) { fallback(); }
+    });
+
+    var dl = null;
+    var blobDl = { save: function (r) {
+      try {
+        var type = /\.pdf$/.test(r.filename) ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        var a = document.createElement('a'), url = URL.createObjectURL(new Blob([r.data], { type: type }));
+        a.href = url; a.download = r.filename; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        return Promise.resolve({ status: 'saved' });
+      } catch (e) { return Promise.reject({ code: 'unavailable' }); }
+    } };
+    function slug() {
+      return clean(state.name).toLowerCase().replace(/^https?:\/\//, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'page';
+    }
+    function save(name, makeBytes) {
+      if (!dl) return;
+      var bytes;
+      try { bytes = makeBytes(); } catch (e) { status.textContent = 'Could not build the file.'; return; }
+      dl.save({ filename: name, data: bytes }).then(
+        function () { status.textContent = 'Saved'; },
+        function (e) { status.textContent = e && e.code === 'declined' ? '' : 'Could not save here.'; }
+      );
+    }
+    document.getElementById('dlPdf').addEventListener('click', function () { save('audit-' + slug() + '.pdf', buildPdf); });
+    document.getElementById('dlXlsx').addEventListener('click', function () { save('audit-' + slug() + '.xlsx', buildXlsx); });
+    if (HOSTED) { dl = blobDl; document.getElementById('dlrow').hidden = false; }
+    try {
+      if (window.claude && window.claude.use) {
+        Promise.resolve(window.claude.use('downloads')).then(function (d) {
+          if (d && document.getElementById('dlrow')) { dl = d; document.getElementById('dlrow').hidden = false; }
+        }, function () {});
+      }
+    } catch (e) {}
+  }
+
+  function go(step) {
+    if (step < 0) step = 0;
+    state.step = step;
+    render();
+    window.scrollTo(0, 0);
+  }
+
+  function render() {
+    renderProgress();
+    var s = state.step;
+    document.getElementById('urlbar').hidden = (s === 0 || s > LAST);
+    document.getElementById('urlbarText').textContent = state.name.trim();
+    if (s === 0) renderIntro();
+    else if (s <= P1) renderQuestion();
+    else if (s === SUM) renderPart1Summary();
+    else if (s <= LAST) renderQuestion();
+    else renderResults();
+    screen.classList.remove('enter');
+    void screen.offsetWidth;
+    screen.classList.add('enter');
+    var h = document.getElementById('h');
+    if (h && s !== 0) h.focus({ preventScroll: true });
+  }
+
+  render();
+})();
+</script>
+
+</body>
+</html>
