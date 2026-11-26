@@ -1,6 +1,6 @@
 # Does this page work?
 
-I've developed a quick way to check how helpful a webpage is. It checks whether the page is useful to the people reading it, and whether Google and AI tools like ChatGPT can find it and use it.
+I've developed a quick way for you to check how helpful a webpage is. It helps you check whether the page is useful to the people reading it, and whether Google and AI tools like ChatGPT can find it and use it.
 
 **Try it:** https://ashjcurtis.github.io/webpage-audit-scorecard/
 
