@@ -7,14 +7,14 @@ I've developed a quick way for you to check how helpful a webpage is. It helps y
 ## How it works
 
 1. Enter the address of the page you want to check.
-2. Answer 1 question at a time.
+2. Answer 1 question at a time. You can add notes as you go.
 3. Get your score and a list of what to fix.
 
-It takes about 10 minutes.
+It takes about 10 minutes. If you typed the wrong address, you can change it at any point using the Edit button at the top.
 
 ## The 2 parts
 
-**Part 1: Is the page good for readers?**
+**Part 1: Is the page useful for readers?**
 You answer 6 questions. For each one, choose Yes, Somewhat or No. Yes scores 2, Somewhat scores 1 and No scores 0, so the highest score is 12.
 
 The 6 questions are about:
@@ -40,11 +40,10 @@ The 6 questions are about:
 
 ## What you get at the end
 
-- Your Part 1 score
-- A list of the Part 2 questions that need attention
-- A suggested fix for each answer that wasn't a Yes
+- Your Part 1 score, shown after the first 6 questions
+- A list of the Part 2 questions that need attention, with a suggested fix for each answer that wasn't a Yes
 - A final page to add who's responsible for the fixes and when to look at the page again
-- A PDF or spreadsheet you can save and share
+- A PDF or spreadsheet you can save and share. It includes your score, your notes and the fixes for both parts.
 
 ## The automatic check
 
@@ -66,10 +65,10 @@ It checks:
 
 ## Your privacy
 
-The scorecard doesn't save your answers. They stay in your browser and disappear when you close the page.
+The scorecard doesn't save your answers. They stay in your browser and disappear when you close the page. The only thing it remembers is whether you chose light or dark mode.
 
-If you use the automatic check, the page address is sent to a small service that does the checking. It doesn't keep your results.
+If you use the automatic check, the page address is sent to a small service that does the checking. It doesn't store your results, but the hosting service (Cloudflare) keeps standard request logs, which can include the page address.
 
 ## Accessibility
 
-The scorecard is built to meet WCAG 2.2 AA, the standard for accessible websites. You can use it with a keyboard, the colours are easy to read in light and dark mode, and it works on small screens.
+The scorecard is built to meet WCAG 2.2 AA, the standard for accessible websites. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It has a light and dark mode, which you can switch using the button at the top.
