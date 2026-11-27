@@ -6,7 +6,7 @@ It helps you check whether the page works for the people reading it, and whether
 
 **[Try my webpage audit scorecard](https://ashjcurtis.github.io/webpage-audit-scorecard).**
 
-## How it works
+**How it works**
 
 It takes around 10 minutes to fill in.
 
