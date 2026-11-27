@@ -541,7 +541,7 @@ input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shad
   function band(score) {
     if (score === MAX) return { cls: 'good', label: 'In good shape', text: '*Street Fighter voice* Perfect! Any time this page has a change, do this audit again.' };
     if (score >= 9) return { cls: 'good', label: 'In good shape', text: 'Niccccce. That\'s prettay, prettay, prettay good. A couple of small tweaks and you\'re basically there.' };
-    if (score >= 4) return { cls: 'warn', label: 'Worth a rewrite', text: '*Sabrina Brier voice* Oh. Okay. Well that\'s not so bad, but fix some of those low-scoring checks and run this audit again.' };
+    if (score >= 4) return { cls: 'warn', label: 'Worth a rewrite', text: '*Sabrina Brier voice* Oh. Okay. Well that\'s not so bad, but have a look at some of those low-scoring checks and run this audit again.' };
     return { cls: 'bad', label: 'Rethink the page', text: 'Oh heck. Does this page need to exist? This needs a big think.' };
   }
   function ansLabel(v) { return v === 2 ? 'Yes' : v === 1 ? 'Somewhat' : 'No'; }
