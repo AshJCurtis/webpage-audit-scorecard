@@ -362,6 +362,13 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
 
 .intro-notes { display: flex; flex-direction: column; gap: .75rem; }
 
+/* ---------- URL check ---------- */
+.hint { font-size: .875rem; color: var(--muted); padding-inline: 1rem; margin-top: -.25rem; }
+.field-error { font-size: .9375rem; color: var(--bad-fg); font-weight: 500; padding-inline: 1rem; line-height: 1.4; }
+input[aria-invalid="true"] { border-color: var(--bad-fg); }
+input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shadow: 0 0 0 4px var(--bad-bg); }
+.urlmsg:empty { display: none; }
+
 /* ---------- Resume ---------- */
 .resume {
   display: flex; flex-direction: column; gap: .375rem;
@@ -581,6 +588,23 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
     fill.style.width = Math.round(n / of * 100) + '%';
   }
 
+  // Plain-English reason the text isn't a web page address, or '' if it's fine
+  var URL_EXAMPLE = 'www.example.org/homework-club';
+  function urlProblem(raw) {
+    var v = String(raw == null ? '' : raw).trim();
+    var bad = 'That doesn\'t look like a web address. Enter something like ' + URL_EXAMPLE;
+    if (!v) return 'Enter the web address of the page you want to check.';
+    if (/\s/.test(v)) return 'Web addresses don\'t have spaces in them. Check you\'ve copied the whole address and nothing else.';
+    if (/^mailto:/i.test(v) || /^[^\/:@]+@[^\/@]+\.[^\/@]+$/.test(v)) return 'That looks like an email address. Enter the address of a web page instead, like ' + URL_EXAMPLE;
+    var u;
+    try { u = new URL(fixUrl(v)); } catch (e) { return bad; }
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return 'Enter the address of a web page. It usually starts with https:// or www.';
+    if (u.username || u.password) return bad;
+    var h = u.hostname.toLowerCase();
+    if (!/^([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+([a-z]{2,63}|xn--[a-z0-9-]{2,59})$/.test(h)) return bad;
+    return '';
+  }
+
   function fixUrl(v) {
     v = String(v == null ? '' : v).trim();
     if (!v || /^[a-z][a-z0-9+.\-]*:\/\//i.test(v) || /\s/.test(v)) return v;
@@ -602,13 +626,17 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
     var bar = document.getElementById('urlbar');
     if (editing) {
       bar.innerHTML = '<label for="urlInput"><span>Page URL</span></label>' +
-        '<input type="text" id="urlInput" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name.trim()) + '">' +
+        '<input type="text" id="urlInput" aria-describedby="urlMsg" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name.trim()) + '">' +
         '<button type="button" class="urlbtn" id="urlSave">Save</button><button type="button" class="urlbtn" id="urlCancel">Cancel</button>' +
         '<span class="urlmsg" id="urlMsg" role="alert"></span>';
       var inp = document.getElementById('urlInput');
       function save() {
+        var why = urlProblem(inp.value);
+        if (why) {
+          document.getElementById('urlMsg').textContent = why;
+          inp.setAttribute('aria-invalid', 'true'); inp.focus(); return;
+        }
         var v = fixUrl(inp.value);
-        if (!v) { document.getElementById('urlMsg').textContent = 'Enter a page URL.'; inp.focus(); return; }
         var changed = v !== state.name.trim();
         changeUrl(v);
         if (changed) render(); else paintUrlBar(false);
@@ -708,21 +736,42 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
       '<div class="intro-notes"><p class="muted">Add notes to each question as you go. At the end, you\'ll get a fix list and a summary to share with your team, as a PDF or a spreadsheet.</p>' +
       '<p class="muted">Your progress is saved in this browser as you go, so you can come back to it.</p></div>' +
       '<div class="field"><label class="label" for="pageName">Page URL (required)</label>' +
-      '<input type="text" id="pageName" required aria-required="true" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
+      '<p class="hint" id="pageNameHint">Copy it from your browser\'s address bar, for example ' + URL_EXAMPLE + '</p>' +
+      '<input type="text" id="pageName" required aria-required="true" aria-describedby="pageNameHint pageNameErr" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
+      '<p class="field-error" id="pageNameErr" hidden></p>' +
       '</div>' +
       '<div class="nav"><span></span>' +
       '<button class="btn" id="start"' + (state.name.trim() ? '' : ' disabled') + '>Start audit</button></div>';
     var nameEl = document.getElementById('pageName');
     var startEl = document.getElementById('start');
+    var errEl = document.getElementById('pageNameErr');
+    function showErr(msg) {
+      errEl.textContent = msg; errEl.hidden = !msg;
+      if (msg) nameEl.setAttribute('aria-invalid', 'true'); else nameEl.removeAttribute('aria-invalid');
+    }
+    function tryStart() {
+      var why = urlProblem(nameEl.value);
+      if (why) {
+        // announce the problem each time, even if the same message is already showing
+        showErr(''); errEl.setAttribute('role', 'alert'); showErr(why);
+        nameEl.focus(); return;
+      }
+      state.name = fixUrl(nameEl.value); go(1);
+    }
     nameEl.addEventListener('input', function () {
-      var ok = nameEl.value.trim() !== '';
       state.name = nameEl.value;
-      startEl.disabled = !ok;
+      startEl.disabled = nameEl.value.trim() === '';
+      // once an error is showing, clear it as soon as the address is fixed
+      if (!errEl.hidden && !urlProblem(nameEl.value)) showErr('');
+    });
+    nameEl.addEventListener('blur', function (e) {
+      if (e.relatedTarget === startEl) return;   // the Start button checks it anyway
+      if (nameEl.value.trim()) { errEl.removeAttribute('role'); showErr(urlProblem(nameEl.value)); }
     });
     nameEl.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' && !startEl.disabled) { state.name = fixUrl(state.name); go(1); }
+      if (e.key === 'Enter' && !startEl.disabled) { e.preventDefault(); tryStart(); }
     });
-    startEl.addEventListener('click', function () { if (state.name.trim()) { state.name = fixUrl(state.name); go(1); } });
+    startEl.addEventListener('click', tryStart);
     var rg = document.getElementById('resumeGo'), rd = document.getElementById('resumeDrop');
     if (rg) rg.addEventListener('click', function () {
       var st = resumeData.state.step;
