@@ -1,12 +1,12 @@
-# Does this page work?
+# The low down: does this page work?
 
 I've developed a quick way for you to check how helpful a single webpage is. 
 
 It helps you check whether the page is useful to the people reading it, and whether Google and AI tools like ChatGPT, Gemini etc can find it and use it.
 
-**Try it:** https://ashjcurtis.github.io/webpage-audit-scorecard/
+Try it: https://ashjcurtis.github.io/webpage-audit-scorecard/
 
-## What's the format?
+**What's the format?**
 
 1. Enter the URL of the page you want to check
 2. Answer 1 question at a time. You can add notes as you go
@@ -14,7 +14,7 @@ It helps you check whether the page is useful to the people reading it, and whet
 
 It should take around 10 minutes or so. If you typed the wrong address, then oops! But not really, as you can change it at any point using the Edit button at the top.
 
-## The boring in-depth stuff you might want to know before clicking
+## Extended read: the 'boring' in-depth stuff you might want to know before clicking
 
 **Part 1: Is the page helpful for users?**
 You answer 6 questions. For each one, choose Yes, Somewhat or No. 
