@@ -1,33 +1,39 @@
 # Does this page work?
 
-I've developed a quick way for you to check how helpful a webpage is. It helps you check whether the page is useful to the people reading it, and whether Google and AI tools like ChatGPT can find it and use it.
+I've developed a quick way for you to check how helpful a single webpage is. 
+
+It helps you check whether the page is useful to the people reading it, and whether Google and AI tools like ChatGPT, Gemini etc can find it and use it.
 
 **Try it:** https://ashjcurtis.github.io/webpage-audit-scorecard/
 
-## How it works
+## What's the format?
 
-1. Enter the address of the page you want to check.
-2. Answer 1 question at a time. You can add notes as you go.
-3. Get your score and a list of what to fix.
+1. Enter the URL of the page you want to check
+2. Answer 1 question at a time. You can add notes as you go
+3. Get your score and a list of what to fix. Your notes stay with you, too.
 
-It takes about 10 minutes. If you typed the wrong address, you can change it at any point using the Edit button at the top.
+It should take around 10 minutes or so. If you typed the wrong address, then oops! But not really, as you can change it at any point using the Edit button at the top.
 
-## The 2 parts
+## The boring in-depth stuff you might want to know before clicking
 
-**Part 1: Is the page useful for readers?**
-You answer 6 questions. For each one, choose Yes, Somewhat or No. Yes scores 2, Somewhat scores 1 and No scores 0, so the highest score is 12.
+**Part 1: Is the page helpful for users?**
+You answer 6 questions. For each one, choose Yes, Somewhat or No. 
+
+Yes scores 2, Somewhat scores 1 and No scores 0, so the highest score you can get is 12.
 
 The 6 questions are about:
 
-1. Relevance: is this the right page for what people came to find?
+1. Relevance: is this the right page for the user and your organisation as a whole?
 2. Informative: does it give people what they need?
 3. Structure: is it easy to scan and follow?
-4. Tone of voice: does it sound right for your readers?
+4. Tone of voice: does it sound right for your readers? Does it use your brand voice?
 5. Accessibility: can everyone use it?
 6. Call to action: is it clear what to do next?
 
 **Part 2: Can search engines and AI tools use the page?**
-You answer 6 more questions. For each one, choose Yes, Not sure or No. This part has no score, but does give you a list of things to look at.
+You answer 6 more questions. For each one, choose Yes, Not sure or No. 
+
+This part has no score, but does give you a list of things to look at.
 
 The 6 questions are about:
 
@@ -65,10 +71,8 @@ It checks:
 
 ## Your privacy
 
-The scorecard doesn't save your answers. They stay in your browser and disappear when you close the page. The only thing it remembers is whether you chose light or dark mode.
-
 If you use the automatic check, the page address is sent to a small service that does the checking. It doesn't store your results, but the hosting service (Cloudflare) keeps standard request logs, which can include the page address.
 
 ## Accessibility
 
-The scorecard is built to meet WCAG 2.2 AA, the standard for accessible websites. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It has a light and dark mode, which you can switch using the button at the top.
+It's important to me that the scorecard is built to meet WCAG 2.2 AA. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It has a light and dark mode, which you can switch using the button at the top.
