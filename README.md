@@ -75,4 +75,4 @@ If you use the automatic check, the page address is sent to a small service that
 
 ## Accessibility
 
-It's important to me that the scorecard is built to meet WCAG 2.2 AA. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It has a light and dark mode, which you can switch using the button at the top.
+It's important to me that the scorecard has been built to meet WCAG 2.2 AA. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It has a light and dark mode, which you can switch using the button at the top.
