@@ -470,7 +470,7 @@ input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shad
       fix: 'Change the page title and main heading so they say what the page is about and who it\'s for. Then start the page with 1 sentence that tells people what they can do here.',
       fixSome: 'The title or opening is nearly there but too vague. Make the title and main heading say what the page is about and who it\'s for, and use the first sentence to say what people can do here.' },
     { key: 'Informative', q: 'Is the page reliable, accurate, up-to-date, detailed enough, trustworthy?',
-      look: ['Dates, prices, opening times and phone numbers are correct', 'Links go where they say they go', 'The page shows when it was last updated and who to contact about a mistake'],
+      look: ['Dates, prices, opening times and phone numbers are correct', 'Links go where they say they go', 'The page doesn\'t feel empty, bland or vague'],
       fix: 'Don\'t trust the page until it\'s been checked. Check every fact, date, price and link is right, and take out anything you can\'t confirm. Add the date it was last checked and who looks after it.',
       fixSome: 'Most of it looks right, but something is out of date or nobody looks after it. Check every date, price and contact detail is still right, then add the date it was last checked and who looks after it.' },
     { key: 'Structure', q: 'Can you scan it? Are there clear headings, short paragraphs and lists?',
@@ -539,10 +539,10 @@ input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shad
   }
 
   function band(score) {
-    if (score === MAX) return { cls: 'good', label: 'In good shape', text: '*Street Fighter voice* Perfect! Make sure you re-check when the page changes.' };
-    if (score >= 9) return { cls: 'good', label: 'In good shape', text: 'Niccccce. That\'s pretty good. Fix the small gaps and re-score.' };
-    if (score >= 4) return { cls: 'warn', label: 'Worth a rewrite', text: '*Sabrina Brier voice* Oh. Okay. Start with the lowest-scoring checks.' };
-    return { cls: 'bad', label: 'Rethink the page', text: 'Oh heck. Ask whether the page needs to exist in this form.' };
+    if (score === MAX) return { cls: 'good', label: 'In good shape', text: '*Street Fighter voice* Perfect! Any time this page has a change, do this audit again.' };
+    if (score >= 9) return { cls: 'good', label: 'In good shape', text: 'Niccccce. That\'s prettay, prettay, prettay good. A couple of small tweaks and you\'re basically there.' };
+    if (score >= 4) return { cls: 'warn', label: 'Worth a rewrite', text: '*Sabrina Brier voice* Oh. Okay. Well that\'s not so bad, but fix some of those low-scoring checks and run this audit again.' };
+    return { cls: 'bad', label: 'Rethink the page', text: 'Oh heck. Does this page need to exist? This needs a big think.' };
   }
   function ansLabel(v) { return v === 2 ? 'Yes' : v === 1 ? 'Somewhat' : 'No'; }
   function fix1(i) { return state.a1[i] === 1 ? Q[i].fixSome : Q[i].fix; }
