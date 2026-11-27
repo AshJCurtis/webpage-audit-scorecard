@@ -75,4 +75,4 @@ If you use the automatic check, the page address is sent to a small service that
 
 ## Accessibility
 
-We’ve built the scorecard to meet Web Content Accessibility Guidelines (WCAG) 2.2 AA standards. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It also has a light and dark mode, which you can switch between using the button at the top.
+I’ve built the scorecard to meet Web Content Accessibility Guidelines (WCAG) 2.2 AA standards. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It also has a light and dark mode, which you can switch between using the button at the top.
