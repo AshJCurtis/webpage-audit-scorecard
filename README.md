@@ -75,10 +75,10 @@ It checks whether:
 
 Your answers and notes are saved in your own browser as you go, so you can come back and carry on later. They stay on your device and aren’t sent anywhere. They’re cleared when you start a new audit.
 
-We use Cloudflare Web Analytics to count visits to the scorecard. It doesn’t use cookies and doesn’t track you across other websites. It only tells us things like how many people visited, which country they were in and which website sent them.
+I use Cloudflare Web Analytics to count visits to the scorecard. It doesn’t use cookies and doesn’t track you across other websites. It only tells me things like how many people visited, which country they were in and which website sent them.
 
 If you use the automatic check, the page address is sent to a small service that runs the check. It doesn’t store your results, though the hosting service (Cloudflare) keeps standard request logs, which may include the page address.
 
 ## Accessibility
 
-We’ve built the scorecard to meet Web Content Accessibility Guidelines (WCAG) 2.2 AA standards. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It also has a light and dark mode, which you can switch between using the button at the top.
+I’ve built the scorecard to meet Web Content Accessibility Guidelines (WCAG) 2.2 AA standards. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It also has a light and dark mode, which you can switch between using the button at the top.
