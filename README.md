@@ -4,9 +4,9 @@ I’ve created a quick way for you to check how helpful a single webpage is.
 
 It helps you check whether the page works for the people reading it, and whether search engines and AI tools (like ChatGPT and Gemini) can find and use it.
 
-**[Try my webpage audit scorecard](https://ashjcurtis.github.io/webpage-audit-scorecard).**
+**[Try my webpage audit scorecard](https://ashjcurtis.github.io/webpage-audit-scorecard)**
 
-**How it works**
+## How it works
 
 It takes around 10 minutes to fill in.
 
@@ -16,6 +16,8 @@ It takes around 10 minutes to fill in.
 
 If you type the wrong address, don’t worry. You can change it at any time using the **Edit** button at the top.
 
+![The webpage audit scorecard. It asks: Does this page work? A results card shows a Part 1 score of 9 out of 12, with each check marked Yes, Somewhat or No.](social-preview.png)
+
 ## Long read: what the scorecard checks
 
 ### Part 1: Is the page helpful for users?
@@ -24,10 +26,10 @@ You’ll answer 6 questions, choosing **Yes** (2 points), **Somewhat** (1 point)
 
 The questions cover:
 
-- **Relevance:** Is this the right page for the user and Parkinson’s UK?
-- **Information:** Does it give people what they need?
+- **Relevance:** Is it clear who the page is for?
+- **Informative:** Does it give people what they need?
 - **Structure:** Is it easy to scan and follow?
-- **Tone of voice:** Does it sound right for your readers and use our brand voice?
+- **Tone of voice:** Does it sound right for your readers and match your house style?
 - **Accessibility:** Can everyone use it?
 - **Call to action:** Is it clear what to do next?
 
@@ -71,8 +73,10 @@ It checks whether:
 
 ## Your privacy
 
+Your answers and notes are saved in your own browser as you go, so you can come back and carry on later. They stay on your device and aren’t sent anywhere. They’re cleared when you start a new audit.
+
 If you use the automatic check, the page address is sent to a small service that runs the check. It doesn’t store your results, though the hosting service (Cloudflare) keeps standard request logs, which may include the page address.
 
 ## Accessibility
 
-I’ve built the scorecard to meet Web Content Accessibility Guidelines (WCAG) 2.2 AA standards. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It also has a light and dark mode, which you can switch between using the button at the top.
+We’ve built the scorecard to meet Web Content Accessibility Guidelines (WCAG) 2.2 AA standards. You can use it with a keyboard, the colours are easy to read, and it works on small screens. It also has a light and dark mode, which you can switch between using the button at the top.
