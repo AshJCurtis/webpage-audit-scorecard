@@ -111,7 +111,9 @@ button, input, textarea { -webkit-tap-highlight-color: transparent; }
   display: flex; flex-direction: column; gap: 2rem;
 }
 .topbar { display: flex; flex-direction: column; gap: .625rem; }
-.toprow { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.toprow { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
+.toprow .top { flex: 1 1 auto; min-width: 0; }
+.toprow .themebtn { flex: none; }
 .top { font-size: .8125rem; color: var(--muted); letter-spacing: .005em; font-weight: 500; }
 .top a { color: var(--accent-ink); text-decoration: none; }
 .top a:hover { text-decoration: underline; text-underline-offset: 3px; }
@@ -135,7 +137,9 @@ button, input, textarea { -webkit-tap-highlight-color: transparent; }
 }
 .urlbar span { flex: none; font-size: .8125rem; font-weight: 600; color: var(--muted); letter-spacing: .005em; }
 .urlbar label span { color: var(--muted); }
-.urlbar b { font-weight: 500; overflow-wrap: anywhere; min-width: 0; flex: 1 1 12ch; }
+.urlbar b { font-weight: 500; min-width: 0; flex: 1 1 12ch; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.urlbar { flex-wrap: nowrap; }
+.urlbar:has(input) { flex-wrap: wrap; }
 .urlbar input {
   font: inherit; flex: 1 1 220px; min-width: 0; min-height: 2.25rem; padding: .25rem .625rem;
   border: 1px solid var(--control); border-radius: 8px; background: var(--surface); color: var(--fg);
@@ -169,7 +173,7 @@ p { margin: 0; }
 .muted { color: var(--muted); }
 .small { font-size: .875rem; letter-spacing: .003em; }
 .label { font-size: .8125rem; font-weight: 600; color: var(--muted); letter-spacing: .01em; }
-.lede { font-size: 1.25rem; line-height: 1.4; letter-spacing: -0.01em; color: var(--muted); max-width: 34ch; }
+.lede { font-size: 1.25rem; line-height: 1.4; letter-spacing: -0.01em; color: var(--muted); text-wrap: pretty; }
 .head { display: flex; flex-direction: column; gap: .5rem; }
 .head .label { color: var(--accent-ink); }
 
@@ -356,6 +360,17 @@ details.more summary:focus-visible { outline: 3px solid var(--accent); outline-o
 .copy-status { font-size: .875rem; color: var(--good-fg); font-weight: 500; }
 textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17.5rem; background: var(--bg); border-color: transparent; }
 
+.intro-notes { display: flex; flex-direction: column; gap: .75rem; }
+
+/* ---------- Resume ---------- */
+.resume {
+  display: flex; flex-direction: column; gap: .375rem;
+  background: var(--card); border-radius: 18px; padding: 1.25rem; box-shadow: var(--shadow);
+}
+.resume .label { color: var(--accent-ink); }
+.resume-url { font-weight: 600; overflow-wrap: anywhere; line-height: 1.35; }
+.resume .copy-row { margin-top: .625rem; }
+
 /* ---------- Intro cards ---------- */
 .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
@@ -387,7 +402,7 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
 }
 @media (prefers-contrast: more) {
   .chrome { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .rows, .fixes, .look ul, .card, .auto, .nextpart, details.more, .urlbar { outline: 1px solid var(--line-strong); }
+  .rows, .fixes, .look ul, .card, .resume, .auto, .nextpart, details.more, .urlbar { outline: 1px solid var(--line-strong); }
   .btn.outline { outline: 1px solid var(--fg); }
   .face { box-shadow: inset 0 0 0 1px var(--line-strong); }
   :root { --sep: var(--line-strong); }
@@ -430,8 +445,8 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
     });
     paint();
   })();
-  var HOSTED = false;          // true only in the standalone copy
-  var CHECKER_URL = '';        // address of the page checker; empty hides the automatic check
+  var HOSTED = true;           // true only in the standalone copy
+  var CHECKER_URL = 'https://summer-sea-d98f.ashcurtis23.workers.dev/';  // address of the page checker; empty hides the automatic check
   var ANSWERS1 = [
     { v: 2, label: 'Yes' },
     { v: 1, label: 'Somewhat' },
@@ -607,7 +622,7 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
       });
       inp.focus(); inp.select();
     } else {
-      bar.innerHTML = '<span>Auditing</span><b>' + esc(state.name.trim()) + '</b>' +
+      bar.innerHTML = '<span>Auditing</span><b title="' + esc(state.name.trim()) + '">' + esc(state.name.trim()) + '</b>' +
         '<button type="button" class="urlbtn" id="urlEdit" aria-label="Edit page URL">Edit</button>';
       document.getElementById('urlEdit').addEventListener('click', function () { paintUrlBar(true); });
     }
@@ -619,16 +634,79 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
     return x + '</div>';
   }
 
+  /* Save progress: answers live in this browser only (localStorage), never sent anywhere */
+  var SAVE_KEY = 'audit-progress-v1';
+  var resumeData = null;
+  function saveProgress() {
+    if (!(state.step > 0)) return;          // nothing worth keeping until the audit starts
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify({
+        v: 1, savedAt: Date.now(), step: state.step, name: state.name,
+        a1: state.a1, a2: state.a2, n1: state.n1, n2: state.n2, owner: state.owner, review: state.review
+      }));
+    } catch (e) {}
+  }
+  function clearProgress() { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} }
+  function loadProgress() {
+    try {
+      var d = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
+      if (!d || d.v !== 1 || typeof d.name !== 'string' || !d.name.trim()) return null;
+      var st = parseInt(d.step, 10);
+      if (!(st >= 1 && st <= FINAL)) return null;
+      function arr(x) { return Array.isArray(x) ? x : []; }
+      var a1 = arr(d.a1).map(function (v) { return v === 0 || v === 1 || v === 2 ? v : undefined; });
+      var a2 = arr(d.a2).map(function (v) { return v === 'yes' || v === 'unsure' || v === 'no' ? v : undefined; });
+      function notes(x) { return arr(x).map(function (v) { return typeof v === 'string' ? v : ''; }); }
+      // never land on a screen whose earlier answers are missing
+      var need = 0;
+      for (var i = 0; i < Q.length; i++) { if (a1[i] == null) break; need = i + 1; }
+      var maxStep = need < Q.length ? need + 1 : SUM;
+      if (need === Q.length) { var n2 = 0; for (var j = 0; j < C.length; j++) { if (a2[j] == null) break; n2 = j + 1; } maxStep = n2 < C.length ? SUM + n2 + 1 : FINAL; }
+      return {
+        savedAt: +d.savedAt || 0,
+        state: { step: Math.min(st, maxStep), name: d.name, a1: a1, a2: a2, n1: notes(d.n1), n2: notes(d.n2),
+                 owner: typeof d.owner === 'string' ? d.owner : '', review: typeof d.review === 'string' ? d.review : '', auto: null }
+      };
+    } catch (e) { return null; }
+  }
+  function whereLabel(st) {
+    if (st <= P1) return 'Part 1, check ' + st + ' of ' + P1;
+    if (st === SUM) return 'Part 1 finished';
+    if (st <= LAST) return 'Part 2, check ' + (st - SUM) + ' of ' + C.length;
+    if (st === RESULTS) return 'Results';
+    return 'Wrap up';
+  }
+  function savedLabel(ms) {
+    if (!ms) return '';
+    var d = new Date(ms), now = new Date();
+    var time = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    if (d.toDateString() === now.toDateString()) return 'Saved today at ' + time;
+    return 'Saved ' + d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) + ' at ' + time;
+  }
+  function resumeBlock() {
+    if (!resumeData) return '';
+    var r = resumeData.state;
+    return '<section class="resume" aria-labelledby="resumeH">' +
+      '<span class="label">Saved audit</span>' +
+      '<h3 id="resumeH">Carry on where you left off</h3>' +
+      '<p class="resume-url">' + esc(r.name.trim()) + '</p>' +
+      '<p class="small muted">' + esc(whereLabel(r.step)) + (resumeData.savedAt ? ' &middot; ' + esc(savedLabel(resumeData.savedAt)) : '') + '</p>' +
+      '<div class="copy-row"><button class="btn" id="resumeGo">Carry on</button>' +
+      '<button class="btn outline" id="resumeDrop">Start a new audit</button></div></section>';
+  }
+
   function renderIntro() {
     screen.innerHTML =
       '<div class="head"><h1 id="h" tabindex="-1">Does this page work?</h1>' +
       '<p class="lede">Paste a page URL from your website and answer 12 short questions, split into 2 parts.</p></div>' +
+      resumeBlock() +
       '<div class="cards">' +
       '<div class="card"><span class="kicker">Part 1 &middot; Scored out of ' + MAX + '</span><h3>6 quality checks</h3><p class="muted">Is the page useful for the people reading it?</p>' +
       '</div>' +
       '<div class="card"><span class="kicker">Part 2 &middot; Not scored</span><h3>6 search and AI checks</h3><p class="muted">Can search tools and AI assistants find, understand and use it?</p>' +
       '</div></div>' +
-      '<p class="muted">Add notes to each question as you go. At the end, you\'ll get a fix list and a summary to share with your team, as a PDF or a spreadsheet.</p>' +
+      '<div class="intro-notes"><p class="muted">Add notes to each question as you go. At the end, you\'ll get a fix list and a summary to share with your team, as a PDF or a spreadsheet.</p>' +
+      '<p class="muted">Your progress is saved in this browser as you go, so you can come back to it.</p></div>' +
       '<div class="field"><label class="label" for="pageName">Page URL (required)</label>' +
       '<input type="text" id="pageName" required aria-required="true" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
       '</div>' +
@@ -645,6 +723,16 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
       if (e.key === 'Enter' && !startEl.disabled) { state.name = fixUrl(state.name); go(1); }
     });
     startEl.addEventListener('click', function () { if (state.name.trim()) { state.name = fixUrl(state.name); go(1); } });
+    var rg = document.getElementById('resumeGo'), rd = document.getElementById('resumeDrop');
+    if (rg) rg.addEventListener('click', function () {
+      var st = resumeData.state.step;
+      state = resumeData.state; state.step = 0; resumeData = null;
+      go(st);
+    });
+    if (rd) rd.addEventListener('click', function () {
+      clearProgress(); resumeData = null; render();
+      var pn = document.getElementById('pageName'); if (pn) pn.focus();
+    });
   }
 
   function renderQuestion() {
@@ -1088,6 +1176,7 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
         '<span><button class="btn ghost" id="cancelRestart">Cancel</button><button class="btn" id="confirmRestart">Yes, clear and start again</button></span>';
       document.getElementById('cancelRestart').addEventListener('click', function () { render(); });
       document.getElementById('confirmRestart').addEventListener('click', function () {
+        clearProgress(); resumeData = null;
         state = { step: 0, name: '', a1: [], a2: [], n1: [], n2: [], owner: '', review: '', auto: null };
         render();
         window.scrollTo(0, 0);
@@ -1147,6 +1236,7 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
   var navDir = 'fwd';
   function go(step) {
     if (step < 0) step = 0;
+    if (step > 0) resumeData = null;
     navDir = step < state.step ? 'back' : 'fwd';
     state.step = step;
     render();
@@ -1169,6 +1259,7 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
     screen.classList.add('enter');
     if (navDir === 'back') screen.classList.add('back');
     navDir = 'fwd';
+    saveProgress();
     var h = document.getElementById('h');
     if (h && s !== 0) h.focus({ preventScroll: true });
   }
@@ -1179,8 +1270,20 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
     function edge() { chrome.classList.toggle('scrolled', window.scrollY > 4); }
     window.addEventListener('scroll', edge, { passive: true });
     edge();
+    // keep focused fields clear of the pinned header
+    function pad() { document.documentElement.style.scrollPaddingTop = (chrome.offsetHeight + 16) + 'px'; }
+    try { new ResizeObserver(pad).observe(chrome); } catch (e) { window.addEventListener('resize', pad); }
+    pad();
   })();
 
+  // typing in notes, owner or date, or picking an answer, saves straight away
+  var saveTimer = null;
+  function queueSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveProgress, 250); }
+  document.addEventListener('input', queueSave);
+  document.addEventListener('change', queueSave);
+  window.addEventListener('pagehide', saveProgress);
+
+  resumeData = loadProgress();
   render();
 })();
 </script>
