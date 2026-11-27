@@ -363,7 +363,6 @@ textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17
 .intro-notes { display: flex; flex-direction: column; gap: .75rem; }
 
 /* ---------- URL check ---------- */
-.hint { font-size: .875rem; color: var(--muted); padding-inline: 1rem; margin-top: -.25rem; }
 .field-error { font-size: .9375rem; color: var(--bad-fg); font-weight: 500; padding-inline: 1rem; line-height: 1.4; }
 input[aria-invalid="true"] { border-color: var(--bad-fg); }
 input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shadow: 0 0 0 4px var(--bad-bg); }
@@ -494,11 +493,11 @@ input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shad
 
   var C = [
     { key: 'Reach', q: 'Can search engines and AI assistants get to this page?',
-      look: ['It isn\'t behind a login', 'It isn\'t blocked by robots.txt or a similar rule', 'It\'s in your sitemap and other pages link to it'],
+      look: ['It isn\'t behind a login', 'Your website doesn\'t tell search engines or AI tools to stay away from it. This rule lives in a file called robots.txt', 'It\'s on your website\'s list of pages (the sitemap), and other pages link to it'],
       fix: 'Ask your web team why search engines and AI tools can\'t get to the page. Information meant for the public shouldn\'t need a login.',
       confirm: 'Open the page in a private (incognito) window without signing in. If it loads, ask your web team to check that nothing on the site blocks search engines or AI tools from this page, and that it\'s on the site\'s list of pages (the sitemap).' },
     { key: 'Store', q: 'Is the page allowed to be stored, and does it load without special software?',
-      look: ['There\'s no noindex instruction on the page', 'The main text is in the page itself, not loaded only after a click or by a script', 'Key facts aren\'t locked inside a PDF or an image'],
+      look: ['The page doesn\'t tell search engines to leave it out of their results. This setting is called noindex', 'The main text is there as soon as the page opens, not only after a click or once extra code has run', 'Key facts aren\'t only inside a PDF or a picture'],
       fix: 'Ask your web team to remove any setting that tells search engines to ignore the page (called "noindex"). Put the important information on the page itself, not hidden in tabs, pop-ups or PDFs.',
       confirm: 'Check the important information is written on the page, not only in tabs, pop-ups or PDFs. Then ask your web team to check the page isn\'t set to be ignored by search engines.' },
     { key: 'Understand', q: 'Is the meaning in the words and headings, not just in images or layout?',
@@ -736,8 +735,7 @@ input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shad
       '<div class="intro-notes"><p class="muted">Add notes to each question as you go. At the end, you\'ll get a fix list and a summary to share with your team, as a PDF or a spreadsheet.</p>' +
       '<p class="muted">Your progress is saved in this browser as you go, so you can come back to it.</p></div>' +
       '<div class="field"><label class="label" for="pageName">Page URL (required)</label>' +
-      '<p class="hint" id="pageNameHint">Copy it from your browser\'s address bar, for example ' + URL_EXAMPLE + '</p>' +
-      '<input type="text" id="pageName" required aria-required="true" aria-describedby="pageNameHint pageNameErr" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
+      '<input type="text" id="pageName" required aria-required="true" aria-describedby="pageNameErr" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
       '<p class="field-error" id="pageNameErr" hidden></p>' +
       '</div>' +
       '<div class="nav"><span></span>' +
