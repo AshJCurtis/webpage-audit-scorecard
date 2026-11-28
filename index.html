@@ -1,228 +1,1339 @@
-<!doctype html>
-<html lang="en-GB">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ash Curtis, content designer and strategist</title>
-<meta name="description" content="Portfolio of Ash Curtis, a content designer and strategist with 16 years in charity, education, local government and sport.">
-<link rel="icon" href="https://github.com/AshJCurtis.png?size=460">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<a class="skip" href="#main">Skip to content</a>
-<header class="site-header wrap">
-  <a class="wordmark" href="index.html">Ash Curtis</a>
-  <nav aria-label="Main">
-    <a href="index.html#work">Work</a>
-    <a href="index.html#about">About</a>
-    <a href="index.html#contact">Contact</a>
-  </nav>
-</header>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Webpage audit scorecard, by Ash Curtis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Apple-style redesign.
+   Grouped inset lists on a grouped background, system type with size-specific tracking,
+   translucent sticky chrome with a scroll-edge effect, press feedback on pointer-down,
+   critically damped screen transitions that enter from the side you're heading towards. */
+:root {
+  --bg: #F2F2F7;            /* systemGroupedBackground */
+  --card: #FFFFFF;          /* secondarySystemGroupedBackground */
+  --surface: #FFFFFF;
+  --fill: rgba(118,118,128,.12);
+  --fill-strong: rgba(118,118,128,.20);
+  --fg: #1D1D1F;
+  --muted: #6E6E73;
+  --sep: rgba(60,60,67,.18);
+  --line: rgba(60,60,67,.18);
+  --line-strong: rgba(60,60,67,.36);
+  --control: #8A8A8E;
+  --accent: #0071E3;
+  --accent-hover: #0066CC;
+  --accent-press: #006EDB;
+  --accent-fg: #FFFFFF;
+  --accent-ink: #0066CC;
+  --accent-soft: rgba(0,113,227,.10);
+  --good-bg: rgba(52,199,89,.16);  --good-fg: #1B7A33;
+  --warn-bg: rgba(255,149,0,.18);  --warn-fg: #8F4C00;
+  --bad-bg: rgba(255,59,48,.14);   --bad-fg: #B3261E;
+  --material: rgba(242,242,247,.72);
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI Variable Text", "Segoe UI", Roboto, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, "Segoe UI Variable Display", "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  --ease: cubic-bezier(.32,.72,0,1);  /* close to a critically damped spring, response ~0.4s */
+  --r-card: 14px;
+  --r-ctl: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #000000; --card: #1C1C1E; --surface: #1C1C1E;
+    --fill: rgba(118,118,128,.24); --fill-strong: rgba(118,118,128,.36);
+    --fg: #F5F5F7; --muted: #98989D;
+    --sep: rgba(84,84,88,.6); --line: rgba(84,84,88,.6); --line-strong: rgba(120,120,128,.8);
+    --control: #7C7C80;
+    --accent: #0071E3; --accent-hover: #0066CC; --accent-press: #005FBF; --accent-fg: #FFFFFF;
+    --accent-ink: #4DA3FF; --accent-soft: rgba(10,132,255,.18);
+    --good-bg: rgba(48,209,88,.18);  --good-fg: #4CD964;
+    --warn-bg: rgba(255,159,10,.20); --warn-fg: #FFB340;
+    --bad-bg: rgba(255,69,58,.20);   --bad-fg: #FF6961;
+    --material: rgba(0,0,0,.66);
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #000000; --card: #1C1C1E; --surface: #1C1C1E;
+  --fill: rgba(118,118,128,.24); --fill-strong: rgba(118,118,128,.36);
+  --fg: #F5F5F7; --muted: #98989D;
+  --sep: rgba(84,84,88,.6); --line: rgba(84,84,88,.6); --line-strong: rgba(120,120,128,.8);
+  --control: #7C7C80;
+  --accent: #0071E3; --accent-hover: #0066CC; --accent-press: #005FBF; --accent-fg: #FFFFFF;
+  --accent-ink: #4DA3FF; --accent-soft: rgba(10,132,255,.18);
+  --good-bg: rgba(48,209,88,.18);  --good-fg: #4CD964;
+  --warn-bg: rgba(255,159,10,.20); --warn-fg: #FFB340;
+  --bad-bg: rgba(255,69,58,.20);   --bad-fg: #FF6961;
+  --material: rgba(0,0,0,.66);
+  --shadow: none;
+  color-scheme: dark;
+}
 
-<main id="main">
-<section class="hero wrap">
-  <img class="avatar" src="https://github.com/AshJCurtis.png?size=460" alt="Ash Curtis" width="216" height="216">
-  <div class="annotated hero-head">
-    <h1 class="hero-title">I <mark class="note-mark hero-mark" aria-describedby="note-headline">turn complex information into accessible digital experiences</mark></h1>
-    <aside class="note note-headline" id="note-headline" aria-label="Note from Ash">
-      <div class="note-head"><img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="24" height="24"><span class="note-name">Ash Curtis</span></div>
-      <p class="note-text">Let’s change this to ‘turn complex copy into content that’s easy to understand’. That’s much plainer and simpler</p>
-    </aside>
-  </div>
-  <div class="annotated">
-    <p class="hero-sub">I’m Ash Curtis, a digital content manager, designer and editor with 16 years’ experience across <mark class="note-mark" aria-describedby="hero-note">charity</mark>, digital marketing, education, local government and sport.</p>
-    <aside class="note" id="hero-note" aria-label="Note from Ash">
-      <div class="note-head">
-        <img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="24" height="24">
-        <span class="note-name">Ash Curtis</span>
-      </div>
-      <p class="note-text">I’m currently a Senior Content Strategist at Parkinson’s UK</p>
-    </aside>
-  </div>
-</section>
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.0625rem;      /* 17px, iOS body */
+  line-height: 1.47;
+  letter-spacing: 0;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  padding: 0 0 4.5rem;
+  /* ease light/dark changes instead of jumping */
+  transition: background-color .35s ease, color .35s ease;
+}
+button, input, textarea { -webkit-tap-highlight-color: transparent; }
 
-<section id="work" class="work wrap" aria-labelledby="work-title">
-  <div class="section-head">
-    <h2 id="work-title">My recent work</h2>
-  </div>
-  <ol class="projects">
-  <li>
-    <a class="project" href="work/chelsea-flower-show.html">
-      <span class="project-num">01</span>
-      <span class="project-body">
-        <span class="project-meta">Parkinson’s UK</span>
-        <span class="project-title"><mark class="note-mark" aria-describedby="note-chelsea-flower-show">RHS Chelsea Flower Show garden</mark></span>
-        <span class="project-summary">Content for an award-winning show garden, on the web and in print</span>
-        <span class="note note-small" id="note-chelsea-flower-show">
-          <span class="note-head"><img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="20" height="20"><span class="note-name">Ash Curtis</span></span>
-          <span class="note-text">Parkinson’s UK won the BBC People’s Choice Award for this one!</span>
-        </span>
-      </span>
-      <span class="project-go"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-    </a>
-  </li>
-  <li>
-    <a class="project" href="work/give-back-tv-advert.html">
-      <span class="project-num">02</span>
-      <span class="project-body">
-        <span class="project-meta">Parkinson’s UK</span>
-        <span class="project-title">Give back what Parkinson’s takes</span>
-        <span class="project-summary">Providing content strategy to our Legacy team and an external agency</span>
-      </span>
-      <span class="project-go"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-    </a>
-  </li>
-  <li>
-    <a class="project" href="work/research-messaging.html">
-      <span class="project-num">03</span>
-      <span class="project-body">
-        <span class="project-meta">Parkinson’s UK</span>
-        <span class="project-title"><mark class="note-mark" aria-describedby="note-research-messaging">Changing how we talk about research</mark></span>
-        <span class="project-summary">A research messaging guide shaped by subject matter experts and people with Parkinson’s</span>
-        <span class="note note-small" id="note-research-messaging">
-          <span class="note-head"><img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="20" height="20"><span class="note-name">Ash Curtis</span></span>
-          <span class="note-text">Really loved speaking to subject matter experts for this project, research is fascinating</span>
-        </span>
-      </span>
-      <span class="project-go"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-    </a>
-  </li>
-  <li>
-    <a class="project" href="work/genomics-toolkit.html">
-      <span class="project-num">04</span>
-      <span class="project-body">
-        <span class="project-meta">Macmillan Cancer Support</span>
-        <span class="project-title">The Macmillan Genomics Toolkit</span>
-        <span class="project-summary">A clinical slide deck turned into an accessible set of webpages</span>
-      </span>
-      <span class="project-go"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-    </a>
-  </li>
-  <li>
-    <a class="project" href="work/college-websites.html">
-      <span class="project-num">05</span>
-      <span class="project-body">
-        <span class="project-meta">Chichester College Group</span>
-        <span class="project-title">Rebuilding CCG’s websites</span>
-        <span class="project-summary">6 campus websites redeveloped, with one group brand and a personality for each campus</span>
-      </span>
-      <span class="project-go"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-    </a>
-  </li>
-  <li>
-    <a class="project" href="work/webpage-audit-scorecard.html">
-      <span class="project-num">06</span>
-      <span class="project-body">
-        <span class="project-meta">Personal project</span>
-        <span class="project-title">Webpage audit scorecard</span>
-        <span class="project-summary">A free tool that checks whether a page works for readers, search and AI tools</span>
-      </span>
-      <span class="project-go"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-    </a>
-  </li>
-  </ol>
-</section>
+/* ---------- Translucent chrome ---------- */
+.chrome {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--material);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  transition: box-shadow .25s ease, background-color .35s ease;
+}
+.chrome::after {        /* scroll-edge effect: appears only once content slides under */
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px;
+  background: var(--sep); opacity: 0; transition: opacity .2s ease;
+}
+.chrome.scrolled::after { opacity: 1; }
+.chrome-in {
+  max-width: 660px; margin: 0 auto;
+  padding: .75rem max(1.25rem, env(safe-area-inset-right, 0px)) .75rem max(1.25rem, env(safe-area-inset-left, 0px));
+  display: flex; flex-direction: column; gap: .625rem;
+}
+.wrap {
+  max-width: 660px; margin: 0 auto;
+  padding: 1.75rem max(1.25rem, env(safe-area-inset-right, 0px)) 0 max(1.25rem, env(safe-area-inset-left, 0px));
+  display: flex; flex-direction: column; gap: 2rem;
+}
+.topbar { display: flex; flex-direction: column; gap: .625rem; }
+.toprow { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
+.toprow .top { flex: 1 1 auto; min-width: 0; }
+.toprow .themebtn { flex: none; }
+.top { font-size: .8125rem; color: var(--muted); letter-spacing: .005em; font-weight: 500; }
+.top a { color: var(--accent-ink); text-decoration: none; }
+.top a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.top a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 
-<section id="about" class="about wrap" aria-labelledby="about-title">
-  <h2 id="about-title">About me</h2>
-  <div class="prose">
-    <div class="annotated annotated-prose">
-      <p>I write, manage and improve website content, using tools like GA4, Hotjar, Siteimprove and Monsido to guide decisions and making sure content works for search (SEO) and AI answers (AEO). I enjoy line management, particularly using weekly 1:1s so the <mark class="note-mark" aria-describedby="note-leadership">people I manage feel supported and valued</mark>.</p>
-      <aside class="note note-side" id="note-leadership" aria-label="Note from Ash">
-        <div class="note-head"><img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="24" height="24"><span class="note-name">Ash Curtis</span></div>
-        <p class="note-text">I have a servant style of leadership. My strength is serving and empowering my line reports to make sure they succeed</p>
-      </aside>
-    </div>
-    <div class="annotated annotated-prose">
-      <p><mark class="note-mark" aria-describedby="note-cms">I’ve led website rebuilds</mark> and content migrations, and presented strategy and data to senior stakeholders.</p>
-      <aside class="note note-side" id="note-cms" aria-label="Note from Ash">
-        <div class="note-head"><img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="24" height="24"><span class="note-name">Ash Curtis</span></div>
-        <p class="note-text">I have the most CMS experience in Drupal but I’ve used Sitecore, WordPress and Sitefinity in other roles as well</p>
-      </aside>
-    </div>
-    <p>Recently, I’ve been building small tools for non-techy people to use, like the <a href="work/webpage-audit-scorecard.html">webpage audit scorecard</a>.</p>
-  </div>
-</section>
+.themebtn {
+  font: inherit; font-size: .8125rem; font-weight: 500; color: var(--fg);
+  background: var(--fill); border: 0; border-radius: 980px;
+  min-height: 2rem; padding: .25rem .875rem; cursor: pointer;
+  transition: transform .1s ease-out, background-color .2s ease;
+}
+.themebtn:hover { background: var(--fill-strong); }
+.themebtn:active { transform: scale(.96); }
+.themebtn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.themebtn[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent-ink); }
 
-<section id="history" class="history wrap" aria-labelledby="history-title">
-  <h2 id="history-title">Work history</h2>
-  <div class="prose">
-    <p>I’m currently working for Parkinson’s UK. But I’ve had digital and content roles with Macmillan Cancer Support, Chichester College Group, Clipper Round the World Yacht Race, East Hampshire District Council, University of Portsmouth and VL Digital.</p>
-    <div class="annotated annotated-prose">
-      <p><mark class="note-mark" aria-describedby="note-audiences">Lots of different audiences</mark> and goals, and all challenging in their own special way.</p>
-      <aside class="note note-side" id="note-audiences" aria-label="Note from Ash">
-        <div class="note-head"><img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="24" height="24"><span class="note-name">Ash Curtis</span></div>
-        <p class="note-text">But the principle of being user first and thinking about the user journey ties them all together</p>
-      </aside>
-    </div>
-  </div>
-</section>
+.urlbar {
+  display: flex; flex-wrap: wrap; gap: .5rem .75rem; align-items: center;
+  background: var(--card); border-radius: var(--r-ctl);
+  padding: .5rem .5rem .5rem .875rem; font-size: .9375rem; min-width: 0;
+}
+.urlbar span { flex: none; font-size: .8125rem; font-weight: 600; color: var(--muted); letter-spacing: .005em; }
+.urlbar label span { color: var(--muted); }
+.urlbar b { font-weight: 500; min-width: 0; flex: 1 1 12ch; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.urlbar { flex-wrap: nowrap; }
+.urlbar:has(input) { flex-wrap: wrap; }
+.urlbar input {
+  font: inherit; flex: 1 1 220px; min-width: 0; min-height: 2.25rem; padding: .25rem .625rem;
+  border: 1px solid var(--control); border-radius: 8px; background: var(--surface); color: var(--fg);
+}
+.urlbar input:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.urlbtn {
+  font: inherit; font-size: .9375rem; font-weight: 500; color: var(--accent-ink);
+  background: transparent; border: 0; border-radius: 980px; min-height: 2rem; padding: .25rem .75rem; cursor: pointer;
+  transition: background-color .15s ease, transform .1s ease-out;
+}
+.urlbtn:hover { background: var(--accent-soft); }
+.urlbtn:active { transform: scale(.96); background: var(--accent-soft); }
+.urlbtn:focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+.urlmsg { flex-basis: 100%; font-size: .8125rem; color: var(--bad-fg); }
 
-<section id="contact" class="contact wrap" aria-labelledby="contact-title">
-  <h2 id="contact-title">Let’s have a chat</h2>
-  <div class="annotated annotated-prose annotated-contact">
-    <p class="contact-line">Send me a message on LinkedIn if you want to have a chat.<br><mark class="note-mark" aria-describedby="note-checking">I check it most days.</mark></p>
-    <aside class="note note-side" id="note-checking" aria-label="Note from Ash">
-      <div class="note-head"><img class="note-avatar" src="https://github.com/AshJCurtis.png?size=460" alt="" width="24" height="24"><span class="note-name">Ash Curtis</span></div>
-      <p class="note-text">Note to self: work on not doing this!</p>
-    </aside>
+/* ---------- Progress ---------- */
+.progress { display: flex; flex-direction: column; gap: .5rem; }
+.track { height: 4px; background: var(--fill); border-radius: 980px; overflow: hidden; }
+.track i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 980px; transition: width .5s var(--ease); }
+.plabel { display: flex; justify-content: space-between; gap: .75rem; flex-wrap: wrap; font-size: .8125rem; color: var(--muted); letter-spacing: .005em; }
+.plabel span:first-child { color: var(--fg); font-weight: 600; }
+.plabel span:last-child { font-variant-numeric: tabular-nums; }
+
+/* ---------- Type: size-specific tracking and leading ---------- */
+h1, h2, h3 { margin: 0; text-wrap: balance; font-family: var(--font-display); }
+h1 { font-size: clamp(2.25rem, 7vw, 3.5rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.035em; }
+h2 { font-size: clamp(1.625rem, 4.6vw, 2.125rem); font-weight: 700; line-height: 1.12; letter-spacing: -0.025em; }
+h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.25; letter-spacing: -0.015em; }
+h1:focus, h2:focus, .screen:focus { outline: none; }
+p { margin: 0; }
+.muted { color: var(--muted); }
+.small { font-size: .875rem; letter-spacing: .003em; }
+.label { font-size: .8125rem; font-weight: 600; color: var(--muted); letter-spacing: .01em; }
+.lede { font-size: 1.25rem; line-height: 1.4; letter-spacing: -0.01em; color: var(--muted); text-wrap: pretty; }
+.head { display: flex; flex-direction: column; gap: .5rem; }
+.head .label { color: var(--accent-ink); }
+
+/* ---------- Screen motion ---------- */
+.screen { display: flex; flex-direction: column; gap: 1.75rem; min-width: 0; }
+.screen.enter { animation: inFwd .45s var(--ease) both; }
+.screen.enter.back { animation-name: inBack; }
+@keyframes inFwd { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes inBack { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Grouped sections ---------- */
+.sec { display: flex; flex-direction: column; gap: .75rem; }
+.sec > h3 { padding-inline: .25rem; }
+
+.look { display: flex; flex-direction: column; gap: .5rem; }
+.look > .label { padding-inline: 1rem; }
+.look ul {
+  list-style: none; margin: 0; padding: .25rem 0; display: flex; flex-direction: column;
+  background: var(--card); border-radius: var(--r-card); box-shadow: var(--shadow);
+}
+.look li { position: relative; padding: .625rem 1rem .625rem 2.5rem; font-size: 1rem; line-height: 1.4; }
+.look li + li::after { content: ""; position: absolute; top: 0; left: 2.5rem; right: 0; height: 1px; background: var(--sep); transform: scaleY(.6); }
+.look li::before {
+  content: ""; position: absolute; left: 1rem; top: .95rem; width: .5rem; height: .5rem;
+  border-radius: 50%; background: var(--accent); opacity: .85;
+}
+
+.field { display: flex; flex-direction: column; gap: .5rem; }
+.field > .label { padding-inline: 1rem; }
+input[type="text"], input[type="date"], textarea {
+  width: 100%; font: inherit; color: var(--fg); background: var(--card);
+  border: 1px solid var(--control); border-radius: var(--r-ctl); padding: .75rem 1rem;
+  transition: border-color .2s ease, box-shadow .2s ease, background-color .35s ease;
+}
+textarea { resize: vertical; min-height: 5.5rem; line-height: 1.45; }
+input[type="text"]:focus-visible, input[type="date"]:focus-visible, textarea:focus-visible {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft);
+}
+::placeholder { color: var(--muted); opacity: 1; }
+input[type="date"] { min-height: 3rem; }
+
+/* Choices: an inset grouped list with a trailing checkmark, like a Settings picker */
+.choices { border: 0; padding: 0; margin: 0; min-width: 0; display: block; }
+.choices legend { padding: 0 1rem; margin-bottom: .5rem; font-size: .8125rem; font-weight: 600; color: var(--muted); letter-spacing: .01em; }
+.choices > .choice:first-of-type .face { border-top-left-radius: var(--r-card); border-top-right-radius: var(--r-card); }
+.choices > .choice:last-of-type .face { border-bottom-left-radius: var(--r-card); border-bottom-right-radius: var(--r-card); }
+.choice { position: relative; display: block; }
+.choice + .choice .face::before {
+  content: ""; position: absolute; top: 0; left: 1rem; right: 0; height: 1px; background: var(--sep); transform: scaleY(.6);
+}
+.choice input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; z-index: 1; }
+.face {
+  position: relative; display: flex; align-items: center; gap: .875rem;
+  min-height: 3.25rem; padding: .75rem 1rem;
+  background: var(--card); transition: background-color .12s ease;
+}
+.lbl { font-weight: 400; flex: 1; }
+.dot {                                          /* now a checkmark */
+  order: 2; flex: none; width: 1.25rem; height: 1.25rem; position: relative;
+}
+.dot::after {
+  content: ""; position: absolute; left: .4rem; top: .1rem; width: .4rem; height: .8rem;
+  border: solid var(--accent); border-width: 0 2.5px 2.5px 0; border-radius: 1px;
+  transform: rotate(45deg) scale(0); opacity: 0;
+  transition: transform .35s var(--ease), opacity .15s ease;
+}
+.choice input:hover + .face { background: color-mix(in srgb, var(--card) 94%, var(--fg)); }
+.choice input:active + .face { background: color-mix(in srgb, var(--card) 86%, var(--fg)); transition-duration: 0s; }  /* feedback on press */
+.choice input:checked + .face .lbl { font-weight: 600; }
+.choice input:checked + .face .dot::after { transform: rotate(45deg) scale(1); opacity: 1; }
+.choice input:focus-visible + .face { outline: 3px solid var(--accent); outline-offset: -3px; z-index: 2; }
+
+/* ---------- Buttons ---------- */
+.nav { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; padding-top: .25rem; }
+.btn {
+  font: inherit; font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.005em;
+  border: 0; border-radius: 980px; min-height: 2.875rem; padding: .7rem 1.5rem; cursor: pointer;
+  background: var(--accent); color: var(--accent-fg);
+  transition: background-color .2s ease, opacity .2s ease, transform .1s ease-out;
+}
+.btn:hover:not(:disabled) { background: var(--accent-hover); }
+.btn:active:not(:disabled) { transform: scale(.97); background: var(--accent-press); }
+.btn.ghost { background: transparent; color: var(--accent-ink); padding-inline: .875rem; }
+.btn.ghost:hover:not(:disabled) { background: var(--accent-soft); }
+.btn.outline { background: var(--fill); color: var(--fg); }
+.btn.outline:hover:not(:disabled) { background: var(--fill-strong); }
+.btn.outline:active:not(:disabled) { background: var(--fill-strong); }
+.btn.soft { background: var(--accent-soft); color: var(--accent-ink); }
+.btn.soft:hover:not(:disabled) { background: color-mix(in srgb, var(--accent-soft) 70%, var(--accent) 12%); }
+.btn:disabled { opacity: .35; cursor: not-allowed; }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* ---------- Score ---------- */
+.score { display: flex; align-items: baseline; gap: .5rem; flex-wrap: wrap; }
+.score-num {
+  font-family: var(--font-display); font-size: clamp(5rem, 20vw, 8rem); font-weight: 700;
+  line-height: .95; letter-spacing: -0.05em; font-variant-numeric: tabular-nums; color: var(--fg);
+}
+.score-of { font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em; color: var(--muted); }
+.blocks { display: grid; grid-template-columns: repeat(12, 1fr); gap: 4px; }
+.blocks i { display: block; height: 10px; background: var(--fill); border-radius: 980px; }
+.blocks i.on { background: var(--accent); }
+.pill { display: inline-block; font-size: .8125rem; font-weight: 600; padding: .2rem .7rem; border-radius: 980px; }
+.pill.good { background: var(--good-bg); color: var(--good-fg); }
+.pill.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.pill.bad { background: var(--bad-bg); color: var(--bad-fg); }
+.meter { height: 6px; background: var(--fill); border-radius: 980px; overflow: hidden; }
+.meter i { display: block; height: 100%; background: var(--accent); border-radius: 980px; }
+.url { font-family: var(--font-display); font-size: 1.375rem; font-weight: 600; letter-spacing: -0.015em; color: var(--fg); overflow-wrap: anywhere; line-height: 1.25; }
+
+/* ---------- Grouped rows (answers) ---------- */
+.rows { display: flex; flex-direction: column; background: var(--card); border-radius: var(--r-card); box-shadow: var(--shadow); overflow: hidden; }
+.row, .srow { position: relative; padding: .75rem 1rem; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
+.srow { display: flex; flex-direction: column; gap: .25rem; }
+.row + .row::before, .srow + .srow::before {
+  content: ""; position: absolute; top: 0; left: 1rem; right: 0; height: 1px; background: var(--sep); transform: scaleY(.6);
+}
+.srow .line { display: flex; justify-content: space-between; align-items: center; gap: .75rem; }
+.srow .rnote { font-size: .9375rem; color: var(--muted); overflow-wrap: anywhere; line-height: 1.4; }
+.tag {
+  font-size: .8125rem; font-weight: 600; letter-spacing: .005em;
+  padding: .15rem .65rem; border-radius: 980px; white-space: nowrap;
+}
+.tag.s2, .tag.yes { background: var(--good-bg); color: var(--good-fg); }
+.tag.s1, .tag.unsure { background: var(--warn-bg); color: var(--warn-fg); }
+.tag.s0, .tag.no { background: var(--bad-bg); color: var(--bad-fg); }
+.tag.info { background: var(--fill); color: var(--fg); }
+
+.nextpart {
+  background: var(--card); border-radius: var(--r-card); box-shadow: var(--shadow);
+  padding: 1.125rem 1.25rem; display: flex; flex-direction: column; gap: .375rem;
+}
+.nextpart .label { color: var(--accent-ink); }
+
+/* ---------- Fix list ---------- */
+.fixes {
+  list-style: none; margin: 0; padding: 0; counter-reset: fix; display: flex; flex-direction: column;
+  background: var(--card); border-radius: var(--r-card); box-shadow: var(--shadow); overflow: hidden;
+}
+.fixes li { position: relative; counter-increment: fix; display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); gap: .875rem; padding: 1rem; }
+.fixes li + li::after { content: ""; position: absolute; top: 0; left: 3.625rem; right: 0; height: 1px; background: var(--sep); transform: scaleY(.6); }
+.fixes li::before {
+  content: counter(fix); width: 1.75rem; height: 1.75rem; border-radius: 50%;
+  background: var(--accent); color: var(--accent-fg); font-size: .8125rem; font-weight: 700;
+  display: grid; place-items: center; font-variant-numeric: tabular-nums;
+}
+.fixes .body { display: flex; flex-direction: column; gap: .375rem; min-width: 0; }
+.fixes .top2 { display: flex; gap: .625rem; align-items: center; flex-wrap: wrap; }
+.fixes .top2 h3 { font-size: 1.0625rem; letter-spacing: -0.01em; }
+.fixes .body p { font-size: 1rem; line-height: 1.45; }
+.fixes .body p b { font-weight: 600; }
+.fixes .note { font-size: .9375rem; color: var(--muted); background: var(--fill); border-radius: 8px; padding: .5rem .75rem; }
+
+.chain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .25rem; }
+.chain li { display: grid; grid-template-columns: 5.25rem minmax(0, 1fr); gap: .875rem; padding: .75rem .875rem; border-radius: var(--r-ctl); align-items: start; }
+.chain .tag { text-align: center; }
+.chain b { font-weight: 600; }
+
+.callout { border-radius: var(--r-card); padding: .875rem 1rem; }
+.callout.good { background: var(--good-bg); color: var(--good-fg); }
+.callout.bad { background: var(--bad-bg); color: var(--bad-fg); }
+.callout.warn { background: var(--warn-bg); color: var(--warn-fg); }
+.callout strong { font-weight: 600; }
+
+.fields2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 520px) { .fields2 { grid-template-columns: 1fr; } }
+
+.auto { background: var(--card); border-radius: var(--r-card); box-shadow: var(--shadow); padding: 1.125rem 1.25rem; display: flex; flex-direction: column; gap: .75rem; }
+.auto .label { color: var(--accent-ink); }
+.findings { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .625rem; }
+.findings li { display: grid; grid-template-columns: 4.75rem minmax(0, 1fr); gap: .75rem; align-items: start; font-size: .9375rem; }
+.findings .tag { text-align: center; }
+
+details.more {
+  display: flex; flex-direction: column; gap: 1.5rem;
+  background: var(--card); border-radius: var(--r-card); box-shadow: var(--shadow); padding: .875rem 1rem;
+}
+details.more[open] { padding-bottom: 1rem; }
+details.more summary { cursor: pointer; color: var(--accent-ink); font-weight: 500; list-style-position: inside; }
+details.more[open] summary { margin-bottom: .75rem; }
+details.more summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+.copy-row { display: flex; gap: .75rem; align-items: center; flex-wrap: wrap; }
+.copy-status { font-size: .875rem; color: var(--good-fg); font-weight: 500; }
+textarea.summary { font-family: var(--mono); font-size: .8125rem; min-height: 17.5rem; background: var(--bg); border-color: transparent; }
+
+.intro-notes { display: flex; flex-direction: column; gap: .75rem; }
+
+/* ---------- URL check ---------- */
+.field-error { font-size: .9375rem; color: var(--bad-fg); font-weight: 500; padding-inline: 1rem; line-height: 1.4; }
+input[aria-invalid="true"] { border-color: var(--bad-fg); }
+input[aria-invalid="true"]:focus-visible { border-color: var(--bad-fg); box-shadow: 0 0 0 4px var(--bad-bg); }
+.urlmsg:empty { display: none; }
+
+/* ---------- Resume ---------- */
+.resume {
+  display: flex; flex-direction: column; gap: .375rem;
+  background: var(--card); border-radius: 18px; padding: 1.25rem; box-shadow: var(--shadow);
+}
+.resume .label { color: var(--accent-ink); }
+.resume-url { font-weight: 600; overflow-wrap: anywhere; line-height: 1.35; }
+.resume .copy-row { margin-top: .625rem; }
+
+/* ---------- Intro cards ---------- */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
+.card {
+  display: flex; flex-direction: column; gap: .5rem; min-width: 0;
+  background: var(--card); border-radius: 18px; padding: 1.25rem; box-shadow: var(--shadow);
+}
+.card h3 { font-size: 1.3125rem; }
+.card .kicker { font-size: .75rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent-ink); }
+.card .names { font-size: .9375rem; }
+.cards .card:last-child .kicker { color: var(--muted); }
+
+@media (max-width: 520px) {
+  .chain li { grid-template-columns: 4.5rem minmax(0, 1fr); }
+  .nav .btn { flex: 1 1 auto; }
+}
+
+/* ---------- Accessibility preferences ---------- */
+@media (prefers-reduced-motion: reduce) {
+  /* gentler equivalent: cross-fade, no slides or springs */
+  .screen.enter, .screen.enter.back { animation: fadeOnly .2s ease both; }
+  @keyframes fadeOnly { from { opacity: 0; } to { opacity: 1; } }
+  .btn:active:not(:disabled), .themebtn:active, .urlbtn:active { transform: none; }
+  .dot::after { transition: opacity .15s ease; }
+  .track i { transition: width .2s ease; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .chrome { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  .chrome { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .rows, .fixes, .look ul, .card, .resume, .auto, .nextpart, details.more, .urlbar { outline: 1px solid var(--line-strong); }
+  .btn.outline { outline: 1px solid var(--fg); }
+  .face { box-shadow: inset 0 0 0 1px var(--line-strong); }
+  :root { --sep: var(--line-strong); }
+}
+</style>
+
+<header class="chrome" id="chrome"><div class="chrome-in">
+  <div class="topbar"><div class="toprow"><div class="top">Webpage audit scorecard, by <a href="https://github.com/AshJCurtis" target="_blank" rel="noopener" aria-label="Ash Curtis on GitHub (opens in a new tab)">Ash Curtis</a></div>
+  <button type="button" class="themebtn" id="themeBtn" aria-pressed="false">Dark mode</button></div>
+  <div class="urlbar" id="urlbar" hidden></div></div>
+  <div class="progress" id="progress" hidden>
+    <div class="track"><i id="fill"></i></div>
+    <div class="plabel" id="plabel"></div>
   </div>
-  <ul class="links social">
-    <li><a href="https://www.linkedin.com/in/ashleycurtis" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></li>
-    <li><a href="https://github.com/AshJCurtis" aria-label="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a></li>
-  </ul>
-</section>
-</main>
+</div></header>
+<div class="wrap">
+  <main class="screen" id="screen" tabindex="-1"></main>
+</div>
+
 <script>
 (function () {
-  function unstack() {
-    var blocks = [].slice.call(document.querySelectorAll('.annotated-prose'));
-    blocks.forEach(function (b) { b.style.marginBottom = ''; b.style.minHeight = ''; });
-    document.querySelectorAll('main > section').forEach(function (s) { s.style.paddingBottom = ''; });
-    var withNotes = blocks.filter(function (b) {
-      var n = b.querySelector('.note-side');
-      return n && getComputedStyle(n).position === 'absolute';
+  try { document.documentElement.lang = 'en-GB'; } catch (e) {}
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    function isDark() {
+      var t = root.getAttribute('data-theme');
+      if (t === 'dark') return true;
+      if (t === 'light') return false;
+      // follow the computer's setting; light if it doesn't say
+      try { return window.matchMedia('(prefers-color-scheme: dark)').matches; } catch (e) { return false; }
+    }
+    function paint() { btn.setAttribute('aria-pressed', isDark() ? 'true' : 'false'); }
+    try { var saved = localStorage.getItem('audit-theme'); if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved); } catch (e) {}
+    btn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('audit-theme', next); } catch (e) {}
+      paint();
     });
-    withNotes.forEach(function (b, i) {
-      var note = b.querySelector('.note-side');
-      var next = withNotes[i + 1];
-      if (next && next.closest('section') === b.closest('section')) {
-        var gap = next.querySelector('.note-side').getBoundingClientRect().top - note.getBoundingClientRect().bottom;
-        if (gap < 16) b.style.marginBottom = (parseFloat(getComputedStyle(b).marginBottom) + 16 - gap) + 'px';
-      }
-    });
-    withNotes.forEach(function (b) {
-      var sec = b.closest('section'), note = b.querySelector('.note-side');
-      var over = note.getBoundingClientRect().bottom + 32 - sec.getBoundingClientRect().bottom;
-      if (over > 0) sec.style.paddingBottom = (parseFloat(getComputedStyle(sec).paddingBottom) + over) + 'px';
+    paint();
+  })();
+  var HOSTED = true;           // true only in the standalone copy
+  var CHECKER_URL = 'https://summer-sea-d98f.ashcurtis23.workers.dev/';  // address of the page checker; empty hides the automatic check
+  var ANSWERS1 = [
+    { v: 2, label: 'Yes' },
+    { v: 1, label: 'Somewhat' },
+    { v: 0, label: 'No' }
+  ];
+  var ANSWERS2 = [
+    { v: 'yes', label: 'Yes' },
+    { v: 'unsure', label: 'Not sure' },
+    { v: 'no', label: 'No' }
+  ];
+
+  var Q = [
+    { key: 'Relevance', q: 'Is it clear who this page is for?',
+      look: ['The page title and main heading say what the page is about', 'The first lines tell the reader who it\'s for', 'Someone arriving from a search result knows within seconds that they\'re in the right place'],
+      fix: 'Change the page title and main heading so they say what the page is about and who it\'s for. Then start the page with 1 sentence that tells people what they can do here.',
+      fixSome: 'The title or opening is nearly there but too vague. Make the title and main heading say what the page is about and who it\'s for, and use the first sentence to say what people can do here.' },
+    { key: 'Informative', q: 'Is the page reliable, accurate, up-to-date, detailed enough, trustworthy?',
+      look: ['Dates, prices, opening times and phone numbers are correct', 'Links go where they say they go', 'The page doesn\'t feel empty, bland or vague'],
+      fix: 'Don\'t trust the page until it\'s been checked. Check every fact, date, price and link is right, and take out anything you can\'t confirm. Add the date it was last checked and who looks after it.',
+      fixSome: 'Most of it looks right, but something is out of date or nobody looks after it. Check every date, price and contact detail is still right, then add the date it was last checked and who looks after it.' },
+    { key: 'Structure', q: 'Can you scan it? Are there clear headings, short paragraphs and lists?',
+      look: ['Headings run in a logical order and describe the section below them', 'Paragraphs are short, and steps or options are in lists', 'The most important information isn\'t buried'],
+      fix: 'Split long paragraphs into shorter ones, and put steps and options into lists. Give each section a heading that says what\'s in it.',
+      fixSome: 'Most of the page is easy to skim. Fix the longest paragraph and the least clear heading first: split the paragraph up and make the heading say what comes next.' },
+    { key: 'Tone of voice', q: 'Is the language plain and consistent with your house style, with no jargon or filler?',
+      look: ['Plain words, short sentences, no unexplained jargon', 'The tone matches the rest of the site and your style guide', 'No slogans or filler where a fact should be'],
+      fix: 'Swap jargon and slogans for the plain fact they\'re trying to say. Read the page out loud and rewrite anything you wouldn\'t say to someone face to face.',
+      fixSome: 'Find the 3 phrases that sound least like your organisation and swap each one for the plain fact. Then check the tone matches your style guide.' },
+    { key: 'Accessibility', q: 'Does it meet your accessibility standards?',
+      look: ['Link text makes sense out of context, never "click here"', 'Text is real text, not part of an image, and images have useful alt text', 'Forms and buttons have clear labels, and colour contrast passes'],
+      fix: 'Change links like "click here" so they say where they go. Don\'t put words inside pictures, add a short description to each picture (alt text) and give every form box a label. Then check the page against your accessibility standards.',
+      fixSome: 'Fix the problems you spotted first, such as unclear links, pictures without a description or form boxes without labels. Then run the page through an accessibility checker and go through what it finds.' },
+    { key: 'Call to action', q: 'Is there 1 clear thing the reader can do next?',
+      look: ['There\'s 1 clearly labelled call-to-action', 'The button or link says what will happen when you use it', 'Contact details are written out as text'],
+      fix: 'Decide the 1 thing you want people to do next and make it the most noticeable thing on the page. Start its label with an action word, such as "Book a place" or "Call the helpline".',
+      fixSome: 'There\'s a next step, but it doesn\'t stand out enough. Pick the 1 that matters most, make it the most noticeable thing on the page, and start its label with an action word.' }
+  ];
+
+  var C = [
+    { key: 'Reach', q: 'Can search engines and AI assistants get to this page?',
+      look: ['It isn\'t behind a login', 'Your website doesn\'t tell search engines or AI tools to stay away from it. This rule lives in a file called robots.txt', 'It\'s on your website\'s list of pages (the sitemap), and other pages link to it'],
+      fix: 'Ask your web team why search engines and AI tools can\'t get to the page. Information meant for the public shouldn\'t need a login.',
+      confirm: 'Open the page in a private (incognito) window without signing in. If it loads, ask your web team to check that nothing on the site blocks search engines or AI tools from this page, and that it\'s on the site\'s list of pages (the sitemap).' },
+    { key: 'Store', q: 'Is the page allowed to be stored, and does it load without special software?',
+      look: ['The page doesn\'t tell search engines to leave it out of their results. This setting is called noindex', 'The main text is there as soon as the page opens, not only after a click or once extra code has run', 'Key facts aren\'t only inside a PDF or a picture'],
+      fix: 'Ask your web team to remove any setting that tells search engines to ignore the page (called "noindex"). Put the important information on the page itself, not hidden in tabs, pop-ups or PDFs.',
+      confirm: 'Check the important information is written on the page, not only in tabs, pop-ups or PDFs. Then ask your web team to check the page isn\'t set to be ignored by search engines.' },
+    { key: 'Understand', q: 'Is the meaning in the words and headings, not just in images or layout?',
+      look: ['Headings describe what follows', 'Facts in tables and diagrams are also stated in the text', 'Meaning doesn\'t depend on colour or position alone'],
+      fix: 'If a picture, chart, table or layout shows something important, say it in words too. Make each heading describe what\'s underneath it.',
+      confirm: 'Go through each picture, chart and table on the page. Check that anything important it shows is also written in the text.' },
+    { key: 'Trust', q: 'Is it current, owned by a named team and backed by evidence?',
+      look: ['There\'s a review date or last-updated date', 'A team is responsible for the page', 'Claims point to a source, a policy or a named expert'],
+      fix: 'Add the date the page was last checked and who looks after it, and link to where your facts come from. If nobody will keep the page up to date, take it down.',
+      confirm: 'Look for the date the page was last checked, who looks after it and where its facts come from. If you can\'t find them within 30 seconds, search engines and AI tools probably can\'t either.' },
+    { key: 'Answer', q: 'Does it directly answer a specific question someone would ask?',
+      look: ['The answer appears near the top in plain words', 'A heading matches the way people phrase the question', 'The details someone needs to decide sit next to the answer'],
+      fix: 'Work out the main question the page answers. Give the answer in the first 2 lines, and add a heading that asks the question the way people would.',
+      confirm: 'Write down the main question this page answers. Then check the answer is in the first 2 lines, in plain words.' },
+    { key: 'Act', q: 'Can a person, or an assistant helping them, complete the next step?',
+      look: ['Forms have labelled fields and a clear submit button', 'Contact routes are written as text', 'Costs, opening hours and eligibility are stated before the action'],
+      fix: 'Give every form box and button a clear label, and write out how to get in touch. Before asking people to act, say what it costs, when it\'s open and who it\'s for.',
+      confirm: 'Try the next step as if you\'d never seen the page, using only your keyboard (Tab and Enter). Check the contact details and costs are written as words, not just shown in a picture.' }
+  ];
+
+  // Steps: 0 intro, 1-6 Part 1 checks, 7 Part 1 summary, 8-13 Part 2 steps, 14 results
+  var P1 = Q.length;               // 6
+  var SUM = P1 + 1;                // 7
+  var LAST = P1 + 1 + C.length;    // 13
+  var RESULTS = LAST + 1;          // 14
+  var FINAL = RESULTS + 1;         // 15
+  var MAX = Q.length * 2;          // 12
+  var state = { step: 0, name: '', a1: [], a2: [], n1: [], n2: [], owner: '', review: '', auto: null };
+
+  var screen = document.getElementById('screen');
+  var progress = document.getElementById('progress');
+  var fill = document.getElementById('fill');
+  var plabel = document.getElementById('plabel');
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
   }
-  function place() {
-    unstack();
-    document.querySelectorAll('.note[id]').forEach(function (note) {
-      var mark = document.querySelector('mark[aria-describedby="' + note.id + '"]');
-      if (!mark) return;
-      var rects = mark.getClientRects();
-      if (!rects.length) return;
-      var nr = note.getBoundingClientRect();
-      var first = rects[0];
-      if (nr.left > first.right) {
-        note.classList.add('is-beside');
-        note.style.setProperty('--line-w', Math.max(8, nr.left - first.right - 4) + 'px');
-        note.style.setProperty('--line-top', Math.round(first.bottom - 1 - nr.top) + 'px');
-      } else {
-        note.classList.remove('is-beside');
+
+  function band(score) {
+    if (score === MAX) return { cls: 'good', label: 'In good shape', text: '*Street Fighter voice* Perfect! Any time this page has a change, do this audit again.' };
+    if (score >= 9) return { cls: 'good', label: 'In good shape', text: 'Niccccce. That\'s prettay, prettay, prettay good. A couple of small tweaks and you\'re basically there.' };
+    if (score >= 4) return { cls: 'warn', label: 'Worth a rewrite', text: '*Sabrina Brier voice* Oh. Okay. Well that\'s not so bad, but have a look at some of those low-scoring checks and run this audit again.' };
+    return { cls: 'bad', label: 'Rethink the page', text: 'Oh heck. Does this page need to exist? This needs a big think.' };
+  }
+  function ansLabel(v) { return v === 2 ? 'Yes' : v === 1 ? 'Somewhat' : 'No'; }
+  function fix1(i) { return state.a1[i] === 1 ? Q[i].fixSome : Q[i].fix; }
+  function fix2(i) { return state.a2[i] === 'unsure' ? C[i].confirm : C[i].fix; }
+  function fmtDate(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+    if (!m) return '';
+    var mo = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    return parseInt(m[3], 10) + ' ' + mo[parseInt(m[2], 10) - 1] + ' ' + m[1];
+  }
+  function chainLabel(v) { return v === 'yes' ? 'Yes' : v === 'unsure' ? 'Not sure' : 'No'; }
+
+  function score() {
+    var t = 0;
+    for (var i = 0; i < Q.length; i++) t += state.a1[i] == null ? 0 : state.a1[i];
+    return t;
+  }
+  function p2Issues() {
+    var no = [], unsure = [];
+    for (var i = 0; i < C.length; i++) {
+      if (state.a2[i] === 'no') no.push(i);
+      else if (state.a2[i] !== 'yes') unsure.push(i);
+    }
+    return no.concat(unsure);
+  }
+  function fixOrder() {
+    var list = [];
+    for (var i = 0; i < Q.length; i++) if (state.a1[i] < 2) list.push(i);
+    list.sort(function (a, b) { return state.a1[a] - state.a1[b] || a - b; });
+    return list;
+  }
+
+  function renderProgress() {
+    var s = state.step;
+    if (s < 1 || s === SUM || s > LAST) { progress.hidden = true; fill.style.width = '0'; return; }
+    progress.hidden = false;
+    var p1 = s <= P1;
+    var n = p1 ? s : s - SUM;
+    var of = p1 ? P1 : C.length;
+    plabel.innerHTML = '<span>' + (p1 ? 'Part 1 &middot; Scorecard' : 'Part 2 &middot; Search tools and AI assistants') + '</span>' +
+      '<span>' + 'Check ' + n + ' of ' + of + '</span>';
+    fill.style.width = Math.round(n / of * 100) + '%';
+  }
+
+  // Plain-English reason the text isn't a web page address, or '' if it's fine
+  var URL_EXAMPLE = 'www.example.org/homework-club';
+  function urlProblem(raw) {
+    var v = String(raw == null ? '' : raw).trim();
+    var bad = 'That doesn\'t look like a web address. Enter something like ' + URL_EXAMPLE;
+    if (!v) return 'Enter the web address of the page you want to check.';
+    if (/\s/.test(v)) return 'Web addresses don\'t have spaces in them. Check you\'ve copied the whole address and nothing else.';
+    if (/^mailto:/i.test(v) || /^[^\/:@]+@[^\/@]+\.[^\/@]+$/.test(v)) return 'That looks like an email address. Enter the address of a web page instead, like ' + URL_EXAMPLE;
+    var u;
+    try { u = new URL(fixUrl(v)); } catch (e) { return bad; }
+    if (u.protocol !== 'http:' && u.protocol !== 'https:') return 'Enter the address of a web page. It usually starts with https:// or www.';
+    if (u.username || u.password) return bad;
+    var h = u.hostname.toLowerCase();
+    if (!/^([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+([a-z]{2,63}|xn--[a-z0-9-]{2,59})$/.test(h)) return bad;
+    return '';
+  }
+
+  function fixUrl(v) {
+    v = String(v == null ? '' : v).trim();
+    if (!v || /^[a-z][a-z0-9+.\-]*:\/\//i.test(v) || /\s/.test(v)) return v;
+    return 'https://' + v.replace(/^\/+/, '');
+  }
+  function changeUrl(next) {
+    if (next === state.name.trim()) return;
+    var set = state.autoSet || {};
+    Object.keys(set).forEach(function (k) {
+      var rec = set[k];
+      if (state.a2[k] === rec.a) delete state.a2[k];
+      if (state.n2[k] === rec.n) state.n2[k] = '';
+    });
+    state.autoSet = {};
+    state.auto = null;
+    state.name = next;
+  }
+  function paintUrlBar(editing) {
+    var bar = document.getElementById('urlbar');
+    if (editing) {
+      bar.innerHTML = '<label for="urlInput"><span>Page URL</span></label>' +
+        '<input type="text" id="urlInput" aria-describedby="urlMsg" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name.trim()) + '">' +
+        '<button type="button" class="urlbtn" id="urlSave">Save</button><button type="button" class="urlbtn" id="urlCancel">Cancel</button>' +
+        '<span class="urlmsg" id="urlMsg" role="alert"></span>';
+      var inp = document.getElementById('urlInput');
+      function save() {
+        var why = urlProblem(inp.value);
+        if (why) {
+          document.getElementById('urlMsg').textContent = why;
+          inp.setAttribute('aria-invalid', 'true'); inp.focus(); return;
+        }
+        var v = fixUrl(inp.value);
+        var changed = v !== state.name.trim();
+        changeUrl(v);
+        if (changed) render(); else paintUrlBar(false);
+        var eb = document.getElementById('urlEdit'); if (eb) eb.focus();
+      }
+      document.getElementById('urlSave').addEventListener('click', save);
+      document.getElementById('urlCancel').addEventListener('click', function () { paintUrlBar(false); document.getElementById('urlEdit').focus(); });
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); save(); }
+        else if (e.key === 'Escape') { paintUrlBar(false); document.getElementById('urlEdit').focus(); }
+      });
+      inp.focus(); inp.select();
+    } else {
+      bar.innerHTML = '<span>Auditing</span><b title="' + esc(state.name.trim()) + '">' + esc(state.name.trim()) + '</b>' +
+        '<button type="button" class="urlbtn" id="urlEdit" aria-label="Edit page URL">Edit</button>';
+      document.getElementById('urlEdit').addEventListener('click', function () { paintUrlBar(true); });
+    }
+  }
+
+  function blocks(s) {
+    var x = '<div class="blocks" role="img" aria-label="Score ' + s + ' out of ' + MAX + '">';
+    for (var i = 0; i < MAX; i++) x += '<i' + (i < s ? ' class="on"' : '') + '></i>';
+    return x + '</div>';
+  }
+
+  /* Save progress: answers live in this browser only (localStorage), never sent anywhere */
+  var SAVE_KEY = 'audit-progress-v1';
+  var resumeData = null;
+  function saveProgress() {
+    if (!(state.step > 0)) return;          // nothing worth keeping until the audit starts
+    try {
+      localStorage.setItem(SAVE_KEY, JSON.stringify({
+        v: 1, savedAt: Date.now(), step: state.step, name: state.name,
+        a1: state.a1, a2: state.a2, n1: state.n1, n2: state.n2, owner: state.owner, review: state.review
+      }));
+    } catch (e) {}
+  }
+  function clearProgress() { try { localStorage.removeItem(SAVE_KEY); } catch (e) {} }
+  function loadProgress() {
+    try {
+      var d = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
+      if (!d || d.v !== 1 || typeof d.name !== 'string' || !d.name.trim()) return null;
+      var st = parseInt(d.step, 10);
+      if (!(st >= 1 && st <= FINAL)) return null;
+      function arr(x) { return Array.isArray(x) ? x : []; }
+      var a1 = arr(d.a1).map(function (v) { return v === 0 || v === 1 || v === 2 ? v : undefined; });
+      var a2 = arr(d.a2).map(function (v) { return v === 'yes' || v === 'unsure' || v === 'no' ? v : undefined; });
+      function notes(x) { return arr(x).map(function (v) { return typeof v === 'string' ? v : ''; }); }
+      // never land on a screen whose earlier answers are missing
+      var need = 0;
+      for (var i = 0; i < Q.length; i++) { if (a1[i] == null) break; need = i + 1; }
+      var maxStep = need < Q.length ? need + 1 : SUM;
+      if (need === Q.length) { var n2 = 0; for (var j = 0; j < C.length; j++) { if (a2[j] == null) break; n2 = j + 1; } maxStep = n2 < C.length ? SUM + n2 + 1 : FINAL; }
+      return {
+        savedAt: +d.savedAt || 0,
+        state: { step: Math.min(st, maxStep), name: d.name, a1: a1, a2: a2, n1: notes(d.n1), n2: notes(d.n2),
+                 owner: typeof d.owner === 'string' ? d.owner : '', review: typeof d.review === 'string' ? d.review : '', auto: null }
+      };
+    } catch (e) { return null; }
+  }
+  function whereLabel(st) {
+    if (st <= P1) return 'Part 1, check ' + st + ' of ' + P1;
+    if (st === SUM) return 'Part 1 finished';
+    if (st <= LAST) return 'Part 2, check ' + (st - SUM) + ' of ' + C.length;
+    if (st === RESULTS) return 'Results';
+    return 'Wrap up';
+  }
+  function savedLabel(ms) {
+    if (!ms) return '';
+    var d = new Date(ms), now = new Date();
+    var time = d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+    if (d.toDateString() === now.toDateString()) return 'Saved today at ' + time;
+    return 'Saved ' + d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }) + ' at ' + time;
+  }
+  function resumeBlock() {
+    if (!resumeData) return '';
+    var r = resumeData.state;
+    return '<section class="resume" aria-labelledby="resumeH">' +
+      '<span class="label">Saved audit</span>' +
+      '<h3 id="resumeH">Carry on where you left off</h3>' +
+      '<p class="resume-url">' + esc(r.name.trim()) + '</p>' +
+      '<p class="small muted">' + esc(whereLabel(r.step)) + (resumeData.savedAt ? ' &middot; ' + esc(savedLabel(resumeData.savedAt)) : '') + '</p>' +
+      '<div class="copy-row"><button class="btn" id="resumeGo">Carry on</button>' +
+      '<button class="btn outline" id="resumeDrop">Start a new audit</button></div></section>';
+  }
+
+  function renderIntro() {
+    screen.innerHTML =
+      '<div class="head"><h1 id="h" tabindex="-1">Does this page work?</h1>' +
+      '<p class="lede">Paste a page URL from your website and answer 12 short questions, split into 2 parts.</p></div>' +
+      resumeBlock() +
+      '<div class="cards">' +
+      '<div class="card"><span class="kicker">Part 1 &middot; Scored out of ' + MAX + '</span><h3>6 quality checks</h3><p class="muted">Is the page useful for the people reading it?</p>' +
+      '</div>' +
+      '<div class="card"><span class="kicker">Part 2 &middot; Not scored</span><h3>6 search and AI checks</h3><p class="muted">Can search tools and AI assistants find, understand and use it?</p>' +
+      '</div></div>' +
+      '<div class="intro-notes"><p class="muted">Add notes to each question as you go. At the end, you\'ll get a fix list and a summary to share with your team, as a PDF or a spreadsheet.</p>' +
+      '<p class="muted">Your progress is saved in this browser as you go, so you can come back to it.</p></div>' +
+      '<div class="field"><label class="label" for="pageName">Page URL (required)</label>' +
+      '<input type="text" id="pageName" required aria-required="true" aria-describedby="pageNameErr" placeholder="https://www.example.org/homework-club" autocomplete="off" autocapitalize="off" spellcheck="false" inputmode="url" value="' + esc(state.name) + '">' +
+      '<p class="field-error" id="pageNameErr" hidden></p>' +
+      '</div>' +
+      '<div class="nav"><span></span>' +
+      '<button class="btn" id="start"' + (state.name.trim() ? '' : ' disabled') + '>Start audit</button></div>';
+    var nameEl = document.getElementById('pageName');
+    var startEl = document.getElementById('start');
+    var errEl = document.getElementById('pageNameErr');
+    function showErr(msg) {
+      errEl.textContent = msg; errEl.hidden = !msg;
+      if (msg) nameEl.setAttribute('aria-invalid', 'true'); else nameEl.removeAttribute('aria-invalid');
+    }
+    function tryStart() {
+      var why = urlProblem(nameEl.value);
+      if (why) {
+        // announce the problem each time, even if the same message is already showing
+        showErr(''); errEl.setAttribute('role', 'alert'); showErr(why);
+        nameEl.focus(); return;
+      }
+      state.name = fixUrl(nameEl.value); go(1);
+    }
+    nameEl.addEventListener('input', function () {
+      state.name = nameEl.value;
+      startEl.disabled = nameEl.value.trim() === '';
+      // once an error is showing, clear it as soon as the address is fixed
+      if (!errEl.hidden && !urlProblem(nameEl.value)) showErr('');
+    });
+    nameEl.addEventListener('blur', function (e) {
+      if (e.relatedTarget === startEl) return;   // the Start button checks it anyway
+      if (nameEl.value.trim()) { errEl.removeAttribute('role'); showErr(urlProblem(nameEl.value)); }
+    });
+    nameEl.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && !startEl.disabled) { e.preventDefault(); tryStart(); }
+    });
+    startEl.addEventListener('click', tryStart);
+    var rg = document.getElementById('resumeGo'), rd = document.getElementById('resumeDrop');
+    if (rg) rg.addEventListener('click', function () {
+      var st = resumeData.state.step;
+      state = resumeData.state; state.step = 0; resumeData = null;
+      go(st);
+    });
+    if (rd) rd.addEventListener('click', function () {
+      clearProgress(); resumeData = null; render();
+      var pn = document.getElementById('pageName'); if (pn) pn.focus();
+    });
+  }
+
+  function renderQuestion() {
+    var s = state.step;
+    var isPart1 = s <= P1;
+    var idx = isPart1 ? s - 1 : s - SUM - 1;
+    var item = isPart1 ? Q[idx] : C[idx];
+    var answers = isPart1 ? ANSWERS1 : ANSWERS2;
+    var current = isPart1 ? state.a1[idx] : state.a2[idx];
+    var note = (isPart1 ? state.n1[idx] : state.n2[idx]) || '';
+
+    var choices = '';
+    for (var k = 0; k < answers.length; k++) {
+      var a = answers[k];
+      choices += '<label class="choice"><input type="radio" name="ans" value="' + a.v + '"' + (current === a.v ? ' checked' : '') + '>' +
+        '<span class="face"><span class="dot" aria-hidden="true"></span><span class="lbl">' + a.label + '</span></span></label>';
+    }
+    var looks = '';
+    for (var j = 0; j < item.look.length; j++) looks += '<li>' + esc(item.look[j]) + '</li>';
+
+    var extra = '';
+    var autoBox = (!isPart1 && idx < 2 && CHECKER_URL) ? '<div class="auto"><span class="label">Automatic check</span><div id="autoWrap" role="status" aria-live="polite"></div></div>' : '';
+    var nextLabel = s === LAST ? 'See results' : s === P1 ? 'See Part 1 summary' : 'Next';
+
+    screen.innerHTML =
+      '<div class="head"><span class="label">' + esc(item.key) + '</span>' +
+      '<h2 id="h" tabindex="-1">' + esc(item.q) + '</h2>' + extra + '</div>' +
+      '<div class="look"><span class="label">What to look for</span><ul>' + looks + '</ul></div>' + autoBox +
+      '<fieldset class="choices"><legend>Your answer (choose 1 to continue)</legend>' + choices + '</fieldset>' +
+      '<div class="field"><label class="label" for="note">Notes</label>' +
+      '<textarea id="note" placeholder="Anything you spotted goes in here.">' + esc(note) + '</textarea></div>' +
+      '<div class="nav"><button class="btn outline" id="back">Back</button>' +
+      '<button class="btn" id="next"' + (current == null ? ' disabled' : '') + '>' + nextLabel + '</button></div>';
+
+    var radios = screen.querySelectorAll('input[name="ans"]');
+    for (var r = 0; r < radios.length; r++) {
+      radios[r].addEventListener('change', function (e) { setAnswer(e.target.value); });
+    }
+    document.getElementById('note').addEventListener('input', function (e) {
+      if (isPart1) state.n1[idx] = e.target.value; else state.n2[idx] = e.target.value;
+    });
+    document.getElementById('back').addEventListener('click', function () { go(state.step - 1); });
+    document.getElementById('next').addEventListener('click', function () { go(state.step + 1); });
+    if (autoBox) { applyAuto(); syncQuestion(idx); paintAuto(); }
+  }
+
+  /* Automatic check: only available when CHECKER_URL is set (the standalone copy) */
+  var STATUS_LABEL = { pass: 'Pass', warn: 'Check', fail: 'Problem', info: 'Note' };
+  var STATUS_TAG = { pass: 'yes', warn: 'unsure', fail: 'no', info: 'info' };
+  function autoFor() {
+    var u = state.name.trim();
+    return state.auto && state.auto.url === u ? state.auto : null;
+  }
+  function contract(t) {
+    return String(t == null ? '' : t)
+      .replace(/\bcannot\b/g, "can't").replace(/\bdoes not\b/g, "doesn't").replace(/\bdo not\b/g, "don't")
+      .replace(/\bis not\b/g, "isn't").replace(/\bare not\b/g, "aren't").replace(/\bcould not\b/g, "couldn't")
+      .replace(/\bdid not\b/g, "didn't").replace(/\bThere is\b/g, "There's").replace(/\bthat is\b/g, "that's");
+  }
+  function autoNote(r) {
+    var probs = r.findings.filter(function (f) { return f.status === 'fail' || f.status === 'warn'; }).map(function (f) { return f.text; });
+    return 'Automatic check: ' + (probs.length ? probs.join(' ') : 'no problems found.');
+  }
+  function applyAuto() {
+    var a = autoFor();
+    if (!a || a.status !== 'done') return;
+    [a.result.reach, a.result.store].forEach(function (r, i) {
+      if (state.a2[i] == null) {
+        state.a2[i] = r.answer;
+        var nt = (state.n2[i] || '').trim() ? null : autoNote(r);
+        if (nt) state.n2[i] = nt;
+        state.autoSet = state.autoSet || {};
+        state.autoSet[i] = { a: r.answer, n: nt };
       }
     });
   }
-  window.addEventListener('resize', place);
-  window.addEventListener('load', function () { place(); setTimeout(place, 900); });
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
-  place();
+  function syncQuestion(idx) {
+    var cur = state.a2[idx], radios = document.querySelectorAll('input[name="ans"]');
+    for (var i = 0; i < radios.length; i++) radios[i].checked = (radios[i].value === cur);
+    var next = document.getElementById('next'), note = document.getElementById('note');
+    if (next) next.disabled = cur == null;
+    if (note && document.activeElement !== note) note.value = state.n2[idx] || '';
+  }
+  function paintAuto() {
+    var wrap = document.getElementById('autoWrap');
+    var idx = state.step - SUM - 1;
+    if (!wrap || idx < 0 || idx > 1) return;
+    var a = autoFor(), html = '';
+    if (!a || a.status === 'error') {
+      html = (a ? '<p>The automatic check didn\'t work: ' + esc(a.error) + ' Answer by hand, or try again.</p>' : '<p>We can check this for you. This sends the page URL to a checker, which reads the page\'s public settings.</p>') +
+        '<div><button class="btn soft" id="runAuto">' + (a ? 'Try again' : 'Check this page') + '</button></div>';
+    } else if (a.status === 'running') {
+      html = '<p>Checking the page&hellip;</p>';
+    } else {
+      var r = idx === 0 ? a.result.reach : a.result.store;
+      var items = r.findings.map(function (f) {
+        return '<li><span class="tag ' + STATUS_TAG[f.status] + '">' + STATUS_LABEL[f.status] + '</span><span>' + esc(f.text) + '</span></li>';
+      }).join('');
+      html = '<ul class="findings" role="list">' + items + '</ul>' +
+        '<p class="small">We suggested &ldquo;' + chainLabel(r.answer) + '&rdquo; for this question. Change it if you know better.</p>';
+    }
+    wrap.innerHTML = html;
+    var btn = document.getElementById('runAuto');
+    if (btn) btn.addEventListener('click', runAuto);
+  }
+  function runAuto() {
+    var u = state.name.trim();
+    var mine = state.auto = { url: u, status: 'running' };
+    paintAuto();
+    var ctrl = new AbortController(), timer = setTimeout(function () { ctrl.abort(); }, 25000);
+    fetch(CHECKER_URL + (CHECKER_URL.indexOf('?') === -1 ? '?' : '&') + 'url=' + encodeURIComponent(u), { signal: ctrl.signal })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error(contract((j && j.error) || 'No answer from the checker.'));
+        [j.reach, j.store].forEach(function (r) { if (r && r.findings) r.findings.forEach(function (f) { f.text = contract(f.text); }); });
+        return j;
+      })
+      .then(function (j) {
+        if (state.auto !== mine) return;
+        state.auto = { url: u, status: 'done', result: j };
+        applyAuto();
+        var idx = state.step - SUM - 1;
+        if (idx === 0 || idx === 1) { syncQuestion(idx); paintAuto(); }
+      })
+      .catch(function (e) {
+        if (state.auto !== mine) return;
+        state.auto = { url: u, status: 'error', error: e && e.name === 'AbortError' ? 'it took too long.' : ((e && e.message) || 'no answer.') };
+        paintAuto();
+      })
+      .then(function () { clearTimeout(timer); });
+  }
+
+  function setAnswer(raw) {
+    var s = state.step;
+    if (s <= P1) state.a1[s - 1] = parseInt(raw, 10);
+    else state.a2[s - SUM - 1] = raw;
+    var next = document.getElementById('next');
+    if (next) next.disabled = false;
+  }
+
+  function renderPart1Summary() {
+    var s = score(), b = band(s), rows = '';
+    for (var i = 0; i < Q.length; i++) {
+      var v = state.a1[i], n = (state.n1[i] || '').trim();
+      rows += '<div class="srow"><div class="line"><span>' + esc(Q[i].key) + '</span><span class="tag s' + v + '">' + ansLabel(v) + '</span></div>' +
+        (n ? '<p class="rnote">' + esc(n) + '</p>' : '') + '</div>';
+    }
+    screen.innerHTML =
+      '<div class="head"><span class="label">Part 1 complete</span><h2 id="h" tabindex="-1">Your Part 1 score</h2></div>' +
+      '<div class="sec"><div class="score"><span class="score-num">' + s + '</span><span class="score-of">/ ' + MAX + '</span>' +
+      '</div>' +
+      blocks(s) +
+      '<p class="muted">' + b.text + '</p>' +
+      '<p class="small muted">Yes = 2, Somewhat = 1, No = 0. Maximum ' + MAX + '. Part 2 isn\'t scored, so this score won\'t change.</p></div>' +
+      '<div class="sec"><h3>Your answers</h3><div class="rows">' + rows + '</div></div>' +
+      '<div class="nextpart"><span class="label">Up next</span>' +
+      '<h3>Part 2: can search tools and AI assistants use this page?</h3>' +
+      '</div>' +
+      '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn" id="startp2">Start Part 2</button></div>';
+    document.getElementById('back').addEventListener('click', function () { go(P1); });
+    document.getElementById('startp2').addEventListener('click', function () { go(SUM + 1); });
+  }
+
+  function buildSummary() {
+    var s = score(), b = band(s), iss = p2Issues(), fo = fixOrder(), lines = [];
+    lines.push('WEBPAGE AUDIT SCORECARD, BY ASH CURTIS');
+    lines.push('URL: ' + state.name.trim());
+    lines.push('Score: ' + s + ' / ' + MAX + '. ' + b.text);
+    lines.push('Part 1 is scored out of ' + MAX + '. Part 2 isn\'t scored.');
+    lines.push('');
+    lines.push('PART 1 ANSWERS');
+    for (var i = 0; i < Q.length; i++) {
+      var l = '- ' + Q[i].key + ': ' + ansLabel(state.a1[i]);
+      if ((state.n1[i] || '').trim()) l += '. Note: ' + state.n1[i].trim().replace(/\s+/g, ' ');
+      lines.push(l);
+    }
+    lines.push('');
+    lines.push('PART 2 ANSWERS');
+    lines.push(iss.length ? iss.length + ' of ' + C.length + ' need attention.' : 'All ' + C.length + ' are clear.');
+    for (var c = 0; c < C.length; c++) {
+      var cl = '- ' + C[c].key + ': ' + chainLabel(state.a2[c]);
+      if ((state.n2[c] || '').trim()) cl += '. Note: ' + state.n2[c].trim().replace(/\s+/g, ' ');
+      lines.push(cl);
+    }
+    lines.push('');
+    lines.push('WHAT TO FIX');
+    if (!fo.length && !iss.length) lines.push('- Nothing to fix. Every check is clear.');
+    var n = 0;
+    fo.forEach(function (q) { n++; lines.push(n + '. ' + Q[q].key + ' (' + ansLabel(state.a1[q]) + '): ' + fix1(q)); });
+    iss.forEach(function (c) { n++; lines.push(n + '. ' + C[c].key + ' (' + chainLabel(state.a2[c]) + '): ' + fix2(c)); });
+    lines.push('');
+    lines.push('MAKE IT HAPPEN');
+    lines.push('Page owner: ' + (state.owner.trim() || 'Not set'));
+    lines.push('Review by: ' + (state.review ? fmtDate(state.review) : 'Not set'));
+    return lines.join('\n');
+  }
+
+  /* EXPORT START */
+  function clean(t) {
+    return String(t == null ? '' : t)
+      .replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
+      .replace(/[–—]/g, '-').replace(/…/g, '...').replace(/·/g, '-')
+      .replace(/\s+/g, ' ').replace(/[^\x20-\x7E\xA0-\xFF]/g, '?').trim();
+  }
+
+  function exportModel() {
+    var s = score(), b = band(s), iss = p2Issues(), fo = fixOrder();
+    var verdict = iss.length === 0 ? 'All ' + C.length + ' are clear.' : iss.length + ' of ' + C.length + ' need attention.';
+    var all = [];
+    fo.forEach(function (q) { all.push({ part: 'Part 1', key: Q[q].key, answer: ansLabel(state.a1[q]), fix: fix1(q), note: (state.n1[q] || '').trim() }); });
+    iss.forEach(function (c) { all.push({ part: 'Part 2', key: C[c].key, answer: chainLabel(state.a2[c]), fix: fix2(c), note: (state.n2[c] || '').trim() }); });
+    return {
+      owner: state.owner.trim(), review: fmtDate(state.review),
+      url: state.name.trim(), score: s, max: MAX, message: b.text, verdict: verdict,
+      fixes: all,
+      p1: Q.map(function (q, i) {
+        return { key: q.key, answer: ansLabel(state.a1[i]), points: state.a1[i], note: (state.n1[i] || '').trim(), fix: state.a1[i] < 2 ? fix1(i) : '' };
+      }),
+      p2: C.map(function (c, i) {
+        return { key: c.key, answer: chainLabel(state.a2[i]), note: (state.n2[i] || '').trim(), fix: state.a2[i] !== 'yes' ? fix2(i) : '' };
+      })
+    };
+  }
+
+  /* PDF: plain Helvetica text, built by hand so no library is needed */
+  function pdfBytes(items) {
+    var W = 595, H = 842, M = 56, pages = [[]], y = H - M;
+    function wrap(t, size, bold) {
+      var max = Math.floor((W - 2 * M) / (size * (bold ? 0.58 : 0.54)));
+      var words = clean(t).split(' '), lines = [], cur = '';
+      words.forEach(function (w) {
+        while (w.length > max) { if (cur) { lines.push(cur); cur = ''; } lines.push(w.slice(0, max)); w = w.slice(max); }
+        if ((cur + ' ' + w).trim().length > max) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim();
+      });
+      if (cur || !lines.length) lines.push(cur);
+      return lines;
+    }
+    items.forEach(function (it) {
+      var size = it.size || 10.5, lead = size * 1.45;
+      y -= (it.before || 0);
+      wrap(it.t, size, it.bold).forEach(function (l) {
+        if (y - lead < M) { pages.push([]); y = H - M; }
+        y -= lead;
+        pages[pages.length - 1].push('BT /' + (it.bold ? 'F2' : 'F1') + ' ' + size + ' Tf ' + (M + (it.indent || 0)) + ' ' + y.toFixed(1) + ' Td (' + l.replace(/([\\()])/g, '\\$1') + ') Tj ET');
+      });
+    });
+    var out = '%PDF-1.4\n', offs = [];
+    function add(n, body) { offs[n] = out.length; out += n + ' 0 obj\n' + body + '\nendobj\n'; }
+    var kids = pages.map(function (p, i) { return (6 + 2 * i) + ' 0 R'; }).join(' ');
+    add(1, '<< /Type /Catalog /Pages 2 0 R >>');
+    add(2, '<< /Type /Pages /Kids [' + kids + '] /Count ' + pages.length + ' >>');
+    add(3, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>');
+    add(4, '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>');
+    pages.forEach(function (p, i) {
+      var stream = p.join('\n');
+      add(5 + 2 * i, '<< /Length ' + stream.length + ' >>\nstream\n' + stream + '\nendstream');
+      add(6 + 2 * i, '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + W + ' ' + H + '] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents ' + (5 + 2 * i) + ' 0 R >>');
+    });
+    var n = 5 + 2 * pages.length, xref = out.length;
+    out += 'xref\n0 ' + n + '\n0000000000 65535 f \n';
+    for (var k = 1; k < n; k++) out += String(offs[k]).padStart(10, '0') + ' 00000 n \n';
+    out += 'trailer\n<< /Size ' + n + ' /Root 1 0 R >>\nstartxref\n' + xref + '\n%%EOF';
+    var bytes = new Uint8Array(out.length);
+    for (var j = 0; j < out.length; j++) bytes[j] = out.charCodeAt(j) & 255;
+    return bytes;
+  }
+
+  function buildPdf() {
+    var m = exportModel(), it = [];
+    it.push({ t: 'Webpage audit scorecard, by Ash Curtis', size: 20, bold: true });
+    it.push({ t: m.url, size: 11, before: 6 });
+    it.push({ t: 'Score: ' + m.score + ' / ' + m.max, size: 15, bold: true, before: 16 });
+    it.push({ t: m.message, before: 4 });
+    it.push({ t: 'Part 1 is scored out of ' + m.max + '. Part 2 isn\'t scored.', size: 9.5, before: 2 });
+    it.push({ t: 'Part 1 answers', size: 14, bold: true, before: 20 });
+    m.p1.forEach(function (r) {
+      it.push({ t: r.key + ': ' + r.answer, before: 5 });
+      if (r.note) it.push({ t: 'Note: ' + r.note, indent: 14 });
+    });
+    it.push({ t: 'Part 2 answers', size: 14, bold: true, before: 20 });
+    it.push({ t: m.verdict, size: 9.5, before: 2 });
+    m.p2.forEach(function (r) {
+      it.push({ t: r.key + ': ' + r.answer, before: 5 });
+      if (r.note) it.push({ t: 'Note: ' + r.note, indent: 14 });
+    });
+    it.push({ t: m.fixes.length ? 'What to fix' : 'Fixes', size: 14, bold: true, before: 20 });
+    if (!m.fixes.length) it.push({ t: 'Nothing to fix. Every check is clear.', before: 4 });
+    m.fixes.forEach(function (f, i) {
+      it.push({ t: (i + 1) + '. ' + f.key + ' (' + f.answer + ')', bold: true, before: 8 });
+      it.push({ t: f.fix, indent: 14, before: 1 });
+      if (f.note) it.push({ t: 'Your note: ' + f.note, indent: 14, before: 1 });
+    });
+    it.push({ t: 'Make it happen', size: 14, bold: true, before: 20 });
+    it.push({ t: 'Page owner: ' + (m.owner || 'Not set'), before: 5 });
+    it.push({ t: 'Review by: ' + (m.review || 'Not set'), before: 2 });
+    return pdfBytes(it);
+  }
+
+  /* XLSX: a zip of XML parts, written by hand (no compression) */
+  var CRC = null;
+  function crc32(b) {
+    if (!CRC) {
+      CRC = new Uint32Array(256);
+      for (var n = 0; n < 256; n++) { var c0 = n; for (var k = 0; k < 8; k++) c0 = c0 & 1 ? 0xEDB88320 ^ (c0 >>> 1) : c0 >>> 1; CRC[n] = c0 >>> 0; }
+    }
+    var c = 0xFFFFFFFF;
+    for (var i = 0; i < b.length; i++) c = CRC[(c ^ b[i]) & 255] ^ (c >>> 8);
+    return (c ^ 0xFFFFFFFF) >>> 0;
+  }
+  function zipFiles(files) {
+    var enc = new TextEncoder(), parts = [], central = [], offset = 0;
+    function u16(v) { return [v & 255, (v >>> 8) & 255]; }
+    function u32(v) { return [v & 255, (v >>> 8) & 255, (v >>> 16) & 255, (v >>> 24) & 255]; }
+    files.forEach(function (f) {
+      var name = enc.encode(f.name), data = enc.encode(f.data), crc = crc32(data), size = data.length;
+      var lh = [].concat(u32(0x04034b50), u16(20), u16(0), u16(0), u16(0), u16(33), u32(crc), u32(size), u32(size), u16(name.length), u16(0));
+      parts.push(new Uint8Array(lh), name, data);
+      var ch = [].concat(u32(0x02014b50), u16(20), u16(20), u16(0), u16(0), u16(0), u16(33), u32(crc), u32(size), u32(size), u16(name.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(offset));
+      central.push(new Uint8Array(ch), name);
+      offset += lh.length + name.length + size;
+    });
+    var csize = 0;
+    central.forEach(function (p) { csize += p.length; });
+    var end = [].concat(u32(0x06054b50), u16(0), u16(0), u16(files.length), u16(files.length), u32(csize), u32(offset), u16(0));
+    var all = parts.concat(central, [new Uint8Array(end)]), total = 0;
+    all.forEach(function (p) { total += p.length; });
+    var res = new Uint8Array(total), pos = 0;
+    all.forEach(function (p) { res.set(p, pos); pos += p.length; });
+    return res;
+  }
+  function xesc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, ''); }
+  function sheetXml(rows, widths) {
+    var x = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><cols>' +
+      widths.map(function (w, i) { return '<col min="' + (i + 1) + '" max="' + (i + 1) + '" width="' + w + '" customWidth="1"/>'; }).join('') + '</cols><sheetData>';
+    rows.forEach(function (r, ri) {
+      x += '<row r="' + (ri + 1) + '">';
+      r.forEach(function (c, ci) {
+        if (c === null || c === undefined || c === '') return;
+        var cell = typeof c === 'object' ? c : { v: c }, ref = String.fromCharCode(65 + ci) + (ri + 1);
+        if (typeof cell.v === 'number') x += '<c r="' + ref + '"><v>' + cell.v + '</v></c>';
+        else x += '<c r="' + ref + '" t="inlineStr" s="' + (cell.b ? 1 : 2) + '"><is><t xml:space="preserve">' + xesc(cell.v) + '</t></is></c>';
+      });
+      x += '</row>';
+    });
+    return x + '</sheetData></worksheet>';
+  }
+  function buildXlsx() {
+    var m = exportModel(), B = function (v) { return { v: v, b: true }; };
+    var summary = [
+      [B('Webpage audit scorecard, by Ash Curtis')], [],
+      [B('Page URL'), m.url], [B('Score'), m.score], [B('Maximum'), m.max], [B('Message'), m.message],
+      [B('Part 2'), m.verdict], [B('Page owner'), m.owner || 'Not set'], [B('Review by'), m.review || 'Not set']
+    ];
+    var p1 = [[B('Check'), B('Answer'), B('Points'), B('Your note')]];
+    m.p1.forEach(function (r) { p1.push([r.key, r.answer, r.points, r.note]); });
+    var p2 = [[B('Check'), B('Answer'), B('Your note')]];
+    m.p2.forEach(function (r) { p2.push([r.key, r.answer, r.note]); });
+    var fx = [[B('Order'), B('Part'), B('Check'), B('Answer'), B('What to fix'), B('Your note')]];
+    m.fixes.forEach(function (f, i) { fx.push([i + 1, f.part, f.key, f.answer, f.fix, f.note]); });
+    if (!m.fixes.length) fx.push(['', '', 'Nothing to fix. Every check is clear.']);
+    var NS = 'http://schemas.openxmlformats.org/spreadsheetml/2006/main';
+    var H = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+    var files = [
+      { name: '[Content_Types].xml', data: H + '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet3.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet4.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>' },
+      { name: '_rels/.rels', data: H + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>' },
+      { name: 'xl/workbook.xml', data: H + '<workbook xmlns="' + NS + '" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Summary" sheetId="1" r:id="rId1"/><sheet name="Part 1" sheetId="2" r:id="rId2"/><sheet name="Part 2" sheetId="3" r:id="rId3"/><sheet name="What to fix" sheetId="4" r:id="rId5"/></sheets></workbook>' },
+      { name: 'xl/_rels/workbook.xml.rels', data: H + '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet3.xml"/><Relationship Id="rId5" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet4.xml"/><Relationship Id="rId4" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>' },
+      { name: 'xl/styles.xml', data: H + '<styleSheet xmlns="' + NS + '"><fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts><fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="3"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment vertical="top" wrapText="1"/></xf></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>' },
+      { name: 'xl/worksheets/sheet1.xml', data: sheetXml(summary, [16, 70]) },
+      { name: 'xl/worksheets/sheet2.xml', data: sheetXml(p1, [18, 12, 8, 60]) },
+      { name: 'xl/worksheets/sheet3.xml', data: sheetXml(p2, [18, 12, 60]) },
+      { name: 'xl/worksheets/sheet4.xml', data: sheetXml(fx, [8, 10, 18, 12, 80, 40]) }
+    ];
+    return zipFiles(files);
+  }
+  /* EXPORT END */
+
+  function renderResults() {
+    var s = score(), b = band(s), iss = p2Issues(), fo = fixOrder();
+    function boldFirst(t) {
+      var i = t.indexOf('. ');
+      return i < 0 ? esc(t) : '<b>' + esc(t.slice(0, i + 1)) + '</b> ' + esc(t.slice(i + 2));
+    }
+    function fixItem(title, tagCls, tagText, fixText, note) {
+      return '<li><div class="body"><div class="top2"><h3>' + esc(title) + '</h3><span class="tag ' + tagCls + '">' + tagText + '</span></div>' +
+        '<p>' + boldFirst(fixText) + '</p>' + (note ? '<p class="note">Your note: ' + esc(note) + '</p>' : '') + '</div></li>';
+    }
+    var items = '';
+    iss.forEach(function (c) {
+      items += fixItem(C[c].key, state.a2[c], chainLabel(state.a2[c]), fix2(c), (state.n2[c] || '').trim());
+    });
+    var total = iss.length;
+    var fixes = total
+      ? '<ol class="fixes" role="list">' + items + '</ol>'
+      : '<div class="callout good">Every check is clear. Re-check the page whenever its facts, links or purpose change.</div>';
+
+    var rows = '';
+    for (var i = 0; i < Q.length; i++) {
+      var v = state.a1[i], n1 = (state.n1[i] || '').trim();
+      rows += '<div class="srow"><div class="line"><span>' + esc(Q[i].key) + '</span><span class="tag s' + v + '">' + ansLabel(v) + '</span></div>' + (n1 ? '<p class="rnote">' + esc(n1) + '</p>' : '') + '</div>';
+    }
+    var rows2 = '';
+    for (var c = 0; c < C.length; c++) {
+      var cv = state.a2[c], n2 = (state.n2[c] || '').trim();
+      rows2 += '<div class="srow"><div class="line"><span>' + esc(C[c].key) + '</span><span class="tag ' + cv + '">' + chainLabel(cv) + '</span></div>' + (n2 ? '<p class="rnote">' + esc(n2) + '</p>' : '') + '</div>';
+    }
+    var p2line = iss.length === 0 ? 'All 6 are clear.' : iss.length + ' of ' + C.length + ' need attention.';
+
+    screen.innerHTML =
+      '<div class="head"><span class="label">Result for</span><h2 id="h" class="url" tabindex="-1">' + esc(state.name.trim()) + '</h2></div>' +
+      '<div class="sec"><h3>Part 2 answers</h3><p class="small muted">' + p2line + '</p><div class="rows">' + rows2 + '</div></div>' +
+      '<div class="sec"><h3>' + (total ? 'What to fix' : 'Fixes') + '</h3>' + fixes + '</div>' +
+      '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn" id="tofinal">Next: final summary</button></div>';
+
+    document.getElementById('back').addEventListener('click', function () { go(LAST); });
+    document.getElementById('tofinal').addEventListener('click', function () { go(FINAL); });
+  }
+
+  function renderFinish() {
+    var s = score(), iss = p2Issues();
+    var recap = 'Part 1 score: ' + s + ' out of ' + MAX + '. Part 2: ' + (iss.length === 0 ? 'all ' + C.length + ' clear' : iss.length + ' of ' + C.length + ' need attention') + '.';
+    screen.innerHTML =
+      '<div class="head"><span class="label">Last step</span><h2 id="h" tabindex="-1">Wrap up</h2>' +
+      '<p class="muted">' + esc(state.name.trim()) + '<br>' + esc(recap) + '</p></div>' +
+      '<div class="sec"><h3>Make it happen</h3><div class="fields2">' +
+      '<div class="field"><label class="label" for="owner">Page owner</label><input type="text" id="owner" autocomplete="off" placeholder="Who will make these fixes?" value="' + esc(state.owner) + '"></div>' +
+      '<div class="field"><label class="label" for="review">Review by</label><input type="date" id="review" value="' + esc(state.review) + '"></div></div></div>' +
+      '<div class="sec"><h3>Share or save</h3>' +
+      '<div class="copy-row"><button class="btn" id="copy">Copy summary</button>' +
+      '<span id="dlrow" class="copy-row" hidden><button class="btn outline" id="dlPdf">Download PDF</button><button class="btn outline" id="dlXlsx">Download spreadsheet</button></span>' +
+      '<span class="copy-status" id="copyStatus" role="status"></span></div></div>' +
+      '<details class="more" id="moreAnswers"><summary>Show the summary text</summary>' +
+      '<div class="sec"><textarea class="summary" id="summary" readonly aria-label="Summary text">' + esc(buildSummary()) + '</textarea></div></details>' +
+
+      '<div class="nav"><button class="btn outline" id="back">Back</button><button class="btn outline" id="restart">Score another page</button></div>';
+
+    document.getElementById('back').addEventListener('click', function () { go(RESULTS); });
+    document.getElementById('restart').addEventListener('click', function () {
+      var nav = document.getElementById('restart').parentNode;
+      nav.innerHTML = '<span class="muted">Start again? Your answers will be cleared.</span>' +
+        '<span><button class="btn ghost" id="cancelRestart">Cancel</button><button class="btn" id="confirmRestart">Yes, clear and start again</button></span>';
+      document.getElementById('cancelRestart').addEventListener('click', function () { render(); });
+      document.getElementById('confirmRestart').addEventListener('click', function () {
+        clearProgress(); resumeData = null;
+        state = { step: 0, name: '', a1: [], a2: [], n1: [], n2: [], owner: '', review: '', auto: null };
+        render();
+        window.scrollTo(0, 0);
+      });
+    });
+
+    function refreshSummary() { var t = document.getElementById('summary'); if (t) t.value = buildSummary(); }
+    document.getElementById('owner').addEventListener('input', function (e) { state.owner = e.target.value; refreshSummary(); });
+    document.getElementById('review').addEventListener('input', function (e) { state.review = e.target.value; refreshSummary(); });
+    var status = document.getElementById('copyStatus');
+    document.getElementById('copy').addEventListener('click', function () {
+      var ta = document.getElementById('summary');
+      function fallback() {
+        document.getElementById('moreAnswers').open = true;
+        ta.focus(); ta.select();
+        status.textContent = 'Selected. Press Ctrl+C or Cmd+C.';
+      }
+      try {
+        navigator.clipboard.writeText(buildSummary()).then(function () { status.textContent = 'Copied to clipboard'; }, fallback);
+      } catch (e) { fallback(); }
+    });
+
+    var dl = null;
+    var blobDl = { save: function (r) {
+      try {
+        var type = /\.pdf$/.test(r.filename) ? 'application/pdf' : 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+        var a = document.createElement('a'), url = URL.createObjectURL(new Blob([r.data], { type: type }));
+        a.href = url; a.download = r.filename; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+        return Promise.resolve({ status: 'saved' });
+      } catch (e) { return Promise.reject({ code: 'unavailable' }); }
+    } };
+    function slug() {
+      return clean(state.name).toLowerCase().replace(/^https?:\/\//, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40) || 'page';
+    }
+    function save(name, makeBytes) {
+      if (!dl) return;
+      var bytes;
+      try { bytes = makeBytes(); } catch (e) { status.textContent = 'Couldn\'t build the file.'; return; }
+      dl.save({ filename: name, data: bytes }).then(
+        function () { status.textContent = 'Saved'; },
+        function (e) { status.textContent = e && e.code === 'declined' ? '' : 'Couldn\'t save here.'; }
+      );
+    }
+    document.getElementById('dlPdf').addEventListener('click', function () { save('audit-' + slug() + '.pdf', buildPdf); });
+    document.getElementById('dlXlsx').addEventListener('click', function () { save('audit-' + slug() + '.xlsx', buildXlsx); });
+    if (HOSTED) { dl = blobDl; document.getElementById('dlrow').hidden = false; }
+    try {
+      if (window.claude && window.claude.use) {
+        Promise.resolve(window.claude.use('downloads')).then(function (d) {
+          if (d && document.getElementById('dlrow')) { dl = d; document.getElementById('dlrow').hidden = false; }
+        }, function () {});
+      }
+    } catch (e) {}
+  }
+
+  var navDir = 'fwd';
+  function go(step) {
+    if (step < 0) step = 0;
+    if (step > 0) resumeData = null;
+    navDir = step < state.step ? 'back' : 'fwd';
+    state.step = step;
+    render();
+    window.scrollTo(0, 0);
+  }
+
+  function render() {
+    renderProgress();
+    var s = state.step;
+    document.getElementById('urlbar').hidden = (s === 0 || s > LAST);
+    if (!document.getElementById('urlbar').hidden) paintUrlBar(false);
+    if (s === 0) renderIntro();
+    else if (s <= P1) renderQuestion();
+    else if (s === SUM) renderPart1Summary();
+    else if (s <= LAST) renderQuestion();
+    else if (s === RESULTS) renderResults();
+    else renderFinish();
+    screen.classList.remove('enter', 'back');
+    void screen.offsetWidth;
+    screen.classList.add('enter');
+    if (navDir === 'back') screen.classList.add('back');
+    navDir = 'fwd';
+    saveProgress();
+    var h = document.getElementById('h');
+    if (h && s !== 0) h.focus({ preventScroll: true });
+  }
+
+  (function () {
+    var chrome = document.getElementById('chrome');
+    if (!chrome) return;
+    function edge() { chrome.classList.toggle('scrolled', window.scrollY > 4); }
+    window.addEventListener('scroll', edge, { passive: true });
+    edge();
+    // keep focused fields clear of the pinned header
+    function pad() { document.documentElement.style.scrollPaddingTop = (chrome.offsetHeight + 16) + 'px'; }
+    try { new ResizeObserver(pad).observe(chrome); } catch (e) { window.addEventListener('resize', pad); }
+    pad();
+  })();
+
+  // typing in notes, owner or date, or picking an answer, saves straight away
+  var saveTimer = null;
+  function queueSave() { clearTimeout(saveTimer); saveTimer = setTimeout(saveProgress, 250); }
+  document.addEventListener('input', queueSave);
+  document.addEventListener('change', queueSave);
+  window.addEventListener('pagehide', saveProgress);
+
+  resumeData = loadProgress();
+  render();
 })();
 </script>
-</body>
-</html>
+
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "da799e610ab24ca590194d6089f4ef62"}'></script><!-- End Cloudflare Web Analytics -->
+</body></html>
